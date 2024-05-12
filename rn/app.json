@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "Event UIT",
+    "scheme": "event_uit_app",
+    "slug": "event_uit_app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/Logo.png",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/Logo.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/images/Logo.png"
+    },
+    "plugins": ["expo-router"]
+  }
+}

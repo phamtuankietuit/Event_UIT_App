@@ -6,7 +6,7 @@ import Post_Item from '../Post_Item';
 
 
 
-const Student_Search = ({
+const Search_Content = ({
     listPage,
     listPosts
 }) => {
@@ -80,4 +80,4 @@ const Student_Search = ({
     );
 }
 
-export default Student_Search
+export default Search_Content

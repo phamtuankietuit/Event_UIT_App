@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, Text, View } from "react-native";
-import logo from "../../assets/images/react-logo.png"
+import logo from "../../assets/images/Logo.png"
 
 const Notifi_Item = ({
     item

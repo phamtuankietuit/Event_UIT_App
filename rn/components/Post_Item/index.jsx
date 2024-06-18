@@ -1,5 +1,5 @@
 import { Image, Text, TouchableOpacity, View } from "react-native"
-import logo from "../../assets/images/react-logo.png"
+import logo from "../../assets/images/Logo.png"
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
     faEllipsis,

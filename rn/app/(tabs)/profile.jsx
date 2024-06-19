@@ -1,26 +1,122 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Button, FlatList, Image, Text, TouchableOpacity, View } from "react-native";
+import { Platform, Image, Modal, Text, TouchableOpacity, View } from "react-native";
 import logo from "../../assets/images/Logo.png"
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
   faAngleRight,
   faArrowRightFromBracket,
-  faPencil
+  faPencil,
+  faXmark,
+  faCamera
 } from '@fortawesome/free-solid-svg-icons';
+import Input from '../../components/Input';
+import MDateTimePicker from '../../components/DateTimePicker';
+import * as ImagePicker from 'expo-image-picker';
 export default function Profile() {
+  const [open, setOpen] = useState(false)
+  const setClose = () => {
+    setOpen(false)
+    setName('')
+    setErrorName('')
+    setEmail('')
+    setErrorEmail('')
+    setAddress('')
+    setActivityClass('')
+    setErrorActivityClass('')
+    setDepartment('')
+    setChosenDate(new Date())
+
+  }
+  //Name
+  const [name, setName] = useState('')
+  const [errorName, setErrorName] = useState('')
+
+  const onChangeName = (value) => {
+    setName(value)
+    setErrorName('')
+  }
+
+  //Phone
+  const [activityClass, setActivityClass] = useState('')
+  const [errorActivityClass, setErrorActivityClass] = useState('')
+
+  const onChangeActivityClass = (value) => {
+    setActivityClass(value)
+    setErrorActivityClass('')
+  }
+
+  //Email
+  const [email, setEmail] = useState('')
+  const [errorEmail, setErrorEmail] = useState('')
+
+  const onChangeEmail = (value) => {
+    setEmail(value)
+    setErrorEmail('')
+  }
+
+  //Address
+  const [address, setAddress] = useState('')
+
+  const onChangeAddress = (value) => {
+    setAddress(value)
+
+  }
+
+  //Department
+  const [department, setDepartment] = useState('')
+
+  const onChangeDepartment = (value) => {
+    setDepartment(value)
+
+  }
+
+  //Date
+  const [chosenDate, setChosenDate] = useState(new Date())
+
+
+  //Image
+  const imagePicker = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.cancelled) {
+      console.log(result);
+    }
+  }
+
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== 'web') {
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== 'granted') {
+          alert('Sorry, we need camera roll permissions to make this work!');
+        }
+      }
+    })();
+  }, []);
   return (
     <SafeAreaView className='flex-1'>
       <View className="text-wrap flex items-center flex-row gap-5 px-10">
-        <Image
-          source={logo}
-          className="bg-white rounded-full w-[80px] h-[80px] me-4 "
-        />
-        <View>
-          <Text className='font-semibold mb-2'>Ngô Trung Quân</Text>
-          <Text>036537535</Text>
+        <View className='flex flex-row items-end'>
+          <Image
+            source={logo}
+            className="bg-white rounded-full w-[100px] h-[100px] me-4 "
+          />
+          <TouchableOpacity onPress={() => imagePicker()}>
+            <FontAwesomeIcon icon={faCamera} />
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity>
+
+        <View className='me-3'>
+          <Text className='font-semibold mb-2'>Ngô Trung Quân</Text>
+          <Text>sinh viên</Text>
+        </View>
+        <TouchableOpacity onPress={() => setOpen(true)}>
           <FontAwesomeIcon icon={faPencil} />
         </TouchableOpacity>
       </View>
@@ -46,7 +142,44 @@ export default function Profile() {
           <Text className='text-white'>Đăng xuất</Text>
           <FontAwesomeIcon icon={faArrowRightFromBracket} color='white' />
         </TouchableOpacity>
+
+        <Modal
+          visible={open}
+          animationType="slide"
+          transparent={true}
+          onRequestClose={() => {
+            setClose();
+          }}
+        >
+          <SafeAreaView>
+            <View className='bg-white mt-16 h-full p-3'>
+              <View className='flex flex-row justify-between h-[5%]'>
+                <Text>Cập nhật thông tin cá nhân</Text>
+                <TouchableOpacity onPress={() => setClose()} >
+                  <FontAwesomeIcon icon={faXmark} className='w-[20%]' />
+                </TouchableOpacity>
+
+              </View>
+
+              <Input value={name} handleChange={onChangeName} placeholder={'Nhập tên'} error={errorName} title={'Tên'} require />
+              <Input value={activityClass} handleChange={onChangeActivityClass} placeholder={'Nhập lớp'} error={errorActivityClass} title={'Lớp'} require />
+              <Input value={email} handleChange={onChangeEmail} placeholder={'Nhập email'} error={errorEmail} title={'Email'} require />
+              <Input value={department} handleChange={onChangeDepartment} placeholder={'Nhập khoa'} title={'Khoa'} require />
+              <Input value={address} handleChange={onChangeAddress} placeholder={'Nhập địa chỉ'} title={'Địa chỉ'} area={true} />
+              <MDateTimePicker dateTime={chosenDate} setDateTime={setChosenDate} />
+
+              <View className='flex justify-center items-center my-2'>
+                <TouchableOpacity className='rounded-2xl w-[60%] bg-[#3A57E8] py-3 px-3 my-3 flex justify-center items-center'>
+                  <Text className='text-white'>Cập nhật thông tin của bạn</Text>
+                </TouchableOpacity>
+              </View>
+
+            </View>
+          </SafeAreaView>
+
+        </Modal>
       </View>
+
     </SafeAreaView>
   );
 }

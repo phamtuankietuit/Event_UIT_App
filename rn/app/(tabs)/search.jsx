@@ -61,49 +61,91 @@ const dataPost = [
     id: "1",
     namePage: "CLB Sách và hành động",
     content: 'Cùng theo dõi các trận của MSI hôm nay nhé 11h00: G2 vs PSG 16h00: BLG vs T1',
-    like: true
+    like: true,
+    images: [
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+    ]
   },
   {
     id: "2",
     namePage: "CLB Làn sóng",
     content: 'Cùng theo dõi các trận của MSI hôm nay nhé 11h00: G2 vs PSG 16h00: BLG vs T1',
-    like: false
+    like: false,
+    images: [
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+    ]
   },
   {
     id: "3",
     namePage: "CLB Bóng đá",
     content: 'Cùng theo dõi các trận của MSI hôm nay nhé 11h00: G2 vs PSG 16h00: BLG vs T1',
-    like: true
+    like: true,
+    images: [
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+    ]
   },
   {
     id: 4,
     namePage: "CLB nhận thức",
     content: 'Cùng theo dõi các trận của MSI hôm nay nhé 11h00: G2 vs PSG 16h00: BLG vs T1',
-    like: false
+    like: false,
+    images: [
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+    ]
   },
   {
     id: 5,
     namePage: "CLB Sách và hành động",
     content: 'Cùng theo dõi các trận của MSI hôm nay nhé 11h00: G2 vs PSG 16h00: BLG vs T1',
-    like: true
+    like: true,
+    images: [
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+    ]
   },
   {
     id: 6,
     namePage: "CLB Sách và hành động",
     content: 'Cùng theo dõi các trận của MSI hôm nay nhé 11h00: G2 vs PSG 16h00: BLG vs T1',
-    like: true
+    like: true,
+    images: [
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+    ]
   },
   {
     id: 7,
     namePage: "CLB Sách và hành động",
     content: 'Cùng theo dõi các trận của MSI hôm nay nhé 11h00: G2 vs PSG 16h00: BLG vs T1',
-    like: false
+    like: false,
+    images: [
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+    ]
   },
   {
     id: 8,
     namePage: "CLB Sách và hành động",
     content: 'Cùng theo dõi các trận của MSI hôm nay nhé 11h00: G2 vs PSG 16h00: BLG vs T1',
-    like: true
+    like: true,
+    images: [
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+      'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',
+    ]
   },
 ]
 

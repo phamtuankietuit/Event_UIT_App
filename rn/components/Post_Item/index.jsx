@@ -23,7 +23,7 @@ const Post_Item = (
                     />
                 </View>
                 <View className="w-[70%]">
-                    <Text className="text-[18px] font-semibold mb-2">CLB Sách và hành động</Text>
+                    <Text className="text-[18px] font-semibold mb-2">{item.namePage}</Text>
                     <Text>10h trước</Text>
                 </View>
                 <View className="w-[10%] flex items-center">
@@ -35,17 +35,20 @@ const Post_Item = (
             </View>
             <View>
                 <Text className="p-3">
-                    Cùng theo dõi các trận của MSI hôm nay nhé
-
-                    11h00: G2 vs PSG
-                    16h00: BLG vs T1
+                    {item.content}
                 </Text>
-                <View className="flex justify-center items-center mb-4">
-                    <Image
-                        source={logo}
-                        className="w-[90%] bg-slate-100"
-                        resizeMode="contain"
-                    />
+                <View className="flex flex-row justify-center items-center flex-wrap gap-3">
+                    {
+                        item.images.map((item, index) => (
+                            <Image
+                                key={index}
+                                source={item}
+                                className="w-[30%] h-[100px]"
+                                resizeMode="contain"
+                            />
+                        ))
+                    }
+
                 </View>
 
             </View>

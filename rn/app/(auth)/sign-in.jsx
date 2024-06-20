@@ -22,6 +22,11 @@ const SignIn = () => {
         <Image className='h-[200] w-[80]' source={light}></Image>
         <Image className='h-[160] w-[65]' source={light}></Image>
       </View>
+      <View className='flex h-full  w-full justify-around pb-60'>
+        <View className='flex items-center'>
+          <Text className='font-bold text-white tracking-wider text-3xl'> UIT EVENT</Text>
+        </View>
+      </View>
       {/* Login Form */}
       <View className='absolute bottom-0 h-1/2 w-full pl-5 pr-5'>
         <View className=' flex-row items-center justify-center'>
@@ -54,9 +59,9 @@ const SignIn = () => {
           </TouchableOpacity>
         </View>
         <View className='flex-row justify-center'>
-          <Text>Don't have an account?</Text>
+          <Text>Forget Password?</Text>
           <TouchableOpacity>
-            <Text className='ml-1 font-bold text-blue-600'>SignUp</Text>
+            <Text className='ml-1 font-bold text-blue-600'>Yes</Text>
           </TouchableOpacity>
         </View>
       </View>

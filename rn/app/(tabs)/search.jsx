@@ -60,7 +60,7 @@ const dataPost = [
   {
     id: "1",
     namePage: "CLB Sách và hành động",
-    content: 'Cùng theo dõi các trận của MSI hôm nay nhé 11h00: G2 vs PSG 16h00: BLG vs T1',
+    content: 'Cùng theo dõi các trận của MSI hôm nay nhé 11h00: G2 vs PSG 16h00: BLG vs T1. Hãy bình chọn để xem ai sẽ dành chiến thắng ',
     like: true,
     images: [
       'https://interfase.info/public/logo/231213161025_UEFA-EURO-2024_znhec.png',

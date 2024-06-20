@@ -32,16 +32,7 @@ const Search_Content = ({
         setDay(new Date())
     }
 
-    const setLikePo = async (id, value) => {
-        let newList = listPo
 
-        newList.map((item, index) => {
-            if (newList[index].id === id) newList[index].like = value
-
-        })
-        setListPo(newList)
-        setDay(new Date())
-    }
     useEffect(() => {
 
     }, [day]);
@@ -66,7 +57,7 @@ const Search_Content = ({
                 stage === true ? (
                     <FlatList
                         data={listPo}
-                        renderItem={({ item }) => <Post_Item item={item} setLike={setLikePo} />}
+                        renderItem={({ item }) => <Post_Item item={item} />}
                     />
                 ) : (
                     <FlatList

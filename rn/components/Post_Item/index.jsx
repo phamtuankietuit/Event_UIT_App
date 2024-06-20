@@ -3,13 +3,10 @@ import logo from "../../assets/images/Logo.png"
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import {
     faEllipsis,
-    faThumbsUp,
-    faComment
 } from '@fortawesome/free-solid-svg-icons';
 const Post_Item = (
     {
         item,
-        setLike
     }
 ) => {
     return (
@@ -34,15 +31,18 @@ const Post_Item = (
                 </View>
             </View>
             <View>
-                <Text className="p-3">
+                <Text className="px-3" numberOfLines={2}>
                     {item.content}
                 </Text>
-                <View className="flex flex-row justify-center items-center flex-wrap gap-3">
+                <TouchableOpacity className='px-3 mb-7'>
+                    <Text className='text-blue-500'>Xem thêm ...</Text>
+                </TouchableOpacity>
+                <View className="flex flex-row items-center flex-wrap gap-3">
                     {
                         item.images.map((item, index) => (
                             <Image
                                 key={index}
-                                source={item}
+                                source={logo}
                                 className="w-[30%] h-[100px]"
                                 resizeMode="contain"
                             />
@@ -52,35 +52,16 @@ const Post_Item = (
                 </View>
 
             </View>
-            <View className="flex flex-row justify-between">
-                <TouchableOpacity>
-                    <Text> 120 lượt thích</Text>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <Text> 200 bình luận</Text>
-                </TouchableOpacity>
-
+            <View className='flex flex-row justify-center items-center'>
+                <Text >145 người đã tham gia</Text>
             </View>
             <View className="bg-slate-300 h-[1px] w-[100%] my-2" />
-            <View className="flex flex-row justify-start">
-                {
-                    item.like === true ? (
-                        <TouchableOpacity className="flex flex-row p-2 w-[50%] justify-center items-center " onPress={() => setLike(item.id, false)}>
-                            <FontAwesomeIcon icon={faThumbsUp} color="#64748b" />
-                            <Text className=" text-slate-500">  Đã thích</Text>
-                        </TouchableOpacity>
-                    ) : (
-                        <TouchableOpacity className="flex flex-row p-2 w-[50%] justify-center items-center" onPress={() => setLike(item.id, true)}>
-                            <FontAwesomeIcon icon={faThumbsUp} color="#06b6d4" />
-                            <Text className=" text-cyan-500">  Thích</Text>
-                        </TouchableOpacity>
-                    )
-                }
-                <TouchableOpacity className="flex flex-row p-2 w-[50%] justify-center items-center ">
-                    <FontAwesomeIcon icon={faComment} color="#64748b" />
-                    <Text className=" text-slate-500">  Bình luận</Text>
+            <View className='flex flex-row justify-center items-center'>
+                <TouchableOpacity className='rounded-2xl w-[60%] bg-blue-500 py-3 px-3 my-3 flex justify-center items-center'>
+                    <Text className='text-white'>Tham gia sự kiện</Text>
                 </TouchableOpacity>
             </View>
+
         </View>
     )
 }

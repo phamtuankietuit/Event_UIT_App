@@ -21,10 +21,8 @@ export default function Profile() {
     setErrorName('')
     setEmail('')
     setErrorEmail('')
-    setAddress('')
-    setActivityClass('')
-    setErrorActivityClass('')
-    setDepartment('')
+    setPhone('')
+    setErrorPhone('')
     setChosenDate(new Date())
 
   }
@@ -38,12 +36,12 @@ export default function Profile() {
   }
 
   //Phone
-  const [activityClass, setActivityClass] = useState('')
-  const [errorActivityClass, setErrorActivityClass] = useState('')
+  const [phone, setPhone] = useState('')
+  const [errorPhone, setErrorPhone] = useState('')
 
-  const onChangeActivityClass = (value) => {
-    setActivityClass(value)
-    setErrorActivityClass('')
+  const onChangePhone = (value) => {
+    setPhone(value)
+    setErrorPhone('')
   }
 
   //Email
@@ -53,22 +51,6 @@ export default function Profile() {
   const onChangeEmail = (value) => {
     setEmail(value)
     setErrorEmail('')
-  }
-
-  //Address
-  const [address, setAddress] = useState('')
-
-  const onChangeAddress = (value) => {
-    setAddress(value)
-
-  }
-
-  //Department
-  const [department, setDepartment] = useState('')
-
-  const onChangeDepartment = (value) => {
-    setDepartment(value)
-
   }
 
   //Date
@@ -162,10 +144,8 @@ export default function Profile() {
               </View>
 
               <Input value={name} handleChange={onChangeName} placeholder={'Nhập tên'} error={errorName} title={'Tên'} require />
-              <Input value={activityClass} handleChange={onChangeActivityClass} placeholder={'Nhập lớp'} error={errorActivityClass} title={'Lớp'} require />
+              <Input value={phone} handleChange={onChangePhone} placeholder={'Nhập lớp'} error={errorPhone} title={'Số điện thoại'} require />
               <Input value={email} handleChange={onChangeEmail} placeholder={'Nhập email'} error={errorEmail} title={'Email'} require />
-              <Input value={department} handleChange={onChangeDepartment} placeholder={'Nhập khoa'} title={'Khoa'} require />
-              <Input value={address} handleChange={onChangeAddress} placeholder={'Nhập địa chỉ'} title={'Địa chỉ'} area={true} />
               <MDateTimePicker dateTime={chosenDate} setDateTime={setChosenDate} />
 
               <View className='flex justify-center items-center my-2'>

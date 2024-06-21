@@ -9,7 +9,9 @@ using UITEventAPI.Application.Common.Behaviors;
 using UITEventAPI.Application.Common.Interfaces;
 using UITEventAPI.Application.Domain.Users;
 using UITEventAPI.Application.Infrastructure.Data;
+using UITEventAPI.Application.Infrastructure.DateTimeService;
 using UITEventAPI.Application.Infrastructure.Identity;
+using UITEventAPI.Application.Infrastructure.Web;
 
 namespace UITEventAPI.Application;
 
@@ -39,9 +41,7 @@ public static class DependencyInjection
         {
             options.UseSqlServer(connectionString)
                 .EnableSensitiveDataLogging();
-
         });
-        
 
 
         /// Config AuthN and AuthZ
@@ -79,7 +79,14 @@ public static class DependencyInjection
             .AddRoleManager<RoleManager<IdentityRole<int>>>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddApiEndpoints();
+        services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
+        /// Config CurrentUserService
+        services.AddScoped<ICurrentUserService, CurrentUserService>();
+
+        /// Config DateTimeService
+        services.AddScoped<IDateTimeService, DateTimeService>();
+        
         return services;
     }
 }

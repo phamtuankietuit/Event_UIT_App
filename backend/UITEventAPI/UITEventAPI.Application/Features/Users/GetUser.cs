@@ -11,19 +11,16 @@ namespace UITEventAPI.Application.Features.Users;
 
 public class GetUserController : ApiControllerBase
 {
-    [HttpGet("{id}")]
-    public async Task<ActionResult<GetUserResponse>> GetUser(int id)
+    [HttpGet("users/{id}")]
+    public async Task<IActionResult> GetUser(int id)
     {
         var result = await Sender.Send(new GetUserQuery(id));
-        return result.IsSuccess ? Ok(result.Value) : NotFound(result.Error);
+        return result.IsSuccess ? Ok(result.Value) : ToActionResult(result);
     }
 }
 
 public record GetUserResponse(
     int Id,
-    string FullName,
-    string FirstName,
-    string LastName,
     string? Email,
     string? PhoneNumber,
     DateTimeOffset DateOfBirth,

@@ -7,6 +7,8 @@ using UITEventAPI.Application.Common.Models;
 
 namespace UITEventAPI.Application.Common;
 
+[ApiController]
+[Route("api")]
 public abstract class ApiControllerBase : ControllerBase
 {
     private ISender _sender;

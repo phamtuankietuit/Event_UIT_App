@@ -3,5 +3,5 @@
 public interface ISoftDeleteEntity
 {
     bool IsDeleted { get; set; }
-    DateTime DeletedWhen { get; set; }
+    DateTime DeletedDate { get; set; }
 }

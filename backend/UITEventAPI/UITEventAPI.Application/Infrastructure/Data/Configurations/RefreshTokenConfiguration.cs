@@ -8,6 +8,8 @@ internal class RefreshTokenConfiguration : IEntityTypeConfiguration<RefreshToken
 {
     public void Configure(EntityTypeBuilder<RefreshToken> builder)
     {
+        builder.ToTable($"{nameof(RefreshToken)}s");
+
         builder.Property(rt => rt.Id)
             .HasColumnName($"{nameof(RefreshToken)}Id");
 
@@ -20,5 +22,10 @@ internal class RefreshTokenConfiguration : IEntityTypeConfiguration<RefreshToken
 
         builder.Property(rt => rt.CreatedDate)
             .IsRequired();
+
+        builder.HasOne(rt => rt.User)
+            .WithMany()
+            .HasForeignKey(rt => rt.UserId)
+            .IsRequired(false);
     }
 }

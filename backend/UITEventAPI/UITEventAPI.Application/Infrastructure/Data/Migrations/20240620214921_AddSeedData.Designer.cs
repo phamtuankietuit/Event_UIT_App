@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UITEventAPI.Application.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using UITEventAPI.Application.Infrastructure.Data;
 namespace UITEventAPI.Application.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240620214921_AddSeedData")]
+    partial class AddSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -439,15 +442,15 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DeletedWhen = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Nước nha cái ừ một. Quê quần bàn năm thương. Nón nước đâu đập nhà bạn phá tôi. Trời leo khâu dép nón.",
-                            EndDate = new DateTime(2024, 5, 24, 19, 17, 58, 955, DateTimeKind.Unspecified).AddTicks(3012),
-                            FormUrl = "https://forms.gle/HkCD86Gc9UmTTZLP9",
+                            EndDate = new DateTime(2024, 7, 11, 0, 7, 19, 808, DateTimeKind.Local).AddTicks(3303),
+                            FormUrl = "http://thiênthêu.info",
                             IsDeleted = false,
                             IsPublished = true,
                             Location = "296 Đông Nghi Mountain, Hậu Giang, Palestine",
                             MaxAttendees = 48,
-                            StartDate = new DateTime(2024, 4, 25, 1, 8, 56, 113, DateTimeKind.Unspecified).AddTicks(2745),
+                            StartDate = new DateTime(2024, 6, 11, 5, 58, 16, 966, DateTimeKind.Local).AddTicks(3036),
                             Title = "Thế tàu chết bàn.",
-                            TrainingPoint = 4,
+                            TrainingPoint = 5,
                             Type = "Workshop",
                             UniversityUnitId = 7
                         },
@@ -457,15 +460,15 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DeletedWhen = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Đã đỏ nhà. Nón mua lỗi đâu hết. Chín lỗi núi tui bàn. Nha áo chìm đồng nha ờ thôi gió quần được. Đâu á ba ba xanh ruộng khâu đang. Thôi lầu cái thương gì núi.",
-                            EndDate = new DateTime(2023, 3, 8, 21, 19, 55, 305, DateTimeKind.Unspecified).AddTicks(2402),
-                            FormUrl = "https://forms.gle/HkCD86Gc9UmTTZLP9",
+                            EndDate = new DateTime(2023, 4, 25, 22, 54, 29, 473, DateTimeKind.Local).AddTicks(3920),
+                            FormUrl = "https://tùngquang.info",
                             IsDeleted = false,
                             IsPublished = false,
                             Location = "8350 Phương Loan Ports, Trà Vinh, Vatican",
-                            MaxAttendees = 97,
-                            StartDate = new DateTime(2023, 2, 24, 18, 46, 48, 897, DateTimeKind.Unspecified).AddTicks(4493),
+                            MaxAttendees = 23,
+                            StartDate = new DateTime(2023, 4, 12, 23, 36, 9, 750, DateTimeKind.Local).AddTicks(7589),
                             Title = "Xe phá quê thế bảy bạn khoảng mượn đang.",
-                            TrainingPoint = 4,
+                            TrainingPoint = 5,
                             Type = "Webinar",
                             UniversityUnitId = 2
                         },
@@ -475,16 +478,16 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DeletedWhen = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Thôi nhà xanh tui áo ờ hết bơi thì máy. Bè mướn em xanh hết hương khoan đỏ chỉ. Xanh sáu một xanh biết áo. Tím ác máy ghế tui chỉ mây thương lầu độc.",
-                            EndDate = new DateTime(2023, 9, 2, 1, 27, 33, 662, DateTimeKind.Unspecified).AddTicks(5946),
-                            FormUrl = "https://forms.gle/HkCD86Gc9UmTTZLP9",
+                            EndDate = new DateTime(2023, 10, 19, 6, 16, 54, 515, DateTimeKind.Local).AddTicks(9757),
+                            FormUrl = "https://sơnquân.com",
                             IsDeleted = false,
                             IsPublished = false,
                             Location = "0771 Nguyễn Squares, Cao Bằng, Bénin",
-                            MaxAttendees = 88,
-                            StartDate = new DateTime(2023, 8, 17, 10, 19, 47, 47, DateTimeKind.Unspecified).AddTicks(1561),
+                            MaxAttendees = 44,
+                            StartDate = new DateTime(2023, 10, 3, 15, 9, 7, 900, DateTimeKind.Local).AddTicks(5372),
                             Title = "Áo hàng tô khâu viết.",
-                            TrainingPoint = 1,
-                            Type = "Webinar",
+                            TrainingPoint = 4,
+                            Type = "Workshop",
                             UniversityUnitId = 7
                         },
                         new
@@ -493,16 +496,16 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DeletedWhen = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Nhà chỉ hết vàng chỉ tàu hết. Thôi trăng ghế độc đâu nha làm phá bàn. Ghế đỏ bơi đâu á.",
-                            EndDate = new DateTime(2022, 6, 30, 20, 48, 28, 964, DateTimeKind.Unspecified).AddTicks(7970),
-                            FormUrl = "https://forms.gle/HkCD86Gc9UmTTZLP9",
+                            EndDate = new DateTime(2022, 8, 17, 9, 52, 53, 405, DateTimeKind.Local).AddTicks(3609),
+                            FormUrl = "https://phươngtrang.com.vn",
                             IsDeleted = false,
                             IsPublished = false,
                             Location = "47036 Ðắc Trọng Stream, Kon Tum, Samoa",
-                            MaxAttendees = 44,
-                            StartDate = new DateTime(2022, 6, 20, 13, 16, 41, 351, DateTimeKind.Unspecified).AddTicks(2059),
+                            MaxAttendees = 46,
+                            StartDate = new DateTime(2022, 8, 6, 18, 6, 2, 204, DateTimeKind.Local).AddTicks(6501),
                             Title = "Hương may đạp đang không áo khoan tàu ghét.",
-                            TrainingPoint = 6,
-                            Type = "Webinar",
+                            TrainingPoint = 1,
+                            Type = "Other",
                             UniversityUnitId = 9
                         },
                         new
@@ -511,16 +514,16 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DeletedWhen = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Description = "Anh thì đồng làm gì gì bè đá ruộng đâu. Một bè gì mây hết vẽ được mượn hết. Thế ờ chết bảy thế cửa đồng phá tôi tô.",
-                            EndDate = new DateTime(2022, 10, 11, 2, 7, 8, 243, DateTimeKind.Unspecified).AddTicks(2383),
-                            FormUrl = "https://forms.gle/HkCD86Gc9UmTTZLP9",
+                            EndDate = new DateTime(2022, 11, 27, 6, 56, 29, 96, DateTimeKind.Local).AddTicks(7455),
+                            FormUrl = "http://ngọcquyên.info",
                             IsDeleted = false,
                             IsPublished = false,
                             Location = "056 Dương Extensions, Yên Bái, Venezuela",
-                            MaxAttendees = 41,
-                            StartDate = new DateTime(2022, 9, 30, 18, 43, 13, 869, DateTimeKind.Unspecified).AddTicks(842),
+                            MaxAttendees = 55,
+                            StartDate = new DateTime(2022, 11, 16, 23, 32, 34, 722, DateTimeKind.Local).AddTicks(5914),
                             Title = "Năm ba thích thuyền chìm.",
-                            TrainingPoint = 3,
-                            Type = "Workshop",
+                            TrainingPoint = 5,
+                            Type = "Seminar",
                             UniversityUnitId = 3
                         });
                 });
@@ -732,7 +735,7 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 2,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2023, 1, 22, 6, 29, 1, 984, DateTimeKind.Unspecified).AddTicks(6480),
+                            RegisterDate = new DateTime(2023, 3, 12, 1, 40, 53, 669, DateTimeKind.Local).AddTicks(7347),
                             StudentId = 4
                         },
                         new
@@ -742,29 +745,29 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 4,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2022, 4, 30, 12, 18, 58, 458, DateTimeKind.Unspecified).AddTicks(2994),
+                            RegisterDate = new DateTime(2022, 6, 16, 17, 8, 19, 311, DateTimeKind.Local).AddTicks(7436),
                             StudentId = 12
                         },
                         new
                         {
                             Id = 3,
-                            AttendedDate = new DateTime(2023, 2, 20, 17, 21, 31, 509, DateTimeKind.Unspecified).AddTicks(5342),
+                            AttendedDate = new DateTime(2023, 4, 9, 2, 27, 13, 203, DateTimeKind.Local).AddTicks(3112),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 2,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2023, 2, 15, 13, 7, 14, 594, DateTimeKind.Unspecified).AddTicks(6741),
+                            RegisterDate = new DateTime(2023, 4, 4, 3, 39, 50, 905, DateTimeKind.Local).AddTicks(4972),
                             StudentId = 21
                         },
                         new
                         {
                             Id = 4,
-                            AttendedDate = new DateTime(2022, 9, 3, 12, 18, 42, 50, DateTimeKind.Unspecified).AddTicks(6611),
+                            AttendedDate = new DateTime(2022, 10, 21, 3, 28, 24, 323, DateTimeKind.Local).AddTicks(961),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 5,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2022, 9, 3, 4, 22, 45, 871, DateTimeKind.Unspecified).AddTicks(3220),
+                            RegisterDate = new DateTime(2022, 10, 20, 19, 39, 59, 314, DateTimeKind.Local).AddTicks(9565),
                             StudentId = 29
                         },
                         new
@@ -774,7 +777,7 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 2,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2023, 1, 9, 19, 45, 27, 204, DateTimeKind.Unspecified).AddTicks(7002),
+                            RegisterDate = new DateTime(2023, 2, 28, 5, 38, 48, 141, DateTimeKind.Local).AddTicks(2597),
                             StudentId = 9
                         },
                         new
@@ -784,40 +787,40 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 5,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2022, 9, 27, 11, 0, 58, 481, DateTimeKind.Unspecified).AddTicks(3481),
+                            RegisterDate = new DateTime(2022, 11, 13, 16, 45, 6, 800, DateTimeKind.Local).AddTicks(2281),
                             StudentId = 17
                         },
                         new
                         {
                             Id = 7,
-                            AttendedDate = new DateTime(2023, 2, 11, 1, 4, 52, 19, DateTimeKind.Unspecified).AddTicks(1513),
+                            AttendedDate = new DateTime(2023, 3, 30, 21, 22, 13, 694, DateTimeKind.Local).AddTicks(6682),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 2,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2023, 2, 3, 2, 23, 39, 814, DateTimeKind.Unspecified).AddTicks(7263),
+                            RegisterDate = new DateTime(2023, 3, 23, 7, 37, 45, 377, DateTimeKind.Local).AddTicks(223),
                             StudentId = 26
                         },
                         new
                         {
                             Id = 8,
-                            AttendedDate = new DateTime(2022, 9, 23, 11, 43, 42, 485, DateTimeKind.Unspecified).AddTicks(8851),
+                            AttendedDate = new DateTime(2022, 11, 9, 19, 20, 52, 840, DateTimeKind.Local).AddTicks(8846),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 5,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2022, 8, 21, 17, 39, 11, 91, DateTimeKind.Unspecified).AddTicks(3742),
+                            RegisterDate = new DateTime(2022, 10, 8, 13, 50, 14, 285, DateTimeKind.Local).AddTicks(4996),
                             StudentId = 5
                         },
                         new
                         {
                             Id = 9,
-                            AttendedDate = new DateTime(2023, 7, 6, 10, 43, 11, 659, DateTimeKind.Unspecified).AddTicks(2561),
+                            AttendedDate = new DateTime(2023, 8, 22, 15, 32, 32, 512, DateTimeKind.Local).AddTicks(6372),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 3,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2023, 6, 20, 23, 10, 0, 352, DateTimeKind.Unspecified).AddTicks(7001),
+                            RegisterDate = new DateTime(2023, 8, 7, 3, 59, 21, 206, DateTimeKind.Local).AddTicks(812),
                             StudentId = 14
                         },
                         new
@@ -827,7 +830,7 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 5,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2022, 9, 15, 0, 17, 23, 701, DateTimeKind.Unspecified).AddTicks(4003),
+                            RegisterDate = new DateTime(2022, 11, 1, 10, 55, 21, 770, DateTimeKind.Local).AddTicks(7712),
                             StudentId = 22
                         },
                         new
@@ -837,29 +840,29 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 3,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2023, 7, 14, 20, 15, 7, 837, DateTimeKind.Unspecified).AddTicks(9717),
+                            RegisterDate = new DateTime(2023, 8, 31, 1, 4, 28, 691, DateTimeKind.Local).AddTicks(3528),
                             StudentId = 2
                         },
                         new
                         {
                             Id = 12,
-                            AttendedDate = new DateTime(2022, 9, 11, 0, 51, 51, 303, DateTimeKind.Unspecified).AddTicks(3911),
+                            AttendedDate = new DateTime(2022, 10, 28, 13, 18, 24, 685, DateTimeKind.Local).AddTicks(5080),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 5,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2022, 8, 9, 6, 55, 36, 311, DateTimeKind.Unspecified).AddTicks(4264),
+                            RegisterDate = new DateTime(2022, 9, 26, 8, 0, 29, 256, DateTimeKind.Local).AddTicks(428),
                             StudentId = 10
                         },
                         new
                         {
                             Id = 13,
-                            AttendedDate = new DateTime(2023, 8, 8, 10, 53, 34, 902, DateTimeKind.Unspecified).AddTicks(9944),
+                            AttendedDate = new DateTime(2023, 9, 24, 15, 42, 55, 756, DateTimeKind.Local).AddTicks(3755),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 3,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2023, 8, 7, 17, 20, 15, 323, DateTimeKind.Unspecified).AddTicks(2433),
+                            RegisterDate = new DateTime(2023, 9, 23, 22, 9, 36, 176, DateTimeKind.Local).AddTicks(6244),
                             StudentId = 19
                         },
                         new
@@ -869,7 +872,7 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 1,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2024, 3, 28, 17, 24, 25, 98, DateTimeKind.Unspecified).AddTicks(3521),
+                            RegisterDate = new DateTime(2024, 5, 14, 11, 31, 18, 985, DateTimeKind.Local).AddTicks(266),
                             StudentId = 27
                         },
                         new
@@ -879,7 +882,7 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 3,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2023, 7, 2, 14, 25, 22, 808, DateTimeKind.Unspecified).AddTicks(5148),
+                            RegisterDate = new DateTime(2023, 8, 18, 19, 14, 43, 661, DateTimeKind.Local).AddTicks(8959),
                             StudentId = 7
                         },
                         new
@@ -889,29 +892,29 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 1,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2024, 4, 21, 4, 56, 27, 458, DateTimeKind.Unspecified).AddTicks(8691),
+                            RegisterDate = new DateTime(2024, 6, 7, 8, 36, 26, 470, DateTimeKind.Local).AddTicks(2981),
                             StudentId = 15
                         },
                         new
                         {
                             Id = 17,
-                            AttendedDate = new DateTime(2022, 6, 17, 22, 44, 22, 483, DateTimeKind.Unspecified).AddTicks(5637),
+                            AttendedDate = new DateTime(2022, 8, 4, 3, 33, 43, 337, DateTimeKind.Local).AddTicks(79),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 4,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2022, 5, 29, 14, 27, 24, 597, DateTimeKind.Unspecified).AddTicks(8362),
+                            RegisterDate = new DateTime(2022, 7, 15, 19, 16, 45, 451, DateTimeKind.Local).AddTicks(2804),
                             StudentId = 24
                         },
                         new
                         {
                             Id = 18,
-                            AttendedDate = new DateTime(2024, 3, 29, 18, 50, 24, 787, DateTimeKind.Unspecified).AddTicks(8664),
+                            AttendedDate = new DateTime(2024, 5, 15, 13, 15, 3, 213, DateTimeKind.Local).AddTicks(5667),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 1,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2024, 3, 16, 16, 28, 29, 819, DateTimeKind.Unspecified).AddTicks(3862),
+                            RegisterDate = new DateTime(2024, 5, 2, 5, 41, 33, 955, DateTimeKind.Local).AddTicks(5697),
                             StudentId = 3
                         },
                         new
@@ -921,7 +924,7 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 4,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2022, 4, 23, 11, 32, 32, 83, DateTimeKind.Unspecified).AddTicks(1078),
+                            RegisterDate = new DateTime(2022, 6, 9, 16, 21, 52, 936, DateTimeKind.Local).AddTicks(5520),
                             StudentId = 12
                         },
                         new
@@ -931,40 +934,40 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 1,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2024, 4, 9, 4, 0, 32, 179, DateTimeKind.Unspecified).AddTicks(9032),
+                            RegisterDate = new DateTime(2024, 5, 26, 2, 46, 41, 440, DateTimeKind.Local).AddTicks(8413),
                             StudentId = 20
                         },
                         new
                         {
                             Id = 21,
-                            AttendedDate = new DateTime(2022, 6, 9, 20, 36, 22, 770, DateTimeKind.Unspecified).AddTicks(6401),
+                            AttendedDate = new DateTime(2022, 7, 27, 1, 25, 43, 624, DateTimeKind.Local).AddTicks(843),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 4,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2022, 5, 17, 8, 37, 39, 568, DateTimeKind.Unspecified).AddTicks(3794),
+                            RegisterDate = new DateTime(2022, 7, 3, 13, 27, 0, 421, DateTimeKind.Local).AddTicks(8236),
                             StudentId = 29
                         },
                         new
                         {
                             Id = 22,
-                            AttendedDate = new DateTime(2023, 1, 10, 0, 59, 1, 599, DateTimeKind.Unspecified).AddTicks(2805),
+                            AttendedDate = new DateTime(2023, 2, 28, 10, 46, 46, 681, DateTimeKind.Local).AddTicks(6142),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 2,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2023, 1, 2, 16, 10, 14, 389, DateTimeKind.Unspecified).AddTicks(9220),
+                            RegisterDate = new DateTime(2023, 2, 21, 10, 29, 54, 645, DateTimeKind.Local).AddTicks(2412),
                             StudentId = 8
                         },
                         new
                         {
                             Id = 23,
-                            AttendedDate = new DateTime(2022, 6, 16, 7, 49, 38, 142, DateTimeKind.Unspecified).AddTicks(5250),
+                            AttendedDate = new DateTime(2022, 8, 2, 12, 38, 58, 995, DateTimeKind.Local).AddTicks(9692),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 4,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2022, 6, 10, 5, 42, 47, 53, DateTimeKind.Unspecified).AddTicks(6509),
+                            RegisterDate = new DateTime(2022, 7, 27, 10, 32, 7, 907, DateTimeKind.Local).AddTicks(951),
                             StudentId = 17
                         },
                         new
@@ -974,7 +977,7 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 2,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2023, 1, 26, 22, 48, 26, 999, DateTimeKind.Unspecified).AddTicks(9481),
+                            RegisterDate = new DateTime(2023, 3, 16, 12, 28, 51, 881, DateTimeKind.Local).AddTicks(37),
                             StudentId = 25
                         },
                         new
@@ -984,29 +987,29 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 4,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2022, 5, 5, 2, 47, 54, 538, DateTimeKind.Unspecified).AddTicks(9225),
+                            RegisterDate = new DateTime(2022, 6, 21, 7, 37, 15, 392, DateTimeKind.Local).AddTicks(3667),
                             StudentId = 5
                         },
                         new
                         {
                             Id = 26,
-                            AttendedDate = new DateTime(2023, 2, 24, 12, 43, 47, 499, DateTimeKind.Unspecified).AddTicks(3890),
+                            AttendedDate = new DateTime(2023, 4, 12, 17, 47, 4, 429, DateTimeKind.Local).AddTicks(5040),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 2,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2023, 2, 20, 5, 26, 39, 609, DateTimeKind.Unspecified).AddTicks(9742),
+                            RegisterDate = new DateTime(2023, 4, 8, 14, 27, 49, 116, DateTimeKind.Local).AddTicks(7662),
                             StudentId = 13
                         },
                         new
                         {
                             Id = 27,
-                            AttendedDate = new DateTime(2022, 9, 16, 22, 35, 29, 129, DateTimeKind.Unspecified).AddTicks(8292),
+                            AttendedDate = new DateTime(2022, 11, 3, 8, 37, 15, 752, DateTimeKind.Local).AddTicks(8034),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 5,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2022, 9, 7, 20, 42, 10, 886, DateTimeKind.Unspecified).AddTicks(6222),
+                            RegisterDate = new DateTime(2022, 10, 25, 10, 8, 55, 395, DateTimeKind.Local).AddTicks(5796),
                             StudentId = 22
                         },
                         new
@@ -1016,7 +1019,7 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 2,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2023, 1, 14, 12, 4, 52, 220, DateTimeKind.Unspecified).AddTicks(3),
+                            RegisterDate = new DateTime(2023, 3, 4, 16, 26, 46, 352, DateTimeKind.Local).AddTicks(5287),
                             StudentId = 1
                         },
                         new
@@ -1026,7 +1029,7 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 5,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2022, 8, 2, 3, 20, 23, 496, DateTimeKind.Unspecified).AddTicks(6483),
+                            RegisterDate = new DateTime(2022, 9, 19, 7, 14, 2, 880, DateTimeKind.Local).AddTicks(8512),
                             StudentId = 10
                         },
                         new
@@ -1036,29 +1039,29 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 2,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2023, 2, 7, 18, 43, 4, 830, DateTimeKind.Unspecified).AddTicks(264),
+                            RegisterDate = new DateTime(2023, 3, 27, 18, 25, 43, 588, DateTimeKind.Local).AddTicks(2913),
                             StudentId = 18
                         },
                         new
                         {
                             Id = 31,
-                            AttendedDate = new DateTime(2022, 9, 2, 13, 30, 0, 928, DateTimeKind.Unspecified).AddTicks(2201),
+                            AttendedDate = new DateTime(2022, 10, 20, 5, 6, 38, 726, DateTimeKind.Local).AddTicks(1660),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 5,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2022, 8, 26, 9, 58, 36, 106, DateTimeKind.Unspecified).AddTicks(6744),
+                            RegisterDate = new DateTime(2022, 10, 13, 4, 19, 10, 366, DateTimeKind.Local).AddTicks(1227),
                             StudentId = 27
                         },
                         new
                         {
                             Id = 32,
-                            AttendedDate = new DateTime(2023, 7, 30, 2, 49, 45, 595, DateTimeKind.Unspecified).AddTicks(4127),
+                            AttendedDate = new DateTime(2023, 9, 15, 7, 39, 6, 448, DateTimeKind.Local).AddTicks(7938),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 3,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2023, 6, 25, 13, 38, 56, 433, DateTimeKind.Unspecified).AddTicks(3232),
+                            RegisterDate = new DateTime(2023, 8, 11, 18, 28, 17, 286, DateTimeKind.Local).AddTicks(7043),
                             StudentId = 6
                         },
                         new
@@ -1068,7 +1071,7 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 5,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2022, 9, 19, 16, 36, 48, 716, DateTimeKind.Unspecified).AddTicks(7005),
+                            RegisterDate = new DateTime(2022, 11, 6, 1, 24, 17, 851, DateTimeKind.Local).AddTicks(3943),
                             StudentId = 15
                         },
                         new
@@ -1078,40 +1081,40 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 3,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2023, 7, 19, 10, 44, 3, 918, DateTimeKind.Unspecified).AddTicks(5948),
+                            RegisterDate = new DateTime(2023, 9, 4, 15, 33, 24, 771, DateTimeKind.Local).AddTicks(9759),
                             StudentId = 24
                         },
                         new
                         {
                             Id = 35,
-                            AttendedDate = new DateTime(2024, 3, 10, 3, 26, 12, 298, DateTimeKind.Unspecified).AddTicks(5174),
+                            AttendedDate = new DateTime(2024, 4, 25, 13, 59, 22, 677, DateTimeKind.Local).AddTicks(7106),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 1,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2024, 3, 9, 18, 30, 49, 883, DateTimeKind.Unspecified).AddTicks(7811),
+                            RegisterDate = new DateTime(2024, 4, 25, 4, 55, 7, 580, DateTimeKind.Local).AddTicks(3781),
                             StudentId = 3
                         },
                         new
                         {
                             Id = 36,
-                            AttendedDate = new DateTime(2023, 8, 14, 16, 6, 56, 8, DateTimeKind.Unspecified).AddTicks(1028),
+                            AttendedDate = new DateTime(2023, 9, 30, 20, 56, 16, 861, DateTimeKind.Local).AddTicks(4839),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 3,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2023, 8, 12, 7, 49, 11, 403, DateTimeKind.Unspecified).AddTicks(8664),
+                            RegisterDate = new DateTime(2023, 9, 28, 12, 38, 32, 257, DateTimeKind.Local).AddTicks(2475),
                             StudentId = 12
                         },
                         new
                         {
                             Id = 37,
-                            AttendedDate = new DateTime(2024, 4, 23, 0, 27, 35, 811, DateTimeKind.Unspecified).AddTicks(4509),
+                            AttendedDate = new DateTime(2024, 6, 9, 4, 29, 36, 136, DateTimeKind.Local).AddTicks(187),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 1,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2024, 4, 2, 6, 2, 52, 244, DateTimeKind.Unspecified).AddTicks(2981),
+                            RegisterDate = new DateTime(2024, 5, 19, 2, 0, 15, 65, DateTimeKind.Local).AddTicks(6497),
                             StudentId = 20
                         },
                         new
@@ -1121,7 +1124,7 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 3,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2023, 7, 7, 4, 54, 18, 889, DateTimeKind.Unspecified).AddTicks(1380),
+                            RegisterDate = new DateTime(2023, 8, 23, 9, 43, 39, 742, DateTimeKind.Local).AddTicks(5191),
                             StudentId = 29
                         },
                         new
@@ -1131,29 +1134,29 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 1,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2024, 2, 26, 17, 34, 54, 604, DateTimeKind.Unspecified).AddTicks(8152),
+                            RegisterDate = new DateTime(2024, 4, 12, 23, 5, 22, 550, DateTimeKind.Local).AddTicks(9212),
                             StudentId = 8
                         },
                         new
                         {
                             Id = 40,
-                            AttendedDate = new DateTime(2022, 6, 7, 19, 27, 41, 727, DateTimeKind.Unspecified).AddTicks(9683),
+                            AttendedDate = new DateTime(2022, 7, 25, 0, 17, 2, 581, DateTimeKind.Local).AddTicks(4125),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 4,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2022, 6, 3, 4, 56, 20, 678, DateTimeKind.Unspecified).AddTicks(4593),
+                            RegisterDate = new DateTime(2022, 7, 20, 9, 45, 41, 531, DateTimeKind.Local).AddTicks(9035),
                             StudentId = 17
                         },
                         new
                         {
                             Id = 41,
-                            AttendedDate = new DateTime(2024, 4, 15, 4, 30, 30, 546, DateTimeKind.Unspecified).AddTicks(9325),
+                            AttendedDate = new DateTime(2024, 6, 1, 5, 26, 6, 825, DateTimeKind.Local).AddTicks(1244),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 1,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2024, 3, 21, 5, 6, 56, 965, DateTimeKind.Unspecified).AddTicks(3322),
+                            RegisterDate = new DateTime(2024, 5, 6, 20, 10, 30, 36, DateTimeKind.Local).AddTicks(1928),
                             StudentId = 25
                         },
                         new
@@ -1163,7 +1166,7 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 4,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2022, 4, 28, 2, 1, 28, 163, DateTimeKind.Unspecified).AddTicks(7309),
+                            RegisterDate = new DateTime(2022, 6, 14, 6, 50, 49, 17, DateTimeKind.Local).AddTicks(1751),
                             StudentId = 5
                         },
                         new
@@ -1173,7 +1176,7 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 1,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2024, 4, 13, 16, 38, 59, 325, DateTimeKind.Unspecified).AddTicks(8493),
+                            RegisterDate = new DateTime(2024, 5, 30, 17, 15, 37, 521, DateTimeKind.Local).AddTicks(4644),
                             StudentId = 13
                         },
                         new
@@ -1183,29 +1186,29 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 4,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2022, 5, 21, 23, 6, 35, 649, DateTimeKind.Unspecified).AddTicks(25),
+                            RegisterDate = new DateTime(2022, 7, 8, 3, 55, 56, 502, DateTimeKind.Local).AddTicks(4467),
                             StudentId = 22
                         },
                         new
                         {
                             Id = 45,
-                            AttendedDate = new DateTime(2023, 2, 1, 16, 14, 37, 204, DateTimeKind.Unspecified).AddTicks(2069),
+                            AttendedDate = new DateTime(2023, 3, 21, 23, 46, 30, 984, DateTimeKind.Local).AddTicks(4325),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 2,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2023, 1, 7, 8, 29, 39, 405, DateTimeKind.Unspecified).AddTicks(2222),
+                            RegisterDate = new DateTime(2023, 2, 25, 21, 17, 52, 856, DateTimeKind.Local).AddTicks(5102),
                             StudentId = 1
                         },
                         new
                         {
                             Id = 46,
-                            AttendedDate = new DateTime(2022, 6, 20, 9, 45, 56, 536, DateTimeKind.Unspecified).AddTicks(8180),
+                            AttendedDate = new DateTime(2022, 8, 6, 14, 35, 17, 390, DateTimeKind.Local).AddTicks(2622),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 4,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2022, 6, 14, 20, 11, 43, 134, DateTimeKind.Unspecified).AddTicks(2741),
+                            RegisterDate = new DateTime(2022, 8, 1, 1, 1, 3, 987, DateTimeKind.Local).AddTicks(7183),
                             StudentId = 10
                         },
                         new
@@ -1215,7 +1218,7 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 2,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2023, 1, 31, 15, 7, 52, 15, DateTimeKind.Unspecified).AddTicks(2483),
+                            RegisterDate = new DateTime(2023, 3, 20, 23, 16, 50, 92, DateTimeKind.Local).AddTicks(2727),
                             StudentId = 18
                         },
                         new
@@ -1225,29 +1228,29 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                             EventId = 5,
                             IsAttended = false,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2022, 8, 19, 6, 23, 23, 291, DateTimeKind.Unspecified).AddTicks(8963),
+                            RegisterDate = new DateTime(2022, 10, 6, 3, 32, 43, 990, DateTimeKind.Local).AddTicks(9311),
                             StudentId = 27
                         },
                         new
                         {
                             Id = 49,
-                            AttendedDate = new DateTime(2023, 1, 14, 22, 11, 56, 607, DateTimeKind.Unspecified).AddTicks(251),
+                            AttendedDate = new DateTime(2023, 3, 5, 2, 27, 16, 652, DateTimeKind.Local).AddTicks(9315),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 2,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2022, 12, 25, 21, 46, 4, 625, DateTimeKind.Unspecified).AddTicks(2744),
+                            RegisterDate = new DateTime(2023, 2, 14, 1, 15, 47, 328, DateTimeKind.Local).AddTicks(352),
                             StudentId = 6
                         },
                         new
                         {
                             Id = 50,
-                            AttendedDate = new DateTime(2022, 9, 26, 18, 34, 4, 763, DateTimeKind.Unspecified).AddTicks(8697),
+                            AttendedDate = new DateTime(2022, 11, 13, 0, 52, 49, 39, DateTimeKind.Local).AddTicks(7622),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             EventId = 5,
                             IsAttended = true,
                             IsRegistered = true,
-                            RegisterDate = new DateTime(2022, 9, 12, 13, 1, 35, 901, DateTimeKind.Unspecified).AddTicks(9224),
+                            RegisterDate = new DateTime(2022, 10, 30, 0, 37, 51, 476, DateTimeKind.Local).AddTicks(2027),
                             StudentId = 15
                         });
                 });
@@ -1309,295 +1312,295 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                         {
                             Id = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1954, 11, 7, 21, 10, 55, 63, DateTimeKind.Unspecified).AddTicks(6722),
+                            DateOfBirth = new DateTime(1954, 12, 25, 2, 0, 15, 906, DateTimeKind.Local).AddTicks(6436),
                             FirstName = "Minh Cảnh",
                             LastName = "Lâm",
-                            StudentCode = 230465,
+                            StudentCode = 117008,
                             UserId = 19
                         },
                         new
                         {
                             Id = 2,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(2003, 12, 18, 21, 50, 22, 54, DateTimeKind.Unspecified).AddTicks(1337),
+                            DateOfBirth = new DateTime(2004, 2, 4, 2, 39, 42, 897, DateTimeKind.Local).AddTicks(6163),
                             FirstName = "Ðông Nguyên",
                             LastName = "Hà",
-                            StudentCode = 197741,
+                            StudentCode = 114850,
                             UserId = 34
                         },
                         new
                         {
                             Id = 3,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(2002, 10, 30, 0, 55, 36, 490, DateTimeKind.Unspecified).AddTicks(5745),
+                            DateOfBirth = new DateTime(2002, 12, 16, 5, 44, 57, 334, DateTimeKind.Local).AddTicks(1939),
                             FirstName = "Tú Tâm",
                             LastName = "Hoàng",
-                            StudentCode = 134950,
+                            StudentCode = 256865,
                             UserId = 20
                         },
                         new
                         {
                             Id = 4,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1985, 3, 21, 1, 44, 32, 796, DateTimeKind.Unspecified).AddTicks(1942),
+                            DateOfBirth = new DateTime(1985, 5, 7, 6, 33, 53, 639, DateTimeKind.Local).AddTicks(9411),
                             FirstName = "Phương An",
                             LastName = "Bùi",
-                            StudentCode = 206711,
+                            StudentCode = 282592,
                             UserId = 36
                         },
                         new
                         {
                             Id = 5,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(2000, 10, 20, 4, 40, 17, 917, DateTimeKind.Unspecified).AddTicks(4770),
+                            DateOfBirth = new DateTime(2000, 12, 6, 9, 29, 38, 761, DateTimeKind.Local).AddTicks(3607),
                             FirstName = "Hải Hà",
                             LastName = "Đoàn",
-                            StudentCode = 143920,
+                            StudentCode = 189498,
                             UserId = 22
                         },
                         new
                         {
                             Id = 6,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1995, 3, 30, 10, 54, 34, 131, DateTimeKind.Unspecified).AddTicks(7127),
+                            DateOfBirth = new DateTime(1995, 5, 16, 15, 43, 54, 975, DateTimeKind.Local).AddTicks(7158),
                             FirstName = "Ái Nhân",
                             LastName = "Phùng",
-                            StudentCode = 111196,
+                            StudentCode = 205913,
                             UserId = 37
                         },
                         new
                         {
                             Id = 7,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1998, 10, 11, 8, 24, 59, 344, DateTimeKind.Unspecified).AddTicks(3794),
+                            DateOfBirth = new DateTime(1998, 11, 27, 13, 14, 20, 188, DateTimeKind.Local).AddTicks(5190),
                             FirstName = "Thanh Trang",
                             LastName = "Nguyễn",
-                            StudentCode = 248405,
+                            StudentCode = 233256,
                             UserId = 23
                         },
                         new
                         {
                             Id = 8,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1975, 3, 31, 6, 46, 21, 588, DateTimeKind.Unspecified).AddTicks(8266),
+                            DateOfBirth = new DateTime(1975, 5, 17, 11, 35, 42, 433, DateTimeKind.Local).AddTicks(968),
                             FirstName = "Hữu Minh",
                             LastName = "Phan",
-                            StudentCode = 215681,
+                            StudentCode = 256344,
                             UserId = 38
                         },
                         new
                         {
                             Id = 9,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1996, 10, 1, 12, 9, 40, 771, DateTimeKind.Unspecified).AddTicks(2818),
+                            DateOfBirth = new DateTime(1996, 11, 17, 16, 59, 1, 615, DateTimeKind.Local).AddTicks(6787),
                             FirstName = "Bình Quân",
                             LastName = "Hồ",
-                            StudentCode = 152890,
+                            StudentCode = 279431,
                             UserId = 24
                         },
                         new
                         {
                             Id = 10,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1970, 9, 27, 2, 2, 1, 484, DateTimeKind.Unspecified).AddTicks(7330),
+                            DateOfBirth = new DateTime(1970, 11, 13, 6, 51, 22, 329, DateTimeKind.Local).AddTicks(2463),
                             FirstName = "Thư Sương",
                             LastName = "Trịnh",
-                            StudentCode = 224651,
+                            StudentCode = 102518,
                             UserId = 40
                         },
                         new
                         {
                             Id = 11,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1994, 9, 22, 15, 54, 22, 198, DateTimeKind.Unspecified).AddTicks(1842),
+                            DateOfBirth = new DateTime(1994, 11, 8, 20, 43, 43, 42, DateTimeKind.Local).AddTicks(8207),
                             FirstName = "Mạnh Dũng",
                             LastName = "Tô",
-                            StudentCode = 257376,
+                            StudentCode = 214216,
                             UserId = 25
                         },
                         new
                         {
                             Id = 12,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1960, 3, 27, 17, 21, 15, 764, DateTimeKind.Unspecified).AddTicks(4364),
+                            DateOfBirth = new DateTime(1960, 5, 13, 22, 10, 36, 609, DateTimeKind.Local).AddTicks(1957),
                             FirstName = "Ðình Quảng",
                             LastName = "Lê",
-                            StudentCode = 120166,
+                            StudentCode = 175876,
                             UserId = 39
                         },
                         new
                         {
                             Id = 13,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1992, 9, 12, 19, 39, 3, 625, DateTimeKind.Unspecified).AddTicks(867),
+                            DateOfBirth = new DateTime(1992, 10, 30, 0, 28, 24, 469, DateTimeKind.Local).AddTicks(9666),
                             FirstName = "Tâm Ðoan",
                             LastName = "Tăng",
-                            StudentCode = 161860,
+                            StudentCode = 188560,
                             UserId = 26
                         },
                         new
                         {
                             Id = 14,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1991, 6, 29, 21, 15, 26, 506, DateTimeKind.Unspecified).AddTicks(4968),
+                            DateOfBirth = new DateTime(1991, 8, 16, 2, 4, 47, 351, DateTimeKind.Local).AddTicks(5053),
                             FirstName = "Nhật Linh",
                             LastName = "Dương",
-                            StudentCode = 299070,
+                            StudentCode = 226078,
                             UserId = 12
                         },
                         new
                         {
                             Id = 15,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1980, 4, 3, 4, 17, 37, 688, DateTimeKind.Unspecified).AddTicks(7247),
+                            DateOfBirth = new DateTime(1980, 5, 20, 9, 6, 58, 533, DateTimeKind.Local).AddTicks(8575),
                             FirstName = "Gia Thịnh",
                             LastName = "Đinh",
-                            StudentCode = 170830,
+                            StudentCode = 296006,
                             UserId = 28
                         },
                         new
                         {
                             Id = 16,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1972, 9, 30, 1, 9, 37, 248, DateTimeKind.Unspecified).AddTicks(5574),
+                            DateOfBirth = new DateTime(1972, 11, 16, 5, 58, 58, 93, DateTimeKind.Local).AddTicks(8068),
                             FirstName = "Yến Nhi",
                             LastName = "Hà",
-                            StudentCode = 108039,
+                            StudentCode = 165934,
                             UserId = 14
                         },
                         new
                         {
                             Id = 17,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1988, 8, 25, 3, 8, 26, 478, DateTimeKind.Unspecified).AddTicks(8916),
+                            DateOfBirth = new DateTime(1988, 10, 11, 7, 57, 47, 324, DateTimeKind.Local).AddTicks(2568),
                             FirstName = "Thanh Ngân",
                             LastName = "Lý",
-                            StudentCode = 275316,
+                            StudentCode = 264131,
                             UserId = 29
                         },
                         new
                         {
                             Id = 18,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(2004, 1, 2, 5, 3, 47, 990, DateTimeKind.Unspecified).AddTicks(6179),
+                            DateOfBirth = new DateTime(2004, 2, 18, 9, 53, 8, 836, DateTimeKind.Local).AddTicks(914),
                             FirstName = "Hữu Ðạt",
                             LastName = "Bùi",
-                            StudentCode = 212525,
+                            StudentCode = 287218,
                             UserId = 15
                         },
                         new
                         {
                             Id = 19,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1986, 8, 16, 6, 53, 7, 905, DateTimeKind.Unspecified).AddTicks(7940),
+                            DateOfBirth = new DateTime(1986, 10, 2, 11, 42, 28, 751, DateTimeKind.Local).AddTicks(3828),
                             FirstName = "Bảo Thạch",
                             LastName = "Đào",
-                            StudentCode = 284286,
+                            StudentCode = 175719,
                             UserId = 31
                         },
                         new
                         {
                             Id = 20,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1985, 4, 4, 8, 57, 58, 732, DateTimeKind.Unspecified).AddTicks(6784),
+                            DateOfBirth = new DateTime(1985, 5, 21, 13, 47, 19, 578, DateTimeKind.Local).AddTicks(3816),
                             FirstName = "Thúy Minh",
                             LastName = "Phùng",
-                            StudentCode = 117009,
+                            StudentCode = 245648,
                             UserId = 16
                         },
                         new
                         {
                             Id = 21,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1984, 8, 6, 10, 37, 49, 332, DateTimeKind.Unspecified).AddTicks(6964),
+                            DateOfBirth = new DateTime(1984, 9, 22, 15, 27, 10, 178, DateTimeKind.Local).AddTicks(5172),
                             FirstName = "Mỹ Hiệp",
                             LastName = "Nguyễn",
-                            StudentCode = 188771,
+                            StudentCode = 115576,
                             UserId = 32
                         },
                         new
                         {
                             Id = 22,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1966, 7, 6, 12, 52, 9, 474, DateTimeKind.Unspecified).AddTicks(7390),
+                            DateOfBirth = new DateTime(1966, 8, 22, 17, 41, 30, 320, DateTimeKind.Local).AddTicks(6751),
                             FirstName = "Ðình Hợp",
                             LastName = "Phan",
-                            StudentCode = 221495,
+                            StudentCode = 185505,
                             UserId = 17
                         },
                         new
                         {
                             Id = 23,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1982, 7, 28, 14, 22, 30, 759, DateTimeKind.Unspecified).AddTicks(5989),
+                            DateOfBirth = new DateTime(1982, 9, 13, 19, 11, 51, 605, DateTimeKind.Local).AddTicks(6483),
                             FirstName = "Tuệ Mẫn",
                             LastName = "Hồ",
-                            StudentCode = 293256,
+                            StudentCode = 202655,
                             UserId = 33
                         },
                         new
                         {
                             Id = 24,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1997, 10, 7, 16, 46, 20, 216, DateTimeKind.Unspecified).AddTicks(7995),
+                            DateOfBirth = new DateTime(1997, 11, 23, 21, 35, 41, 62, DateTimeKind.Local).AddTicks(9659),
                             FirstName = "Như Ngọc",
                             LastName = "Vương",
-                            StudentCode = 125979,
+                            StudentCode = 125361,
                             UserId = 18
                         },
                         new
                         {
                             Id = 25,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1980, 7, 18, 18, 7, 12, 186, DateTimeKind.Unspecified).AddTicks(5013),
+                            DateOfBirth = new DateTime(1980, 9, 3, 22, 56, 33, 32, DateTimeKind.Local).AddTicks(7837),
                             FirstName = "Gia Huy",
                             LastName = "Tô",
-                            StudentCode = 179800,
+                            StudentCode = 195290,
                             UserId = 30
                         },
                         new
                         {
                             Id = 26,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1954, 7, 14, 7, 59, 32, 899, DateTimeKind.Unspecified).AddTicks(9526),
+                            DateOfBirth = new DateTime(1954, 8, 30, 12, 48, 53, 746, DateTimeKind.Local).AddTicks(3461),
                             FirstName = "Việt Hoàng",
                             LastName = "Trần",
-                            StudentCode = 239435,
+                            StudentCode = 271918,
                             UserId = 21
                         },
                         new
                         {
                             Id = 27,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1978, 7, 9, 21, 51, 53, 613, DateTimeKind.Unspecified).AddTicks(4037),
+                            DateOfBirth = new DateTime(1978, 8, 26, 2, 41, 14, 459, DateTimeKind.Local).AddTicks(9120),
                             FirstName = "Thanh Hạnh",
                             LastName = "Tăng",
-                            StudentCode = 102225,
+                            StudentCode = 200785,
                             UserId = 35
                         },
                         new
                         {
                             Id = 28,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(2002, 7, 5, 11, 44, 14, 326, DateTimeKind.Unspecified).AddTicks(8550),
+                            DateOfBirth = new DateTime(2002, 8, 21, 16, 33, 35, 173, DateTimeKind.Local).AddTicks(4775),
                             FirstName = "Hướng Dương",
                             LastName = "Ngô",
-                            StudentCode = 203554,
+                            StudentCode = 162445,
                             UserId = 13
                         },
                         new
                         {
                             Id = 29,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateOfBirth = new DateTime(1976, 6, 30, 1, 36, 35, 40, DateTimeKind.Unspecified).AddTicks(3063),
+                            DateOfBirth = new DateTime(1976, 8, 16, 6, 25, 55, 887, DateTimeKind.Local).AddTicks(412),
                             FirstName = "Bảo Hiển",
                             LastName = "Đinh",
-                            StudentCode = 266346,
+                            StudentCode = 141179,
                             UserId = 27
                         });
                 });
 
-            modelBuilder.Entity("UITEventAPI.Application.Domain.UniversityUnit.UniversityUnit", b =>
+            modelBuilder.Entity("UITEventAPI.Application.Domain.Units.UniversityUnit", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1804,761 +1807,761 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=419",
-                            ConcurrencyStamp = "408286d0-e497-95a3-cfff-46699c73c4a1",
-                            Email = "149733@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=764",
+                            ConcurrencyStamp = "e89a4d07-ccb0-469a-b349-29cd63345a94",
+                            Email = "NguyetAnh_Tran_Do@yahoo.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "149733@GM.UIT.EDU.VN",
-                            NormalizedUserName = "149733",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDncxb0AWsuxq6tyGxBI/2pdWxmxwV5gfonCk4a9jJLEWCxN/1YDcmZQXWajWyk3rw==",
-                            PhoneNumber = "029 8805 5296",
+                            NormalizedEmail = "NGUYETANH_TRAN_DO@YAHOO.COM",
+                            NormalizedUserName = "NGUYETANH_TRAN",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDj/V75yrAxJaJGVi+77dr5lFtH7lCRawtrfiqHxy/7vB7Ag5FM4hYI+DVhBHfpB0g==",
+                            PhoneNumber = "026 0239 6626",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "133410cd-4e5b-6fa3-84a5-4adf7a0ea09c",
+                            SecurityStamp = "5d6c7bcf-4978-4cf4-8fef-b7954bd11be9",
                             TwoFactorEnabled = false,
-                            UserName = "149733"
+                            UserName = "NguyetAnh_Tran"
                         },
                         new
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=542",
-                            ConcurrencyStamp = "2495c693-e3b9-7c6f-3898-b7dd200bc116",
-                            Email = "254219@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=96",
+                            ConcurrencyStamp = "960eafdd-0c88-46f8-8f8f-dab896c028d7",
+                            Email = "NghiQuyen98.Vu22@gmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "254219@GM.UIT.EDU.VN",
-                            NormalizedUserName = "254219",
-                            PasswordHash = "AQAAAAIAAYagAAAAELgdmxBHPVnkzqEVAOmNpj60qvexkfS1hGi+W7ObgGg6W3o9FKfzRgD4GNMqpx1Muw==",
-                            PhoneNumber = "023 8676 0022",
+                            NormalizedEmail = "NGHIQUYEN98.VU22@GMAIL.COM",
+                            NormalizedUserName = "NGHIQUYEN98",
+                            PasswordHash = "AQAAAAIAAYagAAAAEIdnlldOMW2RCYww5Lox4RTcqGtHxQcaFS6amYphE3uPOjPsyFK6rHf4TxYRWGtfaQ==",
+                            PhoneNumber = "027 0053 2727",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "f02eec1e-16bd-f246-a9e6-936c626933ef",
+                            SecurityStamp = "6d782594-73b3-428f-a9b4-128f3622775b",
                             TwoFactorEnabled = false,
-                            UserName = "254219"
+                            UserName = "NghiQuyen98"
                         },
                         new
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=665",
-                            ConcurrencyStamp = "07a90556-e3db-633a-a032-2750a4a3bd8c",
-                            Email = "158704@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=633",
+                            ConcurrencyStamp = "05e75069-5ca8-4177-99ef-47be626b487b",
+                            Email = "PhuongGiang.Trinh56.Phan37@gmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "158704@GM.UIT.EDU.VN",
-                            NormalizedUserName = "158704",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOu57UPTWbR9mPkH5IEOZhjSiWoJwzFhLkWZoYK0zJv5wbu0MUsuGrfuYd05R8HeLw==",
-                            PhoneNumber = "026 8548 6858",
+                            NormalizedEmail = "PHUONGGIANG.TRINH56.PHAN37@GMAIL.COM",
+                            NormalizedUserName = "PHUONGGIANG.TRINH56",
+                            PasswordHash = "AQAAAAIAAYagAAAAEB1aJlCdno3BNnvj4D5TVVq464BA04u2eLaKsnMrl+aEVgEs9cfS6GmcqfcRoEkn+A==",
+                            PhoneNumber = "0286 0091 8742",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "cc27c86e-de1f-75ea-cf27-ddf84ac5c741",
+                            SecurityStamp = "a3a103fe-540f-4cf8-8088-d7b16ee3ceb5",
                             TwoFactorEnabled = false,
-                            UserName = "158704"
+                            UserName = "PhuongGiang.Trinh56"
                         },
                         new
                         {
                             Id = 4,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=787",
-                            ConcurrencyStamp = "ebbc4519-e2fd-4a06-08cc-98c4273aba01",
-                            Email = "263189@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=378",
+                            ConcurrencyStamp = "55d2ad22-d6cc-4993-8962-4050afe6a8bb",
+                            Email = "QuangDanh.Ha.Nguyen47@gmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "263189@GM.UIT.EDU.VN",
-                            NormalizedUserName = "263189",
-                            PasswordHash = "AQAAAAIAAYagAAAAEH+W56anKdK+4Hxv4x0iZyEQ08quOuCNcw6sKuvuJkIT6cJZIiRpqjIBJsZav2FeoQ==",
-                            PhoneNumber = "020 9310 2584",
+                            NormalizedEmail = "QUANGDANH.HA.NGUYEN47@GMAIL.COM",
+                            NormalizedUserName = "QUANGDANH.HA",
+                            PasswordHash = "AQAAAAIAAYagAAAAEK6eBxttM+9qAR2f2e7uE0x80Up0pw1tQknXvbQY4dhHSLV3ly1FkROkO9kE1AdkYw==",
+                            PhoneNumber = "0225 3575 5478",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "a820a4bf-a681-f98d-f568-278432205a93",
+                            SecurityStamp = "1da0f84f-740b-4cdb-93f1-3b779d9fc456",
                             TwoFactorEnabled = false,
-                            UserName = "263189"
+                            UserName = "QuangDanh.Ha"
                         },
                         new
                         {
                             Id = 5,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=910",
-                            ConcurrencyStamp = "cecf85dd-e21e-31d1-7165-0938abd2b776",
-                            Email = "167674@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=271",
+                            ConcurrencyStamp = "8f658ec8-9623-4ded-a8fc-34e2d973ce2c",
+                            Email = "ThanhPhuong6295@yahoo.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "167674@GM.UIT.EDU.VN",
-                            NormalizedUserName = "167674",
-                            PasswordHash = "AQAAAAIAAYagAAAAEM+zy5NUfAUX5pbj08fhS38Cn/V0ocJE+YnqA44mL10yKzNgwdj8fSiKTw8qPrhv8A==",
-                            PhoneNumber = "023 9171 7319",
+                            NormalizedEmail = "THANHPHUONG6295@YAHOO.COM",
+                            NormalizedUserName = "THANHPHUONG62",
+                            PasswordHash = "AQAAAAIAAYagAAAAELRNvSnjdxHDuX1HiaxURUOY+RaZQ68ManvBl1nPXotLnoaF8XjVuKUCVp1WlGH+7Q==",
+                            PhoneNumber = "0219 3004 1908",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "841a8010-6ee4-7c30-1aa9-70101a7cede6",
+                            SecurityStamp = "08e637f1-0c21-43e2-8aee-33710b822204",
                             TwoFactorEnabled = false,
-                            UserName = "167674"
+                            UserName = "ThanhPhuong62"
                         },
                         new
                         {
                             Id = 6,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=1033",
-                            ConcurrencyStamp = "b1e2c4a0-e140-189d-d9ff-7aab2e6ab3ec",
-                            Email = "272159@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=692",
+                            ConcurrencyStamp = "bc35357c-3967-49c9-a0f5-4feeed68863c",
+                            Email = "TanThanh_Dao91_Dao@hotmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "272159@GM.UIT.EDU.VN",
-                            NormalizedUserName = "272159",
-                            PasswordHash = "AQAAAAIAAYagAAAAEInsgWM1k68+jYW7OZ/p+FpEazPG7jGiljyesBHuIEkJMPdHKKMEsXNWsd+pHhRwkQ==",
-                            PhoneNumber = "027 0043 3135",
+                            NormalizedEmail = "TANTHANH_DAO91_DAO@HOTMAIL.COM",
+                            NormalizedUserName = "TANTHANH_DAO91",
+                            PasswordHash = "AQAAAAIAAYagAAAAELe1WQ3UK9zAWn9sPxUISD/OP5yuFOj2dt37q0M+soDo1aTWxkSgQICjjWmLABpPwg==",
+                            PhoneNumber = "027 1751 7378",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "60135c60-3746-ffd4-40ea-ba9d01d78138",
+                            SecurityStamp = "502bd6ca-df72-438d-832b-c3f022dba566",
                             TwoFactorEnabled = false,
-                            UserName = "272159"
+                            UserName = "TanThanh_Dao91"
                         },
                         new
                         {
                             Id = 7,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=71",
-                            ConcurrencyStamp = "95f60463-e162-ff68-4199-ea1fb201b061",
-                            Email = "176644@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=27",
+                            ConcurrencyStamp = "00a7100d-c79d-4829-bce6-c01ffa1900d6",
+                            Email = "ThuyHuong.Mai95@yahoo.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "176644@GM.UIT.EDU.VN",
-                            NormalizedUserName = "176644",
-                            PasswordHash = "AQAAAAIAAYagAAAAED5kv4PysuQEc+0I18iEhUgpO5AEYjU67rit8WF6CDtoaOJgX/bJm0jMoktjSY+qLw==",
-                            PhoneNumber = "020 0815 9861",
+                            NormalizedEmail = "THUYHUONG.MAI95@YAHOO.COM",
+                            NormalizedUserName = "THUYHUONG.MAI",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDCglsOSJEJ05p/yoPBKcwfjUtZDqG+yxKaWSQaT+G0j+ihMXv5OnMfe5YgcTYMgkA==",
+                            PhoneNumber = "0284 9418 4838",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "3c0d38b1-ffa8-8277-662a-0429e932148b",
+                            SecurityStamp = "53276056-9d60-4109-b6a8-6434ab6665d4",
                             TwoFactorEnabled = false,
-                            UserName = "176644"
+                            UserName = "ThuyHuong.Mai"
                         },
                         new
                         {
                             Id = 8,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=193",
-                            ConcurrencyStamp = "78094427-e084-e634-aa33-5b933599add7",
-                            Email = "281130@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=447",
+                            ConcurrencyStamp = "142b7a27-0c34-44a6-84e3-8728cf1f822e",
+                            Email = "ThienPhuoc.Ly.Duong@hotmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "281130@GM.UIT.EDU.VN",
-                            NormalizedUserName = "281130",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJhomxwjHrTgOWnPW3Ywqv7hV4oXn8nRzx1KEURwje4OCYhkZrMLv6Y5PXxlh1zQRg==",
-                            PhoneNumber = "024 1687 4696",
+                            NormalizedEmail = "THIENPHUOC.LY.DUONG@HOTMAIL.COM",
+                            NormalizedUserName = "THIENPHUOC.LY",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMlyjkmND1BdWOJQUJVQj73vKqcwZS6QOscO/u/5bABaBXBVDl+IEspD21ywMNE87g==",
+                            PhoneNumber = "0221 7165 0298",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "18061401-c70a-051a-8b6b-4db5d18ea7dd",
+                            SecurityStamp = "09720120-1e4f-4597-9cab-bbede1b735db",
                             TwoFactorEnabled = false,
-                            UserName = "281130"
+                            UserName = "ThienPhuoc.Ly"
                         },
                         new
                         {
                             Id = 9,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=316",
-                            ConcurrencyStamp = "5c1c84ea-dfa6-ceff-12cc-cc06b931a94c",
-                            Email = "185614@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=13",
+                            ConcurrencyStamp = "74394116-bb3f-4cb4-98e7-9ff19c1cb9dd",
+                            Email = "TuyetHoa47_Do9@gmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "185614@GM.UIT.EDU.VN",
-                            NormalizedUserName = "185614",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHd3W8+pG598ZsjojkMCNey7psxJuu4oGTP9s71ILL69XS0UpJRBeY6fTWUokEsUUQ==",
-                            PhoneNumber = "027 1458 0422",
+                            NormalizedEmail = "TUYETHOA47_DO9@GMAIL.COM",
+                            NormalizedUserName = "TUYETHOA47",
+                            PasswordHash = "AQAAAAIAAYagAAAAEH+s9kSa9OFctQcqzI6V/je5i4diC7jjAh1BY6O2cC1MBCazbN7769O987BEFeQNhQ==",
+                            PhoneNumber = "0294 8126 6597",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "f5fff052-8f6d-88be-b1ac-9742b9e93a2f",
+                            SecurityStamp = "363561a8-2fe7-477c-a179-85271561e14e",
                             TwoFactorEnabled = false,
-                            UserName = "185614"
+                            UserName = "TuyetHoa47"
                         },
                         new
                         {
                             Id = 10,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=439",
-                            ConcurrencyStamp = "3f2fc3ad-dfc8-b5cb-7a66-3d7a3cc8a6c2",
-                            Email = "290100@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=157",
+                            ConcurrencyStamp = "00bcfbc3-8dc3-474c-b1e3-fdd5ddcaf589",
+                            Email = "TuanHoang_Dinh72.Bui@gmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "290100@GM.UIT.EDU.VN",
-                            NormalizedUserName = "290100",
-                            PasswordHash = "AQAAAAIAAYagAAAAELxCrd6zljrUfRpR9n/RUQApNRhwvlBzn4G/vdT1p21zhsL9arTgD1M7HWVO4foILQ==",
-                            PhoneNumber = "021 1310 6148",
+                            NormalizedEmail = "TUANHOANG_DINH72.BUI@GMAIL.COM",
+                            NormalizedUserName = "TUANHOANG_DINH72",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFgidT4VhiO0yqhRjhzZNbpyG582RN0oBvnnwQ/cNsHyBjAD65OOnEKvFt6TQwGpIQ==",
+                            PhoneNumber = "0262 5692 0191",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "d1f9cca3-57cf-0b61-d6ed-e0cea144ce82",
+                            SecurityStamp = "641e8ec5-5b53-48b5-a391-d43077b2220f",
                             TwoFactorEnabled = false,
-                            UserName = "290100"
+                            UserName = "TuanHoang_Dinh72"
                         },
                         new
                         {
                             Id = 11,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=562",
-                            ConcurrencyStamp = "23420371-deea-9c96-e300-aeeec060a237",
-                            Email = "194584@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=622",
+                            ConcurrencyStamp = "d8daadca-a4fe-419e-84b5-4b4fd0cd7e3b",
+                            Email = "VanThanh_Nguyen_Ly33@gmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "194584@GM.UIT.EDU.VN",
-                            NormalizedUserName = "194584",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPk9jpCE5Cl6e3c5jcckLEhZ/wiKxsypIxe6/8BtyWESDIt2mT7r1NkwZrTxisnHAg==",
-                            PhoneNumber = "024 2182 2974",
+                            NormalizedEmail = "VANTHANH_NGUYEN_LY33@GMAIL.COM",
+                            NormalizedUserName = "VANTHANH_NGUYEN",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGeMPMbeGqX6cV7M4/g4IUqyAwNx45djYIK4rTIslGYjsRJVYVp0wCrUobb+XhwGSA==",
+                            PhoneNumber = "023 0116 9489",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "adf2a8f3-1f31-8e04-fc2e-2a5a88a061d4",
+                            SecurityStamp = "68818ab0-1010-4166-a510-62cbaf0dc3f8",
                             TwoFactorEnabled = false,
-                            UserName = "194584"
+                            UserName = "VanThanh_Nguyen"
                         },
                         new
                         {
                             Id = 12,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=685",
-                            ConcurrencyStamp = "06564334-de0c-8362-4b9a-1e6143f89fac",
-                            Email = "299070@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=2",
+                            ConcurrencyStamp = "4192881a-7a31-4e38-b7bc-304a099721e6",
+                            Email = "XuanQuy1146@yahoo.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "299070@GM.UIT.EDU.VN",
-                            NormalizedUserName = "299070",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJbwhlBdZVcvyMIPf3i1aDX8U8Z/fk36zm2GGpry1ww10FSmLEV0FlC7Tn2sFztndg==",
-                            PhoneNumber = "028 2953 7709",
+                            NormalizedEmail = "XUANQUY1146@YAHOO.COM",
+                            NormalizedUserName = "XUANQUY11",
+                            PasswordHash = "AQAAAAIAAYagAAAAEN6K2LqPVQVM4jFcLndnpYgwGuBpTu9zpHKTyO25HVxQ3c3IznJ3t5iNys0dNzyi8w==",
+                            PhoneNumber = "026 1887 3594",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "89eb8544-e893-11a8-226f-74e670fbf427",
+                            SecurityStamp = "ad9b0ed8-2c9b-4346-84d1-aae1cda746fb",
                             TwoFactorEnabled = false,
-                            UserName = "299070"
+                            UserName = "XuanQuy11"
                         },
                         new
                         {
                             Id = 13,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=807",
-                            ConcurrencyStamp = "ea6982f7-dd2d-6a2d-b433-8fd5c7909c22",
-                            Email = "203554@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=40",
+                            ConcurrencyStamp = "6dbcbece-7bc9-44da-a9ef-72093fc8155b",
+                            Email = "AnLai.Doan7_Trinh6@hotmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "203554@GM.UIT.EDU.VN",
-                            NormalizedUserName = "203554",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKsHkwr4XcErWbfmiKZXd+2xOdAP2BxjSZ2mOsZ59zaJfSfr0yCDfHpMAPCbJ8q6+w==",
-                            PhoneNumber = "021 3725 3435",
+                            NormalizedEmail = "ANLAI.DOAN7_TRINH6@HOTMAIL.COM",
+                            NormalizedUserName = "ANLAI.DOAN7",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOnU/eC5x8686JBySdsVG7M2vbAjzv5V4fD3kT83VqncjVuZP+5lMM6QV2yr2hIlSQ==",
+                            PhoneNumber = "0265 2013 0035",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "65e56195-b0f6-944b-47b0-bd7358568779",
+                            SecurityStamp = "3788d094-b93a-4abf-9a99-a6d6e386f5d6",
                             TwoFactorEnabled = false,
-                            UserName = "203554"
+                            UserName = "AnLai.Doan7"
                         },
                         new
                         {
                             Id = 14,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=930",
-                            ConcurrencyStamp = "cd7cc2ba-dd4f-51f9-1ccd-00494a279897",
-                            Email = "108039@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=797",
+                            ConcurrencyStamp = "f4a69218-2b61-4073-8b2e-198c8547f9ad",
+                            Email = "CamHuong_Truong46@yahoo.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "108039@GM.UIT.EDU.VN",
-                            NormalizedUserName = "108039",
-                            PasswordHash = "AQAAAAIAAYagAAAAEETJDuM7j6lQumWHhB/8l/PfOextvUKCAmn/j0i2ir6bvQACtR0tN2m6O2/3aKUsFw==",
-                            PhoneNumber = "025 3697 9261",
+                            NormalizedEmail = "CAMHUONG_TRUONG46@YAHOO.COM",
+                            NormalizedUserName = "CAMHUONG_TRUONG",
+                            PasswordHash = "AQAAAAIAAYagAAAAECdzOmGX9j7f5F6Mxzs3B3WOOA/DSI9w3/gSFlgtMto1CylCFA7UfQ1ZswjNtPVCCQ==",
+                            PhoneNumber = "0246 3277 7760",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "41de3de5-7858-18ee-6df0-07ff40b21bcb",
+                            SecurityStamp = "becf8cf5-a870-442a-8bd0-6b114c57594a",
                             TwoFactorEnabled = false,
-                            UserName = "108039"
+                            UserName = "CamHuong_Truong"
                         },
                         new
                         {
                             Id = 15,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=1053",
-                            ConcurrencyStamp = "b08f027e-dc71-38c4-8467-71bccebf950d",
-                            Email = "212525@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=133",
+                            ConcurrencyStamp = "09875e1d-77af-476f-9942-40b99e51db00",
+                            Email = "ChinhTruc75_Vuong@hotmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "212525@GM.UIT.EDU.VN",
-                            NormalizedUserName = "212525",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAWKOQaN3vBo2PHlvrz3zwCWNCIW2WQVyGouo8z6HmopZvLO/M3dl/imlvLYYMEIZQ==",
-                            PhoneNumber = "028 4469 4087",
+                            NormalizedEmail = "CHINHTRUC75_VUONG@HOTMAIL.COM",
+                            NormalizedUserName = "CHINHTRUC75",
+                            PasswordHash = "AQAAAAIAAYagAAAAEH///90gKppfZd1UkIuTTIfhNHyEb3EvKgLl5ZjTYZH0GsLjADyK2MKb43UoCyY/sA==",
+                            PhoneNumber = "0283 1924 3120",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "1dd81936-40ba-9b92-9331-508b280dae1e",
+                            SecurityStamp = "3cb19a5b-cb0c-4743-b73a-750002151d9d",
                             TwoFactorEnabled = false,
-                            UserName = "212525"
+                            UserName = "ChinhTruc75"
                         },
                         new
                         {
                             Id = 16,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=91",
-                            ConcurrencyStamp = "94a24141-dc93-1f90-ed01-e13051579282",
-                            Email = "117009@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=553",
+                            ConcurrencyStamp = "3fb1c046-e4a8-4dac-8214-3773227252ab",
+                            Email = "HoangLan_Ngo42_Nguyen@yahoo.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "117009@GM.UIT.EDU.VN",
-                            NormalizedUserName = "117009",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJbCpRtcB1zAB5YQ+04N9hkFjY7z4Mm1QSI/5eRZYypQt8kXuX0sAGHFqB1VXqjEFw==",
-                            PhoneNumber = "022 4220 0712",
+                            NormalizedEmail = "HOANGLAN_NGO42_NGUYEN@YAHOO.COM",
+                            NormalizedUserName = "HOANGLAN_NGO42",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMRTu6ERl63QCO7uctvkQursQllL4UHJDFGvFFTZKeZC1tR4SlqXEwPmXdyScPIOoA==",
+                            PhoneNumber = "020 9671 0591",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "f9d1f586-081c-1e35-b872-9a170f694170",
+                            SecurityStamp = "33eebe9a-0b83-47b5-a2ca-97b3463e0bd2",
                             TwoFactorEnabled = false,
-                            UserName = "117009"
+                            UserName = "HoangLan_Ngo42"
                         },
                         new
                         {
                             Id = 17,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=214",
-                            ConcurrencyStamp = "77b68104-dbb5-075b-559a-52a4d5ee8ef8",
-                            Email = "221495@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=149",
+                            ConcurrencyStamp = "daf599d6-f886-4b36-a9f4-d94bf4d5594b",
+                            Email = "DucPhi.Lam_Bui@hotmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "221495@GM.UIT.EDU.VN",
-                            NormalizedUserName = "221495",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJDbnZoRE7usrh8xPWsi+8VA824XARMz6Xs70V2SHc8pwhpjZ/5TKGuFoKCRaR5h/A==",
-                            PhoneNumber = "025 4192 6548",
+                            NormalizedEmail = "DUCPHI.LAM_BUI@HOTMAIL.COM",
+                            NormalizedUserName = "DUCPHI.LAM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEC37AlBufL4mhiGcTbZGVjO77iyn7DXE3DhLnrB1tMhBowXcIk6YJ50O1uE1aY9XDg==",
+                            PhoneNumber = "025 8733 8605",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "d6cad1d7-d07f-a1d8-deb3-e4a4f7c4d4c3",
+                            SecurityStamp = "9d198391-a5be-48c1-8690-e72c7522e208",
                             TwoFactorEnabled = false,
-                            UserName = "221495"
+                            UserName = "DucPhi.Lam"
                         },
                         new
                         {
                             Id = 18,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=336",
-                            ConcurrencyStamp = "5bc9c1c8-dad7-ee27-bd34-c31858868b6d",
-                            Email = "125979@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=226",
+                            ConcurrencyStamp = "b5b9744e-c9d7-4836-aaa3-5d5230e679af",
+                            Email = "HongKhoi.Tran.Vu20@gmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "125979@GM.UIT.EDU.VN",
-                            NormalizedUserName = "125979",
-                            PasswordHash = "AQAAAAIAAYagAAAAECrrQJ6sqW+jBRjveNbpccaOeQc93DpuaILtX59MgsUmbAwNNRa9lIN7+a6u3ezlXw==",
-                            PhoneNumber = "029 5964 1374",
+                            NormalizedEmail = "HONGKHOI.TRAN.VU20@GMAIL.COM",
+                            NormalizedUserName = "HONGKHOI.TRAN",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBi5vKt7t+4KQjE82a+nx6DWCOJOmdNS+eQqCsNH6KP0Zc1WoijMkY8IvqBg7KvATQ==",
+                            PhoneNumber = "0255 0852 4112",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "b2c4ad28-99e1-247c-04f4-2d30df1f6815",
+                            SecurityStamp = "c42a3470-a4ae-4260-ba10-69164d2323b8",
                             TwoFactorEnabled = false,
-                            UserName = "125979"
+                            UserName = "HongKhoi.Tran"
                         },
                         new
                         {
                             Id = 19,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=459",
-                            ConcurrencyStamp = "3edc018b-daf9-d5f2-26ce-348bdc1e87e2",
-                            Email = "230465@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=207",
+                            ConcurrencyStamp = "46fb884c-18e6-4d6c-abd6-d53f499aa475",
+                            Email = "HieuHoc61_Ly@hotmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "230465@GM.UIT.EDU.VN",
-                            NormalizedUserName = "230465",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIQO9Z1S5WhIVyRxLxerJpdZX0E/L0RlmxA9GBGfLHXJtq0yr5bq+pjC1cxD1eWwog==",
-                            PhoneNumber = "022 5735 7099",
+                            NormalizedEmail = "HIEUHOC61_LY@HOTMAIL.COM",
+                            NormalizedUserName = "HIEUHOC61",
+                            PasswordHash = "AQAAAAIAAYagAAAAELVCShepxPr8TJgvT7/VT5Rz8z3N9bvUjoTkycD3TeK1xoBPsMfDggPoOVi7dqr+rQ==",
+                            PhoneNumber = "022 2363 2887",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "8ebd8978-6143-a71f-2935-77bcc77bfb67",
+                            SecurityStamp = "e68bb1f2-1e4d-4f9f-908e-e50f9280b4b1",
                             TwoFactorEnabled = false,
-                            UserName = "230465"
+                            UserName = "HieuHoc61"
                         },
                         new
                         {
                             Id = 20,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=582",
-                            ConcurrencyStamp = "22ef404e-d91b-bcbe-8e68-a5ff5fb58458",
-                            Email = "134950@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=514",
+                            ConcurrencyStamp = "c667645b-4354-4639-b7b1-b4ad0f6e2ae1",
+                            Email = "KieuTrinh_Vuong23.Mai@gmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "134950@GM.UIT.EDU.VN",
-                            NormalizedUserName = "134950",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDnrY7EIzIUVdMdwnr24F9+Li0HSrDX/QX/Btf9ymJf4AhOT1EQUm3Hs1kzc65KiGw==",
-                            PhoneNumber = "026 6507 3825",
+                            NormalizedEmail = "KIEUTRINH_VUONG23.MAI@GMAIL.COM",
+                            NormalizedUserName = "KIEUTRINH_VUONG23",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDd3itO6Splor4KsKbh7YlBWufWaIrLX4nn84GxIUSe11AOx9r9RnuGziATeC99b3w==",
+                            PhoneNumber = "0200 3895 2320",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "6ab765c9-29a5-2ac3-4f76-c149afd68eba",
+                            SecurityStamp = "5d4aa056-0d83-4623-b79c-b249a5e1267b",
                             TwoFactorEnabled = false,
-                            UserName = "134950"
+                            UserName = "KieuTrinh_Vuong23"
                         },
                         new
                         {
                             Id = 21,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=1062",
-                            ConcurrencyStamp = "05038011-d93c-a389-f701-1573e34d81cd",
-                            Email = "239435@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=483",
+                            ConcurrencyStamp = "89a2d7f1-61db-42c0-b84e-42343aee8157",
+                            Email = "HuuTu.Ha97@hotmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "239435@GM.UIT.EDU.VN",
-                            NormalizedUserName = "239435",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOOp01D9U8axTT5j06/9ona6d0yvI0BiLnCSBmjWjCxjJYBbGz0Dj2nbuD3oAMSmiw==",
-                            PhoneNumber = "0296 4698 6516",
+                            NormalizedEmail = "HUUTU.HA97@HOTMAIL.COM",
+                            NormalizedUserName = "HUUTU.HA",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDs2OeXUqHernG1WlOXUYJH7WkXmAQB/t/RvmTDbOOfeSmm6B/BFUesBKXWi5YadOw==",
+                            PhoneNumber = "0207 8036 1602",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "46b0411a-f108-ad66-75b6-0ad59631210c",
+                            SecurityStamp = "3d095317-407d-4f78-9bea-949caa19b7db",
                             TwoFactorEnabled = false,
-                            UserName = "239435"
+                            UserName = "HuuTu.Ha"
                         },
                         new
                         {
                             Id = 22,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=549",
-                            ConcurrencyStamp = "e916c0d5-d85e-8a55-5f9b-86e666e57d43",
-                            Email = "143920@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=903",
+                            ConcurrencyStamp = "316494e5-2aa1-40fb-8c0a-746c44a936fb",
+                            Email = "MinhTuyet25.Lam69@gmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "143920@GM.UIT.EDU.VN",
-                            NormalizedUserName = "143920",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJFTw4pVnNtDNw2MMwTSWjz86QIsV4KVXgF85eUf0GN/4ascSzvWsZqTaIZCnd29pA==",
-                            PhoneNumber = "0237 2314 3877",
+                            NormalizedEmail = "MINHTUYET25.LAM69@GMAIL.COM",
+                            NormalizedUserName = "MINHTUYET25",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMQ7tHmDttKr8GVwn465xtnWb18XqgUSVeM6Mefz9pa3lYwwm+6ti0D+2a3W5p/6jw==",
+                            PhoneNumber = "024 6793 7162",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "22a91d6a-b96a-3009-9af7-54617e8db55f",
+                            SecurityStamp = "d3f5d1b3-d460-43a2-93cf-10fcddcd33f9",
                             TwoFactorEnabled = false,
-                            UserName = "143920"
+                            UserName = "MinhTuyet25"
                         },
                         new
                         {
                             Id = 23,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=36",
-                            ConcurrencyStamp = "cc29ff98-d880-7120-c735-f75aea7d7ab8",
-                            Email = "248405@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=947",
+                            ConcurrencyStamp = "3754708e-aec0-4f0a-a009-68aa8a8b3dc6",
+                            Email = "MinhAnh.Duong59_Hoang75@yahoo.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "248405@GM.UIT.EDU.VN",
-                            NormalizedUserName = "248405",
-                            PasswordHash = "AQAAAAIAAYagAAAAENHs0uEOsPylZS3OtOpf52Wp6Hy8UYR3VXRoOaUKlFKyNjmbfYWjrzYLjWIerxUWfA==",
-                            PhoneNumber = "0267 0020 1128",
+                            NormalizedEmail = "MINHANH.DUONG59_HOANG75@YAHOO.COM",
+                            NormalizedUserName = "MINHANH.DUONG59",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKLbVPdk2DfIGrN4szbhzbPcy/TKCheo3L4gyylrzORrbc2gyUboqrTbU8WZXL5Udw==",
+                            PhoneNumber = "024 4403 5222",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "fea3f9bb-81cc-b3ad-c038-9ded66e848b1",
+                            SecurityStamp = "0996f3d5-e792-4f78-90a8-ff6c3c282833",
                             TwoFactorEnabled = false,
-                            UserName = "248405"
+                            UserName = "MinhAnh.Duong59"
                         },
                         new
                         {
                             Id = 24,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=608",
-                            ConcurrencyStamp = "b03c3f5b-d7a2-58ec-30ce-68ce6d14772d",
-                            Email = "152890@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=659",
+                            ConcurrencyStamp = "f23b5f76-fcfb-416c-b4e9-e29251174f1e",
+                            Email = "NgocQuynh_Mai.Ngo@gmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "152890@GM.UIT.EDU.VN",
-                            NormalizedUserName = "152890",
-                            PasswordHash = "AQAAAAIAAYagAAAAECR60tqtVK7u0fUX7tbmOap1F/X50+HperpZtcNt8DOEaPBRWXXzxXySLJeDQPg1IQ==",
-                            PhoneNumber = "0208 9745 9389",
+                            NormalizedEmail = "NGOCQUYNH_MAI.NGO@GMAIL.COM",
+                            NormalizedUserName = "NGOCQUYNH_MAI",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBff9kw+iNSG63XJ2/XOUGm4aZcNqTpXX5dv+Qf9cIYpY3IcCwOt+CPGc//iJkIW+A==",
+                            PhoneNumber = "0219 2197 0983",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "db9cd50b-4a2e-3750-e579-e77a4e44db03",
+                            SecurityStamp = "82214693-e3b1-4951-b3ec-271ebdcc9045",
                             TwoFactorEnabled = false,
-                            UserName = "152890"
+                            UserName = "NgocQuynh_Mai"
                         },
                         new
                         {
                             Id = 25,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=95",
-                            ConcurrencyStamp = "934f7f1f-d7c4-40b7-9868-d841f1ac73a3",
-                            Email = "257376@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=384",
+                            ConcurrencyStamp = "00109bb6-8817-45c0-9382-63dd13a5fccd",
+                            Email = "NguyenSu8998@yahoo.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "257376@GM.UIT.EDU.VN",
-                            NormalizedUserName = "257376",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKsWdgZURW51suzp0xFA2ku88fNG9V3EjyoNZOjrP7+7I1aEwkjg4Y812X3o9O7MGQ==",
-                            PhoneNumber = "0238 7461 6641",
+                            NormalizedEmail = "NGUYENSU8998@YAHOO.COM",
+                            NormalizedUserName = "NGUYENSU89",
+                            PasswordHash = "AQAAAAIAAYagAAAAENkoFSu7Lie04ZJ43+7c4UpZHlM7J7n7c0wdJ9scZOx+VBg1k21V1a8RJgekNmwMIg==",
+                            PhoneNumber = "024 7984 4634",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "b795b15c-1290-baf3-0bba-3106369f6f56",
+                            SecurityStamp = "1a6e33ea-6fa5-47af-a286-18a778b060ca",
                             TwoFactorEnabled = false,
-                            UserName = "257376"
+                            UserName = "NguyenSu89"
                         },
                         new
                         {
                             Id = 26,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=667",
-                            ConcurrencyStamp = "7663bee2-d6e6-2783-0002-49b574447018",
-                            Email = "161860@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=294",
+                            ConcurrencyStamp = "2f331f30-b6ff-4a06-9088-4480c85603d2",
+                            Email = "PhuongVy.Do94.Duong@gmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "161860@GM.UIT.EDU.VN",
-                            NormalizedUserName = "161860",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFOR+i3IWQuG/omYpMtTYccWN8AN38BjdXcncdRz0Izp3Vm9nrqcqztgPFg2/VXKZA==",
-                            PhoneNumber = "0278 5077 4992",
+                            NormalizedEmail = "PHUONGVY.DO94.DUONG@GMAIL.COM",
+                            NormalizedUserName = "PHUONGVY.DO94",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEZWd4daKGDptRNpQCusGOLPJ/wsi6q11ypm8Ahq7Nlrw1nrHknXFX+NqTS5UBi/gg==",
+                            PhoneNumber = "0247 5912 7133",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "938f8dad-daf3-3d97-31fb-7a921efa02a8",
+                            SecurityStamp = "fd199b5e-c2bb-4dd1-b01b-bf4f21ec48ca",
                             TwoFactorEnabled = false,
-                            UserName = "161860"
+                            UserName = "PhuongVy.Do94"
                         },
                         new
                         {
                             Id = 27,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=154",
-                            ConcurrencyStamp = "5a76fea5-d608-0e4e-699c-ba29f8db6c8e",
-                            Email = "266346@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=442",
+                            ConcurrencyStamp = "15d71969-09b3-4fb6-9d21-5668acfe8e37",
+                            Email = "QuangVu.Dinh98@yahoo.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "266346@GM.UIT.EDU.VN",
-                            NormalizedUserName = "266346",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHe3PZ6qEQ06SeeMoAxz6/jyxBtH/5bzAWMXpL8KbBjlSf2R6LLbFVQoj49CHsvKSg==",
-                            PhoneNumber = "0209 3792 2253",
+                            NormalizedEmail = "QUANGVU.DINH98@YAHOO.COM",
+                            NormalizedUserName = "QUANGVU.DINH",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAgyvnpMrP+RYJ9KwRsDx3BAaZe/iD9XEo5TJm+SV7/HtWi07U4co4zfytyMDvX8fw==",
+                            PhoneNumber = "022 1515 8827",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "6f8869fd-a255-c03a-563c-c41f055695fb",
+                            SecurityStamp = "a57c3065-0882-47eb-a7de-1d6ffc0dfb06",
                             TwoFactorEnabled = false,
-                            UserName = "266346"
+                            UserName = "QuangVu.Dinh"
                         },
                         new
                         {
                             Id = 28,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=726",
-                            ConcurrencyStamp = "3d893e69-d52a-f51a-d135-2b9c7c736903",
-                            Email = "170830@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=472",
+                            ConcurrencyStamp = "deaa9353-8e9b-48cd-a93b-b6b1237a1280",
+                            Email = "ThienThu_Pham.Pham@hotmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "170830@GM.UIT.EDU.VN",
-                            NormalizedUserName = "170830",
-                            PasswordHash = "AQAAAAIAAYagAAAAEElYlDLipe88C342ZWRQnIULtIl8Et2fDqkCTmySlPQnsKwgKEU4MVm6/Op9uKyAKg==",
-                            PhoneNumber = "0249 2418 0414",
+                            NormalizedEmail = "THIENTHU_PHAM.PHAM@HOTMAIL.COM",
+                            NormalizedUserName = "THIENTHU_PHAM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEChHw6DWuS4BiNT5w1SG8X9IDZ5dciz4Fgg7itORlCtdOOhi96cu/jWu9kXXj3H++w==",
+                            PhoneNumber = "025 9380 5563",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "4b82454e-6ab7-43dd-7c7d-0eabedb1284d",
+                            SecurityStamp = "71ba5f77-e1b0-4b87-a5fe-32c6811614df",
                             TwoFactorEnabled = false,
-                            UserName = "170830"
+                            UserName = "ThienThu_Pham"
                         },
                         new
                         {
                             Id = 29,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=213",
-                            ConcurrencyStamp = "219c7e2c-d44b-dce5-39cf-9c10ff0b6679",
-                            Email = "275316@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=727",
+                            ConcurrencyStamp = "789f171c-af15-47ac-ac0f-b1c16894e81d",
+                            Email = "ThanhKien74_To56@gmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "275316@GM.UIT.EDU.VN",
-                            NormalizedUserName = "275316",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAjXh49jhBKj1OjgILTGGgFVfi/vFZQk7Zk5gqr1aqOW08b6sy+c5BdHeXUXLzcXeQ==",
-                            PhoneNumber = "0270 0134 7775",
+                            NormalizedEmail = "THANHKIEN74_TO56@GMAIL.COM",
+                            NormalizedUserName = "THANHKIEN74",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAGbUlvxCzwF0HnVpoe0M+a2bddPkCO4GiMdaW5BQxOs/dT639dk4Mi7ELa1tKtKkA==",
+                            PhoneNumber = "0261 5521 0945",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "277b219e-3219-c681-a2bd-5737d50cbc9f",
+                            SecurityStamp = "d9a2e67d-d245-444a-8f67-894bcbd2fe6d",
                             TwoFactorEnabled = false,
-                            UserName = "275316"
+                            UserName = "ThanhKien74"
                         },
                         new
                         {
                             Id = 30,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=785",
-                            ConcurrencyStamp = "04afbdef-d46d-c3b1-a269-0c8483a262ee",
-                            Email = "179800@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=1009",
+                            ConcurrencyStamp = "4a11ed07-3b86-4626-b51f-f7932660d179",
+                            Email = "ThaoVy_Doan75_Dang@hotmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "179800@GM.UIT.EDU.VN",
-                            NormalizedUserName = "179800",
-                            PasswordHash = "AQAAAAIAAYagAAAAECwWZKer6UNJh9W90mPCfSsJdxT4pItBkB2+5UASj/Ew/7Wdm/jCgSNEtJ679snk9w==",
-                            PhoneNumber = "0210 8849 5026",
+                            NormalizedEmail = "THAOVY_DOAN75_DANG@HOTMAIL.COM",
+                            NormalizedUserName = "THAOVY_DOAN75",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPtcvtr9vAQ1G6QvX6JW3MAi2Z5uun4nrUV0IOPZ0rUuGQdai/DYH3HsQ5fVFETu8Q==",
+                            PhoneNumber = "023 8209 7454",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "0374fdef-fb7c-4924-c7fe-a1c3bd684ff2",
+                            SecurityStamp = "898d20a0-1a34-4b64-9f51-286a3acadc96",
                             TwoFactorEnabled = false,
-                            UserName = "179800"
+                            UserName = "ThaoVy_Doan75"
                         },
                         new
                         {
                             Id = 31,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=272",
-                            ConcurrencyStamp = "e8c3fdb2-d38f-aa7c-0a03-7df7063a5f63",
-                            Email = "284286@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=1015",
+                            ConcurrencyStamp = "4fda3d59-46cd-40ba-9cb3-57112ca23b67",
+                            Email = "TienHiep.To_Doan81@gmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "284286@GM.UIT.EDU.VN",
-                            NormalizedUserName = "284286",
-                            PasswordHash = "AQAAAAIAAYagAAAAECxkfv2ScpuNz5x/K0hxkLXs3uMFHvR7spiUYTmVd4UjDDrvyHzljHQ5xbvhEx/BEQ==",
-                            PhoneNumber = "0241 7565 3387",
+                            NormalizedEmail = "TIENHIEP.TO_DOAN81@GMAIL.COM",
+                            NormalizedUserName = "TIENHIEP.TO",
+                            PasswordHash = "AQAAAAIAAYagAAAAELGtY6lR475OT2gqSFF4pdUm9gQGkIOCHPjUSz/F64inxG/69s8SvPcwWa6+Y50U2A==",
+                            PhoneNumber = "0216 9563 8253",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "df6ed940-c3de-ccc7-ed3f-ea50a5c3e244",
+                            SecurityStamp = "48dbb949-ad82-45f5-899c-fda436b66bb9",
                             TwoFactorEnabled = false,
-                            UserName = "284286"
+                            UserName = "TienHiep.To"
                         },
                         new
                         {
                             Id = 32,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=844",
-                            ConcurrencyStamp = "cbd63d76-d3b1-9148-739c-ee6b8ad25cd9",
-                            Email = "188771@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=765",
+                            ConcurrencyStamp = "6a6761c1-ed1d-4df9-9ac9-46ed1535d906",
+                            Email = "TuyLinh3849@yahoo.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "188771@GM.UIT.EDU.VN",
-                            NormalizedUserName = "188771",
-                            PasswordHash = "AQAAAAIAAYagAAAAEC4vVdlgdXcOXRDEYhIrQjYybtJyrf/LCUP8D7idK4IdBpzqX5a9TQiKXWr48uaaOw==",
-                            PhoneNumber = "0281 5181 0648",
+                            NormalizedEmail = "TUYLINH3849@YAHOO.COM",
+                            NormalizedUserName = "TUYLINH38",
+                            PasswordHash = "AQAAAAIAAYagAAAAECB3arIWNOXib7//t7Q3vce5l9CGxEJsa2j1utoQWXwFpEzLaH9bfk9nsJapSgQlVQ==",
+                            PhoneNumber = "0208 4613 0385",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "bc67b590-8b40-4f6b-1380-34dc8c1f7597",
+                            SecurityStamp = "e7e6632e-493e-4949-b4ab-29b2504c136d",
                             TwoFactorEnabled = false,
-                            UserName = "188771"
+                            UserName = "TuyLinh38"
                         },
                         new
                         {
                             Id = 33,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=331",
-                            ConcurrencyStamp = "afe97c39-d2d3-7913-db36-5fdf0d6a584e",
-                            Email = "293256@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=1024",
+                            ConcurrencyStamp = "04d35dd0-3ad2-4689-9fc4-2921fa9fc704",
+                            Email = "VanTuyen_Ngo10.Vuong44@yahoo.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "293256@GM.UIT.EDU.VN",
-                            NormalizedUserName = "293256",
-                            PasswordHash = "AQAAAAIAAYagAAAAEF4Rc1g9f9z52KxY93J3ZitqNgkZYEEgJSe3ZROxAbjk1QHBuIzhN/wq6c47O4sPIQ==",
-                            PhoneNumber = "0211 3896 8890",
+                            NormalizedEmail = "VANTUYEN_NGO10.VUONG44@YAHOO.COM",
+                            NormalizedUserName = "VANTUYEN_NGO10",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBoccC2M6EK1U9p6tXuU/w8H8xHUMX2f0EkTPkpMk0uMFk4auIxBQgpbGwVuSLE/Yg==",
+                            PhoneNumber = "0223 6067 4502",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "986191e1-53a2-d20e-38c1-7e68747a09e9",
+                            SecurityStamp = "4812c55f-6721-4fe8-b40a-a39f621a7a6b",
                             TwoFactorEnabled = false,
-                            UserName = "293256"
+                            UserName = "VanTuyen_Ngo10"
                         },
                         new
                         {
                             Id = 34,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=903",
-                            ConcurrencyStamp = "92fcbcfc-d2f5-60df-43d0-d053910155c4",
-                            Email = "197741@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=648",
+                            ConcurrencyStamp = "63570aec-f461-4843-97aa-d17ce292ae45",
+                            Email = "YenNhi_Lam49@yahoo.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "197741@GM.UIT.EDU.VN",
-                            NormalizedUserName = "197741",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGIMcO07q14JitJrJciRs/iCNmGYDcAPOHqZfVufHj6XzTIRG8zy0+FPGRYmroXQZg==",
-                            PhoneNumber = "0252 1512 6151",
+                            NormalizedEmail = "YENNHI_LAM49@YAHOO.COM",
+                            NormalizedUserName = "YENNHI_LAM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEVeRwa1WQ1dUH1lpBxV4IiOqrDpo4t/CITomQcPb0gF72fyc/tUC8MplKsK4Y6YXg==",
+                            PhoneNumber = "028 3001 7210",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "745a6d32-1b05-56b1-5e02-c7f45cd59c3b",
+                            SecurityStamp = "1f6eaf36-d603-494e-a8a2-68dd86a1c9ac",
                             TwoFactorEnabled = false,
-                            UserName = "197741"
+                            UserName = "YenNhi_Lam"
                         },
                         new
                         {
                             Id = 35,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=390",
-                            ConcurrencyStamp = "7610fcc0-d117-47ab-ac6a-40c614995139",
-                            Email = "102225@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=677",
+                            ConcurrencyStamp = "e4d8b552-4777-4484-aba9-f979b9df643c",
+                            Email = "BichHai2.Le@gmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "102225@GM.UIT.EDU.VN",
-                            NormalizedUserName = "102225",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKA5fvXaKyMI3uUpxENT3iTcpDPWdO7M7V5rARWsCaT3oEh7Zxrv6PAqYthHAu4q7w==",
-                            PhoneNumber = "0282 0238 3412",
+                            NormalizedEmail = "BICHHAI2.LE@GMAIL.COM",
+                            NormalizedUserName = "BICHHAI2",
+                            PasswordHash = "AQAAAAIAAYagAAAAEApmLUtvGaZeRc4SifXPvvkFTH9KH7F3gJyBVKLWRuvHXh3Mta0HeK1UJgYOh5q/ng==",
+                            PhoneNumber = "021 0766 4856",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "50534982-e367-d955-8443-118144312f8e",
+                            SecurityStamp = "e4967879-13a7-4b7f-aaba-7fbac94a77ee",
                             TwoFactorEnabled = false,
-                            UserName = "102225"
+                            UserName = "BichHai2"
                         },
                         new
                         {
                             Id = 36,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=963",
-                            ConcurrencyStamp = "59233b83-d139-2e76-1403-b13a98314eae",
-                            Email = "206711@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=651",
+                            ConcurrencyStamp = "77714fe6-a8e8-4274-9418-1891d4a0da85",
+                            Email = "BaoBao.Dang45.Pham@gmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "206711@GM.UIT.EDU.VN",
-                            NormalizedUserName = "206711",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIv/xQRxHb0xijv6tJJ2MgXbhKp1jADek1ixe8M7NJbkBUXBfimoMMZEahsmnfbseg==",
-                            PhoneNumber = "0223 8953 1773",
+                            NormalizedEmail = "BAOBAO.DANG45.PHAM@GMAIL.COM",
+                            NormalizedUserName = "BAOBAO.DANG45",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEaZBBCZcuSM+SGm7mPiOCloQqi9zKPi0LI5qskkbTSMaVvVLLUvbYYnW5CuyLTi2w==",
+                            PhoneNumber = "0285 3115 9362",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "2c4d25d3-acc9-5cf8-a983-5a0d2c8cc2e0",
+                            SecurityStamp = "315f09d5-4a43-427f-acd2-0483834a79a3",
                             TwoFactorEnabled = false,
-                            UserName = "206711"
+                            UserName = "BaoBao.Dang45"
                         },
                         new
                         {
                             Id = 37,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=450",
-                            ConcurrencyStamp = "3c367b46-d05a-1542-7c9d-22ae1bc84b24",
-                            Email = "111196@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=695",
+                            ConcurrencyStamp = "4dda4457-3a77-4d62-bd21-418391c4de05",
+                            Email = "DieuHuyen.Vuong.To@hotmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "111196@GM.UIT.EDU.VN",
-                            NormalizedUserName = "111196",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJfv7FYr++9iMYHImvNd64K4OOlizrjaCLTrGqQ9T4JKe5Va0FXcE6YtWuD5C4Ys6w==",
-                            PhoneNumber = "0253 6569 9924",
+                            NormalizedEmail = "DIEUHUYEN.VUONG.TO@HOTMAIL.COM",
+                            NormalizedUserName = "DIEUHUYEN.VUONG",
+                            PasswordHash = "AQAAAAIAAYagAAAAEO0lfjP+WYfdzSAwIH8JCbvV6Hel81Ldx+wCBytldbJldVB3ZezdnTD0+KA/LO49tw==",
+                            PhoneNumber = "0295 3078 1496",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "08460123-742b-df9b-cfc4-a49913e75633",
+                            SecurityStamp = "3c015efd-3ac1-42e3-a6b5-78f65e134cab",
                             TwoFactorEnabled = false,
-                            UserName = "111196"
+                            UserName = "DieuHuyen.Vuong"
                         },
                         new
                         {
                             Id = 38,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=1022",
-                            ConcurrencyStamp = "2049bb09-cf7c-fc0d-e537-93219f604799",
-                            Email = "215681@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=30",
+                            ConcurrencyStamp = "7a2e8a7f-e0ef-4e95-9249-f26b77416dff",
+                            Email = "DanQue66_Dinh67@yahoo.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "215681@GM.UIT.EDU.VN",
-                            NormalizedUserName = "215681",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIdprF8+ikgYZM7NTjE7lr/HyO+KWxOkuel2T+YSBvqA2rDPucFme7hjRH6juK/94A==",
-                            PhoneNumber = "0294 5285 6285",
+                            NormalizedEmail = "DANQUE66_DINH67@YAHOO.COM",
+                            NormalizedUserName = "DANQUE66",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPz45b6R8sTffGCNeE66enwYOmUFvQpM5TqSk9AjsxoS+xm/iLFdyh2CAre1OvqZ6w==",
+                            PhoneNumber = "022 1725 7857",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "e440dd74-3c8e-623f-f405-ee26fb43e985",
+                            SecurityStamp = "ca2d3e6a-bfe2-4cf8-8a80-2fbbfcc6443c",
                             TwoFactorEnabled = false,
-                            UserName = "215681"
+                            UserName = "DanQue66"
                         },
                         new
                         {
                             Id = 39,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=509",
-                            ConcurrencyStamp = "035cfbcd-cf9e-e3d9-4dd1-039522f8440f",
-                            Email = "120166@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=450",
+                            ConcurrencyStamp = "b9801334-520b-46bb-ad13-fc7babc6278c",
+                            Email = "HamNghi88.Doan@hotmail.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "120166@GM.UIT.EDU.VN",
-                            NormalizedUserName = "120166",
-                            PasswordHash = "AQAAAAIAAYagAAAAEA9EYfb7CUB2PmscJHE3QBbJkybxikmpk/XzBudwRkpGPbCQ56twwHRP6j/HtWGWfA==",
-                            PhoneNumber = "0224 3901 4546",
+                            NormalizedEmail = "HAMNGHI88.DOAN@HOTMAIL.COM",
+                            NormalizedUserName = "HAMNGHI88",
+                            PasswordHash = "AQAAAAIAAYagAAAAEFiH8yqMaXFxPewUHLVTcrF74Gup8nN7vmQnJbRhooPbciBpoim5jDhXETEdS5e6BA==",
+                            PhoneNumber = "0260 9472 3217",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "c039b9c5-04f0-e5e2-1a46-37b2e39e7cd7",
+                            SecurityStamp = "b4dfe8ae-8e4f-4718-99e4-c6dcf1a4dcfe",
                             TwoFactorEnabled = false,
-                            UserName = "120166"
+                            UserName = "HamNghi88"
                         },
                         new
                         {
                             Id = 40,
                             AccessFailedCount = 0,
-                            AvatarUrl = "https://picsum.photos/640/480/?image=1081",
-                            ConcurrencyStamp = "e7703a90-cec0-caa4-b66a-7409a68f4184",
-                            Email = "224651@gm.uit.edu.vn",
+                            AvatarUrl = "https://picsum.photos/640/480/?image=871",
+                            ConcurrencyStamp = "c5765091-40b2-4c6c-b798-52c8436feec1",
+                            Email = "DuyNgon.Duong26_Phung@yahoo.com",
                             EmailConfirmed = true,
                             IsActive = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "224651@GM.UIT.EDU.VN",
-                            NormalizedUserName = "224651",
-                            PasswordHash = "AQAAAAIAAYagAAAAED2bUI4N/sndTtI8jMSpelk9fFY1iPiEQGTNtbtwyiDLr8Oc5Luo5k8bdHtAkNG2vA==",
-                            PhoneNumber = "0264 1616 2808",
+                            NormalizedEmail = "DUYNGON.DUONG26_PHUNG@YAHOO.COM",
+                            NormalizedUserName = "DUYNGON.DUONG26",
+                            PasswordHash = "AQAAAAIAAYagAAAAELkAEl7LXdwQRYnMbdyx1YeLSeZg8D7P+yr6qCwIGHhQsnoGrXeIzJLYSexPbJFBOw==",
+                            PhoneNumber = "027 6129 0677",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "9d329515-cc52-6886-4087-813ecbf90f2a",
+                            SecurityStamp = "3e05a530-17c6-4333-b54a-b33181160317",
                             TwoFactorEnabled = false,
-                            UserName = "224651"
+                            UserName = "DuyNgon.Duong26"
                         });
                 });
 
@@ -2655,7 +2658,7 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                         .HasForeignKey("LastModifiedByUserId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("UITEventAPI.Application.Domain.UniversityUnit.UniversityUnit", "UniversityUnit")
+                    b.HasOne("UITEventAPI.Application.Domain.Units.UniversityUnit", "UniversityUnit")
                         .WithMany("HostedEvents")
                         .HasForeignKey("UniversityUnitId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -2737,7 +2740,7 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("UITEventAPI.Application.Domain.UniversityUnit.UniversityUnit", b =>
+            modelBuilder.Entity("UITEventAPI.Application.Domain.Units.UniversityUnit", b =>
                 {
                     b.HasOne("UITEventAPI.Application.Domain.Users.User", "CreatedByUser")
                         .WithMany()
@@ -2751,7 +2754,7 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
 
                     b.HasOne("UITEventAPI.Application.Domain.Users.User", "User")
                         .WithOne()
-                        .HasForeignKey("UITEventAPI.Application.Domain.UniversityUnit.UniversityUnit", "UserId")
+                        .HasForeignKey("UITEventAPI.Application.Domain.Units.UniversityUnit", "UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -2784,7 +2787,7 @@ namespace UITEventAPI.Application.Infrastructure.Data.Migrations
                     b.Navigation("RegisteredEvents");
                 });
 
-            modelBuilder.Entity("UITEventAPI.Application.Domain.UniversityUnit.UniversityUnit", b =>
+            modelBuilder.Entity("UITEventAPI.Application.Domain.Units.UniversityUnit", b =>
                 {
                     b.Navigation("HostedEvents");
                 });

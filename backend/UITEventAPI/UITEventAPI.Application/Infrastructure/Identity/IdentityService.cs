@@ -30,124 +30,73 @@ public class IdentityService(
     private readonly IOptions<JwtSettings> _jwtSettings = jwtSettings;
     private readonly ApplicationDbContext _dbContext = dbContext;
 
-    //public async Task<Result<TokenResponse>> GenerateJwtToken(string email)
+    //public async Task<Result<TokenResponse>> CreateUserAsync(RegisterCommand request, CancellationToken cancellationToken)
     //{
-    //    var user = await _userManager.FindByEmailAsync(email);
-    //    if (user == null)
-    //    {
-    //        return Result.Failure<TokenResponse>(UserErrors.NotFound);
-    //    }
+    //    using var transaction = await _dbContext.Database.BeginTransactionAsync(cancellationToken);
 
-    //    var roles = await _userManager.GetRolesAsync(user);
-    //    if (roles.Count == 0)
-    //    {
-    //        return Result.Failure<TokenResponse>(UserErrors.MissingRole);
-    //    }
-
-    //    var responseResult = await GenerateTokenResponse(user);
-
-    //    return responseResult;
-    //}
-
-    //public async Task<Result<User>> CreateTemporaryCustomerAsync(string email)
-    //{
-    //    using var transaction = await _dbContext.Database.BeginTransactionAsync();
-
-    //    // Check if a user with this email already exists
-    //    var searchResult = await FindUserAsync(new(email));
+    //    var searchResult = await FindUserByEmailAsync(request.Email);
     //    if (searchResult.IsSuccess)
     //    {
-    //        return Result.Failure<User>(UserErrors.AlreadyExists);
+    //        return Result.Failure<TokenResponse>(UserErrors.AlreadyExists);
     //    }
 
-    //    // Create a new user with the provided email
-    //    var user = new User
+    //    var role = await _roleManager.FindByNameAsync(request.Role);
+    //    if (role == null)
     //    {
-    //        FirstName = "temp",
-    //        LastName = "temp",
-    //        Email = email,
-    //        EmailConfirmed = true,
-    //        UserName = email,
-    //        LoginType = LoginType.Email,
-    //        Status = UserStatus.Verified
+    //        return Result.Failure<TokenResponse>(UserErrors.InvalidRole);
+    //    }
+
+    //    var user = new User()
+    //    {
+    //        Email = request.Email,
+    //        UserName = request.Email,
+    //        PhoneNumber = request.PhoneNumber,
+    //        IsActive = true,
     //    };
 
-    //    // Add the user to the database
-    //    var result = await _userManager.CreateAsync(user);
+    //    user.PasswordHash = _passwordHasher.HashPassword(user, request.Password);
+
+    //    var result = await _userManager.CreateAsync(user, request.Password);
     //    if (!result.Succeeded)
     //    {
     //        var errors = result.ToErrors();
     //        await transaction.RollbackAsync();
-    //        return Result.Failure<User>(errors.FirstOrDefault() ?? UserErrors.CreateFailed);
+    //        return Result.Failure<TokenResponse>(errors.FirstOrDefault() ?? UserErrors.CreateFailed);
     //    }
 
-    //    var customerRole = await _roleManager.FindByNameAsync(Role.Customer);
-
-    //    var assignRoleResult = await _userManager.AddToRoleAsync(user, customerRole!.Name!);
+    //    var assignRoleResult = await _userManager.AddToRoleAsync(user, role.Name!);
     //    if (!assignRoleResult.Succeeded)
     //    {
     //        var errors = result.ToErrors();
     //        await transaction.RollbackAsync();
-    //        return Result.Failure<User>(errors.FirstOrDefault() ?? UserErrors.AssignRoleFailed);
+    //        return Result.Failure<TokenResponse>(errors.FirstOrDefault() ?? UserErrors.AssignRoleFailed);
     //    }
 
-    //    // Commit the transaction
     //    await transaction.CommitAsync();
 
-    //    // Return the created user
-    //    return Result.Success(user);
+    //    // create a token response
+    //    var responseResult = await GenerateTokenResponse(user);
+
+
+    //    return responseResult;
     //}
 
-    public async Task<Result<TokenResponse>> CreateUserAsync(RegisterCommand request)
+    public async Task<Result<TokenResponse>> SignInAsync(SignInQuery request, CancellationToken cancellationToken)
     {
-        using var transaction = await _dbContext.Database.BeginTransactionAsync();
-
-        var searchResult = await FindUserAsync(request.Email);
-        if (searchResult.IsSuccess)
+        var result = await FindUserByEmailAsync(request.Email);
+        if (result.IsFailure)
         {
-            return Result.Failure<TokenResponse>(UserErrors.AlreadyExists);
+            return Result.Failure<TokenResponse>(UserErrors.InvalidCredentials);
         }
 
-        var role = await _roleManager.FindByNameAsync(request.Role);
-        if (role == null)
+        var user = result.Value;
+        var passwordValid = await _userManager.CheckPasswordAsync(user, request.Password);
+        if (!passwordValid)
         {
-            return Result.Failure<TokenResponse>(UserErrors.InvalidRole);
+            return Result.Failure<TokenResponse>(UserErrors.InvalidCredentials);
         }
 
-        var user = new User()
-        {
-            FirstName = request.FirstName,
-            LastName = request.LastName,
-            Email = request.Email,
-            UserName = request.Email,
-            DateOfBirth = request.DateOfBirth,
-            PhoneNumber = request.PhoneNumber,
-            IsDeleted = false,
-            IsActive = true,
-        };
-        user.PasswordHash = _passwordHasher.HashPassword(user, request.Password);
-
-        var result = await _userManager.CreateAsync(user, request.Password);
-        if (!result.Succeeded)
-        {
-            var errors = result.ToErrors();
-            await transaction.RollbackAsync();
-            return Result.Failure<TokenResponse>(errors.FirstOrDefault() ?? UserErrors.CreateFailed);
-        }
-
-        var assignRoleResult = await _userManager.AddToRoleAsync(user, role.Name!);
-        if (!assignRoleResult.Succeeded)
-        {
-            var errors = result.ToErrors();
-            await transaction.RollbackAsync();
-            return Result.Failure<TokenResponse>(errors.FirstOrDefault() ?? UserErrors.AssignRoleFailed);
-        }
-
-        await transaction.CommitAsync();
-
-        // create a token response
         var responseResult = await GenerateTokenResponse(user);
-
 
         return responseResult;
     }
@@ -193,32 +142,6 @@ public class IdentityService(
     //    return Result.Success();
     //}
 
-    //public async Task<Result<TokenResponse>> SignInAsync(SignInCommand request)
-    //{
-    //    var result = await FindUserAsync(new(request.Email));
-    //    if (result.IsFailure)
-    //    {
-    //        return Result.Failure<TokenResponse>(UserErrors.InvalidCredentials);
-    //    }
-
-    //    var user = result.Value;
-    //    var passwordValid = await _userManager.CheckPasswordAsync(user, request.Password);
-    //    if (!passwordValid)
-    //    {
-    //        return Result.Failure<TokenResponse>(UserErrors.InvalidCredentials);
-    //    }
-
-    //    // get user roles to include inside the claims
-    //    var roles = await _userManager.GetRolesAsync(user);
-    //    if (roles.Count == 0)
-    //    {
-    //        return Result.Failure<TokenResponse>(UserErrors.MissingRole);
-    //    }
-
-    //    var responseResult = await GenerateTokenResponse(user);
-
-    //    return responseResult;
-    //}
 
     //public async Task<Result<TokenResponse>> RefreshAccessToken(RefreshAccessToken request)
     //{
@@ -308,7 +231,7 @@ public class IdentityService(
     //    return user != null && await _userManager.IsInRoleAsync(user, role);
     //}
 
-    private async Task<Result<User>> FindUserAsync(string email)
+    private async Task<Result<User>> FindUserByEmailAsync(string email)
     {
         var user = await _userManager.FindByEmailAsync(email);
 
@@ -344,8 +267,7 @@ public class IdentityService(
         {
             new(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new(ClaimTypes.Name, user.Email!),
-            new(ClaimTypes.Role, roles.FirstOrDefault()!),
-            // Add other claims as needed...
+            new(ClaimTypes.Role, roles.FirstOrDefault()!)
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Value.Secret));

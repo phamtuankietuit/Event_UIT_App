@@ -23,10 +23,10 @@ public class RefreshToken
 
     public int Id { get; set; }
     public string Token { get; set; }
-    public int UserId { get; set; }
     public DateTimeOffset CreatedDate { get; set; }
     public DateTimeOffset ExpiryDate { get; set; }
-    public User User { get; set; }
+    public int? UserId { get; set; }
+    public User? User { get; set; }
 
     public static Result<RefreshToken> Create(
         int userId,

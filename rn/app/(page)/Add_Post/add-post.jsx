@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar"
 import {
   View,
   Text,
@@ -14,15 +13,10 @@ import { AntDesign } from "@expo/vector-icons"
 import { Ionicons } from "@expo/vector-icons"
 import { useState } from "react"
 import * as ImagePicker from "expo-image-picker"
+import { useSelector, useDispatch } from "react-redux"
+import { addImages, removeImage, setPostContent } from "../../redux/postSlice"
 
 const styles = StyleSheet.create({
-  header: {
-    borderBottomWidth: 0.7,
-  },
-  imageContainer: {
-    marginRight: 10,
-    position: "relative",
-  },
   image: {
     width: 60,
     height: 60,
@@ -42,8 +36,9 @@ const styles = StyleSheet.create({
   },
 })
 const AddPost = () => {
-  const [selectedImages, setSelectedImages] = useState([])
-  const [postContent, setPostContent] = useState("")
+  const dispatch = useDispatch()
+  const selectedImages = useSelector((state) => state.post.selectedImages)
+  const postContent = useSelector((state) => state.post.postContent)
 
   const pickImage = async () => {
     if (selectedImages.length >= 5) return
@@ -56,7 +51,7 @@ const AddPost = () => {
 
     if (!result.canceled) {
       const selectedAssets = result.assets.map((asset) => asset.uri)
-      setSelectedImages([...selectedImages, ...selectedAssets])
+      dispatch(addImages(selectedAssets))
     }
   }
 
@@ -64,14 +59,14 @@ const AddPost = () => {
     selectedImages.length > 0 && postContent.length > 0
 
   const deleteImage = (uri) => {
-    setSelectedImages(selectedImages.filter((image) => image !== uri))
+    dispatch(removeImage(uri))
   }
   return (
     <SafeAreaView className=' flex-1 bg-white '>
       <View className='flex-1'>
         <View
           className='h-[46] w-full  flex-row items-center justify-between px-2'
-          style={styles.header}
+          style={{ borderBottomWidth: 0.7 }}
         >
           <View className=' flex-row items-center '>
             <TouchableOpacity>
@@ -103,7 +98,7 @@ const AddPost = () => {
             placeholder='Nhập nội dung bài đăng...'
             className='pl-3 pt-2 text-base'
             multiline
-            onChangeText={setPostContent}
+            onChangeText={(text) => dispatch(setPostContent(text))}
           ></TextInput>
         </ScrollView>
         <View className='absolute bottom-0'>
@@ -113,8 +108,11 @@ const AddPost = () => {
             keyExtractor={(item) => item}
             contentContainerStyle={styles.flatListContainer}
             renderItem={({ item }) => (
-              <View style={styles.imageContainer}>
-                <Image source={{ uri: item }} style={styles.image} />
+              <View className='relative mr-2'>
+                <Image
+                  source={{ uri: item }}
+                  className='h-[60] w-[60] rounded-lg'
+                />
                 <TouchableOpacity
                   style={styles.deleteButton}
                   onPress={() => deleteImage(item)}

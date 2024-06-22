@@ -11,7 +11,6 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context"
 import { AntDesign } from "@expo/vector-icons"
 import { Ionicons } from "@expo/vector-icons"
-import { useState } from "react"
 import * as ImagePicker from "expo-image-picker"
 import { useSelector, useDispatch } from "react-redux"
 import { addImages, removeImage, setPostContent } from "../../redux/postSlice"

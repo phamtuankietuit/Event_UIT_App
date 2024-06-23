@@ -10,7 +10,7 @@ export default function App() {
 
   useEffect(() => {
     setTimeout(() => {
-      router.replace("(tabs)/home")
+      router.replace("/home")
     }, 3000)
   })
 

@@ -6,7 +6,7 @@ function student_history() {
     return (
         <SafeAreaView className='mt-5'>
             <View className='flex justify-center items-center flex-col mt-3'>
-                <Text className='text-xl'>Điểm rèn luyện</Text>
+                <Text className='text-xl text-sky-600 font-semibold'>Điểm rèn luyện</Text>
             </View>
             <View className='flex justify-center items-center flex-col mt-3'>
                 <View className='border-dashed border-[3px] border-l-cyan-500 border-t-sky-500 border-r-blue-500 border-b-indigo-500 rounded-full h-[150px] w-[150px] flex justify-center items-center flex-col'>

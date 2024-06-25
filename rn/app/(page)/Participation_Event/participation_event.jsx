@@ -65,7 +65,7 @@ function participation_event() {
     return (
         <SafeAreaView className='mt-5 flex-1'>
             <View className='flex justify-center items-center flex-col mt-3'>
-                <Text className='text-xl'>Sự kiện tham gia</Text>
+                <Text className='text-xl text-sky-600 font-semibold'>Sự kiện tham gia</Text>
             </View>
             <FlatList
                 data={data}

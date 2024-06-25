@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import Event_Item from '../../../components/Event_Item';
+import { AntDesign } from '@expo/vector-icons';
 const data = [
     {
         id: "1",
@@ -62,19 +63,21 @@ const data = [
 ]
 function management_event() {
     return (
-        <SafeAreaView>
-            <View className='flex justify-center items-center flex-col mt-3 my-2'>
-                <Text className='text-xl'>Quản lý sự kiện</Text>
-            </View>
-            <View className='flex justify-center items-center my-2'>
-                <TouchableOpacity className='p-3 bg-blue-500 rounded-xl'>
-                    <Text>Thêm sự kiện</Text>
-                </TouchableOpacity>
+        <SafeAreaView className='flex-1 bg-slate-50'>
+            <View className='flex justify-center items-center flex-col mt-3 my-2 bg-white'>
+                <Text className='text-xl text-sky-600 font-semibold'>Quản lý sự kiện</Text>
             </View>
             <FlatList
                 data={data}
+                className='mx-2 bg-transparent'
+                showsVerticalScrollIndicator={false}
                 renderItem={({ item }) => <Event_Item item={item} />}
             />
+            <View className='justify-center items-center my-2 absolute right-3 bottom-3'>
+                <TouchableOpacity className='p-3 bg-blue-500  rounded-full'>
+                    <AntDesign name="plus" size={24} color="white" />
+                </TouchableOpacity>
+            </View>
         </SafeAreaView>
     );
 }

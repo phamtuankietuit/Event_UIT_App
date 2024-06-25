@@ -38,15 +38,15 @@ const Search_Content = ({
     }, [day]);
     return (
         <SafeAreaView className='flex-1'>
-            <View className='flex flex-row justify-between mb-3'>
+            <View className='flex flex-row justify-center mb-3'>
                 <TouchableOpacity
-                    className={stage === true ? 'w-[40%] bg-blue-500 rounded-lg p-3 mx-5' : 'w-[40%] rounded-lg p-3 mx-5 border'}
+                    className={stage === true ? 'w-[40%] bg-blue-500 rounded-lg p-2 rounded-l-full' : 'w-[40%] rounded-lg p-2 border rounded-l-full'}
                     onPress={() => setStage(true)}
                 >
                     <Text className={stage === true ? 'text-white text-center text-[16px]' : 'text-center text-[16px]'}>Bài viết</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    className={stage === false ? 'w-[40%] bg-blue-500 rounded-lg p-3 mx-5' : 'w-[40%] rounded-lg p-3 mx-5 border'}
+                    className={stage === false ? 'w-[40%] bg-blue-500 rounded-lg p-2 rounded-r-full' : 'w-[40%] rounded-lg p-2 border rounded-r-full'}
                     onPress={() => setStage(false)}
                 >
 

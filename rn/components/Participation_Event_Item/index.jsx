@@ -7,7 +7,17 @@ function Parti_Event_Item({
     deleteItem
 }) {
     return (
-        <View className='flex flex-row p-1 mx-2 border border-slate-400 shadow-xl rounded-lg my-2 h-[90px]'>
+        <View className='flex-row p-1 items-center mx-2  rounded-lg my-[5px] h-[90px] bg-white' style={{
+            shadowColor: "#000",
+            shadowOffset: {
+                width: 0,
+                height: 2,
+            },
+            shadowOpacity: 0.23,
+            shadowRadius: 2.62,
+
+            elevation: 4,
+        }}>
             <View className="h-[100%] text-wrap w-[25%] flex items-center justify-center">
                 <Image
                     source={logo}

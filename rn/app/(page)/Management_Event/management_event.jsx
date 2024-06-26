@@ -61,7 +61,9 @@ const data = [
         read: false
     },
 ]
+import { useRouter } from "expo-router"
 function management_event() {
+    const router = useRouter()
     return (
         <SafeAreaView className='flex-1 bg-slate-50'>
             <View className='flex justify-center items-center flex-col mt-3 my-2 bg-white'>
@@ -74,7 +76,7 @@ function management_event() {
                 renderItem={({ item }) => <Event_Item item={item} />}
             />
             <View className='justify-center items-center my-2 absolute right-3 bottom-3'>
-                <TouchableOpacity className='p-3 bg-blue-500  rounded-full'>
+                <TouchableOpacity className='p-3 bg-blue-500  rounded-full' onPress={() => router.navigate("(page)/Add_Post/add-post")}>
                     <AntDesign name="plus" size={24} color="white" />
                 </TouchableOpacity>
             </View>

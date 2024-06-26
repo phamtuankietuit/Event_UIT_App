@@ -59,7 +59,7 @@ export default function Profile() {
       </View>
 
       <View className='px-10 my-7'>
-        <TouchableOpacity className='rounded-xl w-[100%] bg-[#3A57E8] p-4 mb-3 flex justify-between flex-row items-center' onPress={() => router.navigate("/(page)/Participation_Event/participation_event")} style={{
+        <TouchableOpacity className='rounded-xl w-[100%] bg-blue-500 p-4 mb-3 flex justify-between flex-row items-center' onPress={() => router.navigate("/(page)/Participation_Event/participation_event")} style={{
           shadowColor: "#000",
           shadowOffset: {
             width: 0,
@@ -73,7 +73,7 @@ export default function Profile() {
           <Text className='text-white'>Quản lý sự kiện tham gia</Text>
           <FontAwesomeIcon icon={faAngleRight} color='white' />
         </TouchableOpacity>
-        <TouchableOpacity className='rounded-xl w-[100%] bg-[#3A57E8] p-4 mb-3 flex justify-between flex-row items-center' onPress={() => router.navigate("/(page)/Student_History/student_history")} style={{
+        <TouchableOpacity className='rounded-xl w-[100%] bg-blue-500 p-4 mb-3 flex justify-between flex-row items-center' onPress={() => router.navigate("/(page)/Student_History/student_history")} style={{
           shadowColor: "#000",
           shadowOffset: {
             width: 0,
@@ -87,7 +87,7 @@ export default function Profile() {
           <Text className='text-white'>Điểm rèn luyện</Text>
           <FontAwesomeIcon icon={faAngleRight} color='white' />
         </TouchableOpacity>
-        <TouchableOpacity className='rounded-xl w-[100%] bg-[#3A57E8] p-4 mb-3 flex justify-between flex-row items-center' onPress={() => router.navigate("/(page)/Management_Event/management_event")} style={{
+        <TouchableOpacity className='rounded-xl w-[100%] bg-blue-500 p-4 mb-3 flex justify-between flex-row items-center' onPress={() => router.navigate("/(page)/Management_Event/management_event")} style={{
           shadowColor: "#000",
           shadowOffset: {
             width: 0,
@@ -101,7 +101,7 @@ export default function Profile() {
           <Text className='text-white'>Quản lý sự kiện</Text>
           <FontAwesomeIcon icon={faAngleRight} color='white' />
         </TouchableOpacity>
-        <TouchableOpacity className='rounded-xl w-[100%] bg-[#3A57E8] p-4 mb-3 flex justify-between flex-row items-center' style={{
+        <TouchableOpacity className='rounded-xl w-[100%] bg-blue-500 p-4 mb-3 flex justify-between flex-row items-center' style={{
           shadowColor: "#000",
           shadowOffset: {
             width: 0,
@@ -115,7 +115,7 @@ export default function Profile() {
           <Text className='text-white'>Báo cáo thống kê</Text>
           <FontAwesomeIcon icon={faAngleRight} color='white' />
         </TouchableOpacity>
-        <TouchableOpacity className='rounded-xl w-[100%] bg-[#3A57E8] p-4 mb-3 flex justify-between flex-row items-center' style={{
+        <TouchableOpacity className='rounded-xl w-[100%] bg-blue-500 p-4 mb-3 flex justify-between flex-row items-center' style={{
           shadowColor: "#000",
           shadowOffset: {
             width: 0,

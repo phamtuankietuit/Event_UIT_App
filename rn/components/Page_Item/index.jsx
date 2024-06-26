@@ -10,11 +10,11 @@ const Page_Item = ({
     setLike
 }) => {
     return (
-        <View className="h-[110px] bg-white flex items-center flex-row w-[98%] my-2 rounded-lg mx-2">
+        <View className="h-[100px] bg-white flex items-center flex-row w-[98%] m-2 rounded-lg">
             <View className="h-[100%] text-wrap w-[25%] flex items-center justify-center">
                 <Image
                     source={logo}
-                    className="bg-white rounded-full w-[75%] h-[75%] me-4 "
+                    className="bg-white rounded-full w-[75%] h-[90%] me-4 "
                 />
             </View>
 

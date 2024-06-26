@@ -57,11 +57,15 @@ const Search_Content = ({
                 stage === true ? (
                     <FlatList
                         data={listPo}
+                        showsVerticalScrollIndicator={false}
+                        className='mx-2 bg-transparent'
                         renderItem={({ item }) => <Post_Item item={item} />}
                     />
                 ) : (
                     <FlatList
                         data={listPa}
+                        showsVerticalScrollIndicator={false}
+                        className='mx-2 bg-transparent'
                         renderItem={({ item }) => <Page_Item item={item} setLike={setLikePa} />}
                     />
                 )

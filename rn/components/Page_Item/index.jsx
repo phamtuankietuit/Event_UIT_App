@@ -10,11 +10,21 @@ const Page_Item = ({
     setLike
 }) => {
     return (
-        <View className="h-[100px] bg-white flex items-center flex-row w-[98%] m-2 rounded-lg">
+        <TouchableOpacity className="h-[100px] bg-white flex items-center flex-row w-[98%] m-2 p-1 rounded-lg" style={{
+            shadowColor: "#000",
+            shadowOffset: {
+                width: 0,
+                height: 2,
+            },
+            shadowOpacity: 0.23,
+            shadowRadius: 2.62,
+
+            elevation: 4,
+        }}>
             <View className="h-[100%] text-wrap w-[25%] flex items-center justify-center">
                 <Image
                     source={logo}
-                    className="bg-white rounded-full w-[75%] h-[90%] me-4 "
+                    className="bg-white rounded-full w-[75%] h-[90%] mr-4 "
                 />
             </View>
 
@@ -29,7 +39,7 @@ const Page_Item = ({
                     <Text> Lượt thích</Text>
                 </Text>
             </View>
-            <View className="h-[100%] w-[20%] flex justify-center items-center">
+            <View className="h-[100%] w-[20%] flex justify-center items-center mr-2">
                 {
                     item.like === true ? (
                         <TouchableOpacity className="flex flex-row bg-slate-200 p-2 rounded-lg" onPress={() => setLike(item.id, false)}>
@@ -46,7 +56,7 @@ const Page_Item = ({
 
             </View>
 
-        </View>
+        </TouchableOpacity>
 
 
     )

@@ -100,6 +100,8 @@ const Noti = () => {
       </View>
       <FlatList
         data={list}
+        showsVerticalScrollIndicator={false}
+        className='mx-2 bg-transparent'
         renderItem={({ item }) => <Notifi_Item item={item} />}
       />
 

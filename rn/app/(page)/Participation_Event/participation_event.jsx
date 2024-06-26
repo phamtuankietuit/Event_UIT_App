@@ -69,6 +69,8 @@ function participation_event() {
             </View>
             <FlatList
                 data={data}
+                showsVerticalScrollIndicator={false}
+                className='mx-2 bg-transparent'
                 renderItem={({ item }) => <Parti_Event_Item item={item} />}
             />
         </SafeAreaView>

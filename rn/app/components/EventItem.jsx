@@ -9,9 +9,11 @@ import {
 import React, { memo } from "react"
 import { SliderBox } from "react-native-image-slider-box"
 import { Entypo } from "@expo/vector-icons"
-import { Link } from "expo-router"
+import { Link, useRouter } from "expo-router"
 
 const EventItem = memo(() => {
+  const router = useRouter()
+
   const slides = [
     "https://thanhnien.mediacdn.vn/thumb_w/750/325084952045817856/2023/3/20/base64-16792880739381319994436.jpeg",
     "https://tuyensinh.uit.edu.vn/sites/default/files/uploads/images/202310/2b7173db-6933-4f88-b227-ebf0e042c41e.png",
@@ -24,7 +26,12 @@ const EventItem = memo(() => {
       className='m-2 max-h-fit rounded border-[1px] border-gray-100 
         bg-white p-3 shadow-sm shadow-gray-600'
     >
-      <TouchableOpacity className='flex-row items-center'>
+      <TouchableOpacity
+        className='flex-row items-center'
+        onPress={() => {
+          router.push("(page)/page-detail")
+        }}
+      >
         <View className='h-10 w-10 rounded-full border-[1px] border-gray-400'>
           <Image
             className='h-full w-full rounded-full'

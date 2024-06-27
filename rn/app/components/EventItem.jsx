@@ -32,7 +32,12 @@ const EventItem = memo(({ item }) => {
       className='m-2 max-h-fit rounded border-[1px] border-gray-100 
         bg-white p-3 shadow-sm shadow-gray-600'
     >
-      <TouchableOpacity className='flex-row items-center'>
+      <TouchableOpacity
+        className='flex-row items-center'
+        onPress={() => {
+          router.push("(page)/page-detail")
+        }}
+      >
         <View className='h-10 w-10 rounded-full border-[1px] border-gray-400'>
           <Image
             className='h-full w-full rounded-full'

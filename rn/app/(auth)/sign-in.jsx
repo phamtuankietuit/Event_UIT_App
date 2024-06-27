@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   ToastAndroid,
+  ActivityIndicator,
 } from "react-native"
 import { Link } from "expo-router"
 import { useEffect, useState } from "react"
@@ -19,47 +20,59 @@ import * as authServices from "../apiServices/authServices"
 import * as asyncStorage from "../store/asyncStorage"
 
 const showToastWithGravity = (msg) => {
-  ToastAndroid.showWithGravity(
-    msg || "hello",
-    ToastAndroid.SHORT,
-    ToastAndroid.CENTER
-  )
+  ToastAndroid.showWithGravity(msg, ToastAndroid.SHORT, ToastAndroid.CENTER)
 }
 
 const SignIn = () => {
+  const [loading, setLoading] = useState(false)
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const [showPassword, setShowPassword] = useState(false)
+
   const handleLogin = async () => {
-    const response = await authServices
-      .loginStudent({
-        email: "275316@gm.uit.edu.vn",
-        password: "Abc123@",
-      })
-      .catch((error) => {
-        // xử lý lỗi
-        if (error.response) {
-          if (error.response.status === 401) {
-            showToastWithGravity("Vui lòng kiểm tra lại email hoặc mật khẩu")
-          } else if (error.response.status === 403) {
-            showToastWithGravity("Tài khoản đã bị vô hiệu hóa")
+    if (
+      email == "" ||
+      email == undefined ||
+      password == "" ||
+      password == undefined
+    ) {
+      showToastWithGravity("Vui lòng nhập đủ thông tin")
+    } else {
+      setLoading(true)
+      const response = await authServices
+        .loginStudent({
+          email: email,
+          password: password,
+        })
+        .catch((error) => {
+          // xử lý lỗi
+          if (error.response) {
+            if (error.response.status === 401) {
+              showToastWithGravity("Vui lòng kiểm tra lại email hoặc mật khẩu")
+              setLoading(false)
+            } else if (error.response.status === 403) {
+              showToastWithGravity("Tài khoản đã bị vô hiệu hóa")
+              setLoading(false)
+            }
+          } else {
+            showToastWithGravity("Có lỗi xảy ra")
+            setLoading(false)
           }
-        } else {
-          showToastWithGravity("Có lỗi xảy ra")
-        }
-      })
-
-    if (response) {
-      // Xử lý nếu response trả về
-      console.log(response)
-      showToastWithGravity("Đăng nhập thành công")
-
-      // thực hiện lưu trạng thái đăng nhập
-      asyncStorage.setIsStudentLogin("true")
-      asyncStorage.setStudentAccessToken(response.accessToken)
+        })
+      if (response) {
+        // Xử lý nếu response trả về
+        console.log(response)
+        // showToastWithGravity("Đăng nhập thành công")
+        // thực hiện lưu trạng thái đăng nhập
+        // setLoading(false)
+        // asyncStorage.setIsLogin("true")
+        // asyncStorage.setRole("student")
+        // asyncStorage.setAccessToken(response.accessToken)
+      }
     }
   }
-
-  useEffect(() => {
-    handleLogin()
-  }, [])
 
   return (
     <SafeAreaView className='flex-1 bg-white'>
@@ -88,20 +101,31 @@ const SignIn = () => {
           <TextInput
             placeholder='Email'
             placeholderTextColor={"gray"}
+            value={email}
+            onChangeText={(e) => setEmail(e)}
           ></TextInput>
         </View>
-        <View className='mb-3 w-full rounded-2xl bg-black/10 p-3'>
+        <View className=' mb-3 w-full flex-row rounded-2xl bg-black/10 p-3'>
           <TextInput
             placeholder='Password'
             placeholderTextColor={"gray"}
-            secureTextEntry
+            secureTextEntry={!showPassword}
+            value={password}
+            onChangeText={(e) => setPassword(e)}
           ></TextInput>
         </View>
         <View className='mb-2 mt-3 w-full'>
           <TouchableOpacity
-            className='rounded-xl bg-blue-600 p-3'
+            className='flex-row items-center justify-center rounded-xl bg-blue-600 p-3'
             onPress={handleLogin}
           >
+            {loading && (
+              <ActivityIndicator
+                size={"small"}
+                color={"#fff"}
+                className='mr-2'
+              ></ActivityIndicator>
+            )}
             <Text
               className='text-center font-bold text-white'
               style={{ fontSize: 17 }}

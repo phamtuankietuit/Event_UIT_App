@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { FlatList, Text, TouchableOpacity, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
-import SearchBar from "../../components/SearchBar"
-import Search_Content from "../../components/SearchContent"
+import SearchBar from "../components/SearchBar"
+import Search_Content from "../components/SearchContent"
 
 const dataPage = [
   {

@@ -18,7 +18,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 import * as ImagePicker from "expo-image-picker"
 import { useRouter } from "expo-router"
-import Input from "../../components/Input"
+import Input from "../components/Input"
 export default function Profile() {
   const router = useRouter()
 

@@ -81,7 +81,7 @@ const Home = () => {
   const [scrollY, setScrollY] = useState(new Animated.Value(0))
 
   const animatedTop = scrollY.interpolate({
-    inputRange: [0, 700],
+    inputRange: [0, 500],
     outputRange: [210, 0],
     extrapolate: "clamp",
   })

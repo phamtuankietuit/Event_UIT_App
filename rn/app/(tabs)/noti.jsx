@@ -3,7 +3,7 @@ import { FlatList, Text, TouchableOpacity, View } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
 import { faListCheck } from "@fortawesome/free-solid-svg-icons"
-import Notifi_Item from "../../components/Notification_Item"
+import Notifi_Item from "../components/Notification_Item"
 
 const data = [
   {

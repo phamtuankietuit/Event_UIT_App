@@ -10,7 +10,17 @@ const Post_Item = (
     }
 ) => {
     return (
-        <View className="bg-white flex w-[97%] my-2 rounded-lg mx-2 p-3">
+        <View className="bg-white flex w-[97%] my-1 rounded-lg mx-2 p-3" style={{
+            shadowColor: "#000",
+            shadowOffset: {
+                width: 0,
+                height: 2,
+            },
+            shadowOpacity: 0.23,
+            shadowRadius: 2.62,
+
+            elevation: 4,
+        }}>
             <View className="flex flex-row h-[70px] justify-center ">
                 <View className="w-[20%] flex items-center">
                     <Image

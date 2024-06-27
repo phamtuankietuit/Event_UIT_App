@@ -10,7 +10,7 @@ export default function App() {
 
   useEffect(() => {
     setTimeout(() => {
-      router.replace("(page)/Add_Post/add-post")
+      router.replace("/home")
     }, 3000)
   })
 

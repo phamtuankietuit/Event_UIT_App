@@ -6,7 +6,7 @@ import { faThumbsUp } from "@fortawesome/free-solid-svg-icons"
 const Page_Item = ({ item, setLike }) => {
   return (
     <TouchableOpacity
-      className='m-2 flex h-[100px] w-[98%] flex-row items-center rounded-lg bg-white px-2 py-1'
+      className='m-2 flex h-[110px] w-[98%] flex-row items-center rounded-lg bg-white px-2 py-1 pb-2'
       style={{
         shadowColor: "#000",
         shadowOffset: {
@@ -21,28 +21,35 @@ const Page_Item = ({ item, setLike }) => {
     >
       <View className='text-wrap flex h-[100%] w-[25%] items-center justify-center'>
         <Image
-          source={logo}
-          className='mr-4 h-[90%] w-[75%] rounded-full bg-white '
+          source={item.avatarUrl}
+          className='mr-4 h-[95%] w-[95%] rounded-full bg-white '
         />
       </View>
 
-      <View className='flex h-[100%] w-[55%] justify-between pt-2'>
-        <View className='relative mb-4 mt-2'>
-          <Text className='text-[16px] font-semibold'>{item.namePage}</Text>
+      <View className='flex h-[100%] w-[45%] gap-y-3'>
+        <View>
+          <Text className='text-[16px] font-semibold'>{item.name}</Text>
+          <Text className='text-[13px]'>
+            {item.totalFollowers}
+            <Text> Lượt followers</Text>
+          </Text>
         </View>
-        <Text className='mb-7 text-[13px]'>
-          {item.star}
-          <Text> Lượt thích</Text>
+
+
+        <Text className='text-xs' numberOfLines={2}>
+          {item.description}
         </Text>
+
+
       </View>
-      <View className='mr-2 flex h-[100%] w-[20%] items-center justify-center'>
+      <View className='flex h-[100%] w-[30%] items-center justify-center'>
         {item.like === true ? (
           <TouchableOpacity
             className='flex flex-row rounded-lg bg-slate-200 p-2'
             onPress={() => setLike(item.id, false)}
           >
             <FontAwesomeIcon icon={faThumbsUp} color='#64748b' />
-            <Text className=' text-slate-500'> Đã thích</Text>
+            <Text className=' text-slate-500 ml-2'>Đã follow</Text>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
@@ -50,7 +57,7 @@ const Page_Item = ({ item, setLike }) => {
             onPress={() => setLike(item.id, true)}
           >
             <FontAwesomeIcon icon={faThumbsUp} color='#06b6d4' />
-            <Text className=' text-cyan-500'> Thích</Text>
+            <Text className=' text-cyan-500 ml-2'>Follow</Text>
           </TouchableOpacity>
         )}
       </View>

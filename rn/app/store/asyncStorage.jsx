@@ -9,72 +9,54 @@ const showToastWithGravity = (msg) => {
   )
 }
 
-// STUDENT
-export const getIsStudentLogin = async () => {
+// AUTH
+export const getRole = async () => {
   try {
-    const isStudentLogin = await AsyncStorage.getItem("isStudentLogin")
-    return isStudentLogin
+    const role = await AsyncStorage.getItem("role")
+    return role
   } catch (error) {
-    showToastWithGravity("Error getIsStudentLogin: " + error.message)
+    showToastWithGravity("Error getRole: " + error.message)
   }
 }
 
-export const setIsStudentLogin = async (isStudentLogin) => {
+export const setRole = async (role) => {
   try {
-    await AsyncStorage.setItem("isStudentLogin", isStudentLogin)
+    await AsyncStorage.setItem("role", role)
   } catch (error) {
-    showToastWithGravity("Error setIsStudentLogin: " + error.message)
+    showToastWithGravity("Error setRole: " + error.message)
   }
 }
 
-export const getStudentAccessToken = async () => {
+export const getIsLogin = async () => {
   try {
-    const studentAccessToken = await AsyncStorage.getItem("studentAccessToken")
-    return studentAccessToken
+    const isLogin = await AsyncStorage.getItem("isLogin")
+    return isLogin
   } catch (error) {
-    showToastWithGravity("Error getStudentAccessToken: " + error.message)
+    showToastWithGravity("Error getIsLogin: " + error.message)
   }
 }
 
-export const setStudentAccessToken = async (studentAccessToken) => {
+export const setIsLogin = async (isLogin) => {
   try {
-    await AsyncStorage.setItem("studentAccessToken", studentAccessToken)
+    await AsyncStorage.setItem("isLogin", isLogin)
   } catch (error) {
-    showToastWithGravity("Error setStudentAccessToken: " + error.message)
+    showToastWithGravity("Error setIsLogin: " + error.message)
   }
 }
 
-// UNIT
-export const getIsUnitLogin = async () => {
+export const getAccessToken = async () => {
   try {
-    const isUnitLogin = await AsyncStorage.getItem("isUnitLogin")
-    return isUnitLogin
+    const accessToken = await AsyncStorage.getItem("accessToken")
+    return accessToken
   } catch (error) {
-    showToastWithGravity("Error getIsUnitLogin: " + error.message)
+    showToastWithGravity("Error getAccessToken: " + error.message)
   }
 }
 
-export const setIsUnitLogin = async (isUnitLogin) => {
+export const setAccessToken = async (accessToken) => {
   try {
-    await AsyncStorage.setItem("isUnitLogin", isUnitLogin)
+    await AsyncStorage.setItem("accessToken", accessToken)
   } catch (error) {
-    showToastWithGravity("Error setIsUnitLogin: " + error.message)
-  }
-}
-
-export const getUnitAccessToken = async () => {
-  try {
-    const unitAccessToken = await AsyncStorage.getItem("unitAccessToken")
-    return unitAccessToken
-  } catch (error) {
-    showToastWithGravity("Error getUnitAccessToken: " + error.message)
-  }
-}
-
-export const setUnitAccessToken = async (unitAccessToken) => {
-  try {
-    await AsyncStorage.setItem("unitAccessToken", unitAccessToken)
-  } catch (error) {
-    showToastWithGravity("Error setUnitAccessToken: " + error.message)
+    showToastWithGravity("Error setAccessToken: " + error.message)
   }
 }

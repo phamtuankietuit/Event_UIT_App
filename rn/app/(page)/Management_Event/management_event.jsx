@@ -65,7 +65,7 @@ import { useRouter } from "expo-router"
 function management_event() {
   const router = useRouter()
   return (
-    <SafeAreaView className='flex-1 bg-slate-50'>
+    <View className='flex-1 bg-slate-50'>
       <View className='my-2 mt-3 flex flex-col items-center justify-center bg-white'>
         <Text className='text-xl font-semibold text-sky-600'>
           Quản lý sự kiện
@@ -85,7 +85,7 @@ function management_event() {
           <AntDesign name='plus' size={24} color='white' />
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </View>
   )
 }
 

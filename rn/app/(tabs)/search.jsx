@@ -163,7 +163,7 @@ const Search = () => {
     console.log(value)
   }
   return (
-    <View className='flex-1'>
+    <View className='flex-1 mt-2'>
       <View className='mx-4 my-2'>
         <SearchBar
           value={value}

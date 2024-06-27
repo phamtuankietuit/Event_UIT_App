@@ -10,7 +10,7 @@ const SearchBar = ({
     search
 }) => {
     return (
-        <View className="flex border flex-row items-center h-14 px-4 rounded-lg" >
+        <View className="flex border border-slate-500 flex-row items-center py-2 px-4 rounded-lg" >
             <TextInput
                 className="flex-1 font-semibold text-base"
                 value={value}

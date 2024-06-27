@@ -6,7 +6,7 @@ import { faThumbsUp } from "@fortawesome/free-solid-svg-icons"
 const Page_Item = ({ item, setLike }) => {
   return (
     <TouchableOpacity
-      className='m-2 flex h-[100px] w-[98%] flex-row items-center rounded-lg bg-white p-1'
+      className='m-2 flex h-[100px] w-[98%] flex-row items-center rounded-lg bg-white px-2 py-1'
       style={{
         shadowColor: "#000",
         shadowOffset: {

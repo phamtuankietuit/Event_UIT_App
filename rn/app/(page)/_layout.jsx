@@ -1,10 +1,16 @@
 import { Stack } from "expo-router"
+import { Provider } from "react-redux"
+import store from "../redux/store"
 
 const PageLayout = () => {
   return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name='add-post' options={{ headerShown: false }} />
-    </Stack>
+    <Provider store={store}>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name='add-post' options={{ headerShown: false }} />
+        <Stack.Screen name='update-post' options={{ headerShown: false }} />
+        <Stack.Screen name='post-detail' options={{ headerShown: false }} />
+      </Stack>
+    </Provider>
   )
 }
 

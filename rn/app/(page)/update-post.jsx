@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar"
 import {
   View,
   Text,
@@ -41,7 +40,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
 })
-const AddPost = () => {
+const UpdatePost = () => {
   const [selectedImages, setSelectedImages] = useState([])
   const [postContent, setPostContent] = useState("")
 
@@ -81,7 +80,7 @@ const AddPost = () => {
               className=' ml-2 font-semibold'
               style={{ fontSize: 15, color: "#6F6A61" }}
             >
-              Tạo bài đăng
+              Sửa bài đăng
             </Text>
           </View>
           <View>
@@ -92,7 +91,7 @@ const AddPost = () => {
               <Text
                 style={{ color: isCreateButtonEnabled ? "white" : "black" }}
               >
-                TẠO MỚI
+                THAY ĐỔI
               </Text>
             </TouchableOpacity>
           </View>
@@ -138,4 +137,4 @@ const AddPost = () => {
   )
 }
 
-export default AddPost
+export default UpdatePost

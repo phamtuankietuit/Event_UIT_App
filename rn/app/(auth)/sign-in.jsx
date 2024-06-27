@@ -29,6 +29,8 @@ const SignIn = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
+  const [showPassword, setShowPassword] = useState(false)
+
   const handleLogin = async () => {
     if (
       email == "" ||
@@ -106,11 +108,11 @@ const SignIn = () => {
             onChangeText={(e) => setEmail(e)}
           ></TextInput>
         </View>
-        <View className='mb-3 w-full rounded-2xl bg-black/10 p-3'>
+        <View className=' mb-3 w-full flex-row rounded-2xl bg-black/10 p-3'>
           <TextInput
             placeholder='Password'
             placeholderTextColor={"gray"}
-            secureTextEntry
+            secureTextEntry={!showPassword}
             value={password}
             onChangeText={(e) => setPassword(e)}
           ></TextInput>

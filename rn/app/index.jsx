@@ -27,6 +27,15 @@ export default function App() {
     checkAuth()
   }, [])
 
+  useEffect(() => {
+    setTimeout(() => {
+      //router.replace("(page)/add-post")
+      router.replace("(page)/post-detail")
+      // router.replace("home")
+      // router.replace("(page)/page-detail")
+      // router.replace("(page)/camera")
+    }, 3000)
+  })
 
   return (
     <ScrollView contentContainerStyle={{ height: "100%" }}>

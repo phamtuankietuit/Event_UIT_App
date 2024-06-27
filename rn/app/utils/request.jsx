@@ -50,11 +50,11 @@ export const postMethod = async (
           : JSON.stringify(asyncStorage.getStudentAccessToken())),
     }
   }
+  console.log(path, options)
 
   const response = await request.post(path, options, {
     headers: headers,
   })
-
   return response.data
 }
 

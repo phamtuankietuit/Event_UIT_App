@@ -62,18 +62,15 @@ const SignIn = () => {
       if (response) {
         // Xử lý nếu response trả về
         console.log(response)
-        showToastWithGravity("Đăng nhập thành công")
+        // showToastWithGravity("Đăng nhập thành công")
         // thực hiện lưu trạng thái đăng nhập
-        setLoading(false)
-        asyncStorage.setIsStudentLogin("true")
-        asyncStorage.setStudentAccessToken(response.accessToken)
+        // setLoading(false)
+        // asyncStorage.setIsLogin("true")
+        // asyncStorage.setRole("student")
+        // asyncStorage.setAccessToken(response.accessToken)
       }
     }
   }
-
-  useEffect(() => {
-    // handleLogin()
-  }, [])
 
   return (
     <SafeAreaView className='flex-1 bg-white'>

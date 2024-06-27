@@ -8,22 +8,15 @@ const request = axios.create({
 export const getMethod = async (
   path,
   hasAuth = false,
-  isUnit = false,
   params = {},
   options = {}
 ) => {
-  const headersStudent = {
-    Authorization:
-      "Bearer " + JSON.stringify(asyncStorage.getStudentAccessToken()),
-  }
-
-  const headersUnit = {
-    Authorization:
-      "Bearer " + JSON.stringify(asyncStorage.getUnitAccessToken()),
+  const headers = {
+    Authorization: "Bearer " + JSON.stringify(asyncStorage.getAccessToken()),
   }
 
   if (hasAuth) {
-    options.headers = isUnit ? headersUnit : headersStudent
+    options.headers = headers
   }
 
   options.params = params || {}
@@ -33,21 +26,12 @@ export const getMethod = async (
   return response.data
 }
 
-export const postMethod = async (
-  path,
-  hasAuth = false,
-  isUnit = false,
-  options = {}
-) => {
+export const postMethod = async (path, hasAuth = false, options = {}) => {
   let headers = {}
 
   if (hasAuth) {
     headers = {
-      Authorization:
-        "Bearer " +
-        (isUnit
-          ? JSON.stringify(asyncStorage.getUnitAccessToken())
-          : JSON.stringify(asyncStorage.getStudentAccessToken())),
+      Authorization: "Bearer " + JSON.stringify(asyncStorage.getAccessToken()),
     }
   }
 
@@ -58,32 +42,24 @@ export const postMethod = async (
   return response.data
 }
 
-export const putMethod = async (path, isUnit = false, options = {}) => {
-  const headersStudent = {
-    accessToken: asyncStorage.getStudentAccessToken(),
-  }
-
-  const headersUnit = {
-    accessToken: asyncStorage.getUnitAccessToken(),
+export const putMethod = async (path, options = {}) => {
+  const headers = {
+    accessToken: asyncStorage.getAccessToken(),
   }
 
   const response = await request.put(path, options, {
-    headers: isUnit ? headersUnit : headersStudent,
+    headers: headers,
   })
   return response.data
 }
 
-export const deleteMethod = async (path, isUnit = false) => {
-  const headersStudent = {
-    accessToken: asyncStorage.getStudentAccessToken(),
-  }
-
-  const headersUnit = {
-    accessToken: asyncStorage.getUnitAccessToken(),
+export const deleteMethod = async (path) => {
+  const headers = {
+    accessToken: asyncStorage.getAccessToken(),
   }
 
   const response = await request.delete(path, {
-    headers: isUnit ? headersUnit : headersStudent,
+    headers: headers,
   })
   return response.data
 }

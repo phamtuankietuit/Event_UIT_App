@@ -10,7 +10,7 @@ export default function App() {
 
   useEffect(() => {
     setTimeout(() => {
-      router.replace("(auth)/forget-password")
+      router.replace("(page)/add-post")
     }, 3000)
   })
 

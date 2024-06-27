@@ -64,9 +64,9 @@ const SignIn = () => {
       if (response) {
         // Xử lý nếu response trả về
         console.log(response)
-        // showToastWithGravity("Đăng nhập thành công")
+        showToastWithGravity("Đăng nhập thành công")
         // thực hiện lưu trạng thái đăng nhập
-        // setLoading(false)
+        setLoading(false)
         // asyncStorage.setIsLogin("true")
         // asyncStorage.setRole("student")
         // asyncStorage.setAccessToken(response.accessToken)

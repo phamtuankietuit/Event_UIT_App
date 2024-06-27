@@ -74,7 +74,7 @@ export default function Profile() {
   }
 
   useEffect(() => {
-    ;(async () => {
+    ; (async () => {
       if (Platform.OS !== "web") {
         const { status } =
           await ImagePicker.requestMediaLibraryPermissionsAsync()
@@ -85,7 +85,7 @@ export default function Profile() {
     })()
   }, [])
   return (
-    <View className='flex-1'>
+    <View className='flex-1 mt-3'>
       <View className='text-wrap flex flex-row items-center gap-5 px-10'>
         <View className='flex flex-row items-end'>
           <Image
@@ -103,9 +103,9 @@ export default function Profile() {
         </View>
       </View>
 
-      <View className='my-7 px-10'>
+      <View className='my-10 px-10'>
         <TouchableOpacity
-          className='mb-3 flex w-[100%] flex-row items-center justify-between rounded-xl bg-blue-500 p-4'
+          className='mb-3 flex w-[100%] flex-row items-center justify-between rounded-xl bg-blue-500 p-3'
           onPress={() => setOpenPass(true)}
           style={{
             shadowColor: "#000",
@@ -123,7 +123,7 @@ export default function Profile() {
           <FontAwesomeIcon icon={faAngleRight} color='white' />
         </TouchableOpacity>
         <TouchableOpacity
-          className='mb-3 flex w-[100%] flex-row items-center justify-between rounded-xl bg-blue-500 p-4'
+          className='mb-3 flex w-[100%] flex-row items-center justify-between rounded-xl bg-blue-500 p-3'
           onPress={() =>
             router.navigate("/(page)/Participation_Event/participation_event")
           }
@@ -143,7 +143,7 @@ export default function Profile() {
           <FontAwesomeIcon icon={faAngleRight} color='white' />
         </TouchableOpacity>
         <TouchableOpacity
-          className='mb-3 flex w-[100%] flex-row items-center justify-between rounded-xl bg-blue-500 p-4'
+          className='mb-3 flex w-[100%] flex-row items-center justify-between rounded-xl bg-blue-500 p-3'
           onPress={() =>
             router.navigate("/(page)/Student_History/student_history")
           }
@@ -163,7 +163,7 @@ export default function Profile() {
           <FontAwesomeIcon icon={faAngleRight} color='white' />
         </TouchableOpacity>
         <TouchableOpacity
-          className='mb-3 flex w-[100%] flex-row items-center justify-between rounded-xl bg-blue-500 p-4'
+          className='mb-3 flex w-[100%] flex-row items-center justify-between rounded-xl bg-blue-500 p-3'
           onPress={() =>
             router.navigate("/(page)/Management_Event/management_event")
           }
@@ -183,7 +183,7 @@ export default function Profile() {
           <FontAwesomeIcon icon={faAngleRight} color='white' />
         </TouchableOpacity>
         <TouchableOpacity
-          className='mb-3 flex w-[100%] flex-row items-center justify-between rounded-xl bg-blue-500 p-4'
+          className='mb-3 flex w-[100%] flex-row items-center justify-between rounded-xl bg-blue-500 p-3'
           style={{
             shadowColor: "#000",
             shadowOffset: {
@@ -195,12 +195,15 @@ export default function Profile() {
 
             elevation: 4,
           }}
+          onPress={() =>
+            router.navigate("/(page)/Report_Page/report_page")
+          }
         >
           <Text className='text-white'>Báo cáo thống kê</Text>
           <FontAwesomeIcon icon={faAngleRight} color='white' />
         </TouchableOpacity>
         <TouchableOpacity
-          className='mb-3 flex w-[100%] flex-row items-center justify-between rounded-xl bg-blue-500 p-4'
+          className='mb-3 flex w-[100%] flex-row items-center justify-between rounded-xl bg-blue-500 p-3'
           style={{
             shadowColor: "#000",
             shadowOffset: {

@@ -70,7 +70,7 @@ const data = [
 ]
 function participation_event() {
   return (
-    <SafeAreaView className='mt-5 flex-1'>
+    <View className='mt-1 flex-1'>
       <View className='mt-3 flex flex-col items-center justify-center'>
         <Text className='text-xl font-semibold text-sky-600'>
           Sự kiện tham gia
@@ -82,7 +82,7 @@ function participation_event() {
         className='mx-2 bg-transparent'
         renderItem={({ item }) => <Parti_Event_Item item={item} />}
       />
-    </SafeAreaView>
+    </View>
   )
 }
 

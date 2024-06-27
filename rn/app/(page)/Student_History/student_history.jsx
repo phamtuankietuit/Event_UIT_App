@@ -4,7 +4,7 @@ import { Text, View } from "react-native";
 import { format } from 'date-fns';
 function student_history() {
     return (
-        <SafeAreaView className='mt-5'>
+        <View className='mt-1'>
             <View className='flex justify-center items-center flex-col mt-3'>
                 <Text className='text-xl text-sky-600 font-semibold'>Điểm rèn luyện</Text>
             </View>
@@ -33,7 +33,7 @@ function student_history() {
                     <Text className='ml-2'>Tham gia sự kiện seminar nghiên cứu khoa học câu lạc bộ lý luận UIT ({format(new Date(), 'dd MMM yyyy - HH:mm')}) : + 5 điểm</Text>
                 </View>
             </View>
-        </SafeAreaView>
+        </View>
     );
 }
 

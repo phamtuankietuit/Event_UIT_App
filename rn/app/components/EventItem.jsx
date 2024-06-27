@@ -6,19 +6,27 @@ import {
   ActivityIndicator,
   Pressable,
 } from "react-native"
-import React, { memo } from "react"
+import React, { memo, useEffect, useState } from "react"
 import { SliderBox } from "react-native-image-slider-box"
 import { Entypo } from "@expo/vector-icons"
 import { Link } from "expo-router"
+import { format } from "date-fns"
+const EventItem = memo(({ item }) => {
+  // const slides = [
+  //   "https://thanhnien.mediacdn.vn/thumb_w/750/325084952045817856/2023/3/20/base64-16792880739381319994436.jpeg",
+  //   "https://tuyensinh.uit.edu.vn/sites/default/files/uploads/images/202310/2b7173db-6933-4f88-b227-ebf0e042c41e.png",
+  //   "https://www.uit.edu.vn/sites/vi/files/image_from_word/hoc_bong_khoa_khoa_hoc_may_tinh_7.jpg",
+  //   "https://www.uit.edu.vn/sites/vi/files/image_from_word/u.jpg",
+  // ]
 
-const EventItem = memo(() => {
-  const slides = [
-    "https://thanhnien.mediacdn.vn/thumb_w/750/325084952045817856/2023/3/20/base64-16792880739381319994436.jpeg",
-    "https://tuyensinh.uit.edu.vn/sites/default/files/uploads/images/202310/2b7173db-6933-4f88-b227-ebf0e042c41e.png",
-    "https://www.uit.edu.vn/sites/vi/files/image_from_word/hoc_bong_khoa_khoa_hoc_may_tinh_7.jpg",
-    "https://www.uit.edu.vn/sites/vi/files/image_from_word/u.jpg",
-  ]
+  const [slides, setSlides] = useState([])
+  useEffect(() => {
+    let array = []
 
+    for (let image of item.images) array.push(image.imageUrl)
+
+    setSlides(array)
+  }, [])
   return (
     <View
       className='m-2 max-h-fit rounded border-[1px] border-gray-100 
@@ -29,7 +37,7 @@ const EventItem = memo(() => {
           <Image
             className='h-full w-full rounded-full'
             source={{
-              uri: "https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-1/305532054_516142960436144_1879050775822715016_n.png?stp=dst-png_p200x200&_nc_cat=100&ccb=1-7&_nc_sid=f4b9fd&_nc_eui2=AeEtgxD_Bswpplegl9oYgrNXCjcq6jLgDwAKNyrqMuAPAA8VBEbD5DmuSeAffO0Bth9bL7Ql3VcN1c7nMxzUZaFh&_nc_ohc=ZipIcHJDvIwQ7kNvgH6gMdM&_nc_ht=scontent.fsgn19-1.fna&oh=00_AYB3HC2i_baSELXRppIi7T0-6DnEf_5FUbW5e2h4cy50iA&oe=66822370",
+              uri: item.universityUnit.avatarUrl,
             }}
           ></Image>
         </View>
@@ -41,9 +49,9 @@ const EventItem = memo(() => {
             lineBreakMode='tail'
             className='text-base font-semibold'
           >
-            Ban học tập khoa Kỹ Thuật Phần Mềm
+            {item.universityUnit.name}
           </Text>
-          <Text className='text-xs'>12:20 - 25/05/2024</Text>
+          <Text className='text-xs'>{format(item.publishedDate, "HH:mm - dd/MM/yyyy ")}</Text>
         </View>
 
         <View className='flex-1 items-end'>
@@ -54,7 +62,7 @@ const EventItem = memo(() => {
           {/* <Text className='text-sm font-medium text-orange-500'>
             Chưa bắt đầu
           </Text> */}
-          <Text className='text-xs'>50/120</Text>
+          <Text className='text-xs'>{item.totalRegistration}/{item.maxAttendees}</Text>
         </View>
       </TouchableOpacity>
 
@@ -64,14 +72,10 @@ const EventItem = memo(() => {
           numberOfLines={2}
           ellipsizeMode='tail'
         >
-          ☀️ [TỔNG KẾT TRAINING CUỐI KÌ II 2023-2024] ☀️
+          ☀️ [{item.title}] ☀️
         </Text>
         <Text numberOfLines={5} ellipsizeMode='tail'>
-          🤗 Vậy là những buổi training cuối cùng của năm học này đã kết thúc.
-          Hy vọng rằng nó đã đem lại hành trang bổ ích cho các bạn sinh viên
-          trong kì thi cuối kì sắp tới này. ❤️ Chân thành cảm ơn các bạn sinh
-          viên đã đến tham gia các buổi training của Ban học tập. Chúc các bạn
-          sẽ có kì thi thật suông sẻ và đạt được thành tích mình mong muốn.
+          🤗 {item.description}
         </Text>
         <Link href={"detail/EventDetail"}>
           <Text className='text-blue-500'>Xem thêm</Text>

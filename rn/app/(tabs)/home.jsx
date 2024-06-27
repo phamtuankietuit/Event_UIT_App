@@ -12,7 +12,7 @@ import {
   TouchableOpacity,
 } from "react-native"
 import { useState, useCallback, useEffect } from "react"
-
+import * as EventServices from "../apiServices/eventServices"
 import Logo from "../../assets/images/Logo.png"
 import Carousel from "../components/Carousel"
 import EventItem from "../components/EventItem"
@@ -27,28 +27,7 @@ const slides = [
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false)
 
-  const [data, setData] = useState([
-    { key: "1", text: "Item 1" },
-    { key: "2", text: "Item 2" },
-    { key: "3", text: "Item 3" },
-    { key: "4", text: "Item 4" },
-    { key: "5", text: "Item 5" },
-    { key: "6", text: "Item 6" },
-    { key: "7", text: "Item 7" },
-    { key: "8", text: "Item 8" },
-    { key: "9", text: "Item 9" },
-    { key: "10", text: "Item 10" },
-    { key: "11", text: "Item 11" },
-    { key: "12", text: "Item 12" },
-    { key: "13", text: "Item 13" },
-    { key: "14", text: "Item 14" },
-    { key: "15", text: "Item 15" },
-    { key: "16", text: "Item 16" },
-    { key: "17", text: "Item 17" },
-    { key: "18", text: "Item 18" },
-    { key: "19", text: "Item 19" },
-    { key: "20", text: "Item 20" },
-  ])
+  const [data, setData] = useState([])
   const [refreshing, setRefreshing] = useState(false)
 
   const onRefresh = useCallback(() => {
@@ -85,7 +64,33 @@ const Home = () => {
     outputRange: [210, 0],
     extrapolate: "clamp",
   })
+  useEffect(() => {
+    const fetchApi = async () => {
+      const responseEvent = await EventServices
+        .getEvents({
+          isPublished: true
+        })
+        .catch((error) => {
+          // xử lý lỗi
+          if (error.response) {
+            if (error.response.status === 401) {
+              showToastWithGravity("Vui lòng kiểm tra lại email hoặc mật khẩu")
+            } else if (error.response.status === 403) {
+              showToastWithGravity("Tài khoản đã bị vô hiệu hóa")
+            }
+          } else {
+            showToastWithGravity("Có lỗi xảy ra")
+          }
+        })
 
+      if (responseEvent) {
+        // Xử lý nếu response trả về
+        // console.log(responseEvent.events.items)
+        setData(responseEvent.events.items)
+      }
+    }
+    fetchApi()
+  }, [])
   return (
     <View className='relative flex h-full flex-1 flex-col bg-slate-200'>
       <View
@@ -152,7 +157,7 @@ const Home = () => {
               <FlatList
                 className='rounded-t-2xl bg-white px-3 py-2 pt-3 shadow shadow-black'
                 data={data}
-                keyExtractor={(item) => item.key}
+                keyExtractor={(item) => item.id}
                 renderItem={({ item }) => <EventItem item={item} />}
                 onScroll={Animated.event(
                   [{ nativeEvent: { contentOffset: { y: scrollY } } }],

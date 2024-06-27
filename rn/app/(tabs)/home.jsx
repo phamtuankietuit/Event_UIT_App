@@ -11,7 +11,7 @@ import {
   Animated,
   TouchableOpacity,
 } from "react-native"
-import { useState, useCallback, memo } from "react"
+import { useState, useCallback, useEffect } from "react"
 
 import Logo from "../../assets/images/Logo.png"
 import Carousel from "../components/Carousel"

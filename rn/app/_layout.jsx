@@ -1,10 +1,13 @@
 import { Stack } from "expo-router"
+import { SafeAreaView } from "react-native-safe-area-context"
 
 const RootLayout = () => {
   return (
-    <Stack>
-      <Stack.Screen name='index' options={{ headerShown: false }} />
-    </Stack>
+    <SafeAreaView className='flex-1 bg-white'>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name='index' options={{ headerShown: false }} />
+      </Stack>
+    </SafeAreaView>
   )
 }
 

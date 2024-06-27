@@ -1,12 +1,12 @@
 import { Stack } from "expo-router"
 import React from "react"
 
-const AuthLayout = () => {
+const DetailLayout = () => {
   return (
     <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name='sign-in' options={{ headerShown: false }} />
+      <Stack.Screen name='EventDetail' options={{ headerShown: false }} />
     </Stack>
   )
 }
 
-export default AuthLayout
+export default DetailLayout

@@ -6,6 +6,9 @@
 /backend/UITEventAPI/UITEventAPI.API/appsettings.json
 /backend/UITEventAPI/UITEventAPI.API/appsettings.Production.json
 /backend/UITEventAPI/UITEventAPI.API/UITEventAPI.API.http
+/backend/UITEventAPI/UITEventAPI.API/Properties
+/backend/UITEventAPI/SendEmailFunction/Properties
+/backend/UITEventAPI/UITEventAPI.API/Properties
 
 *.swp
 *.*~
@@ -39,3 +42,6 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
+
+
+

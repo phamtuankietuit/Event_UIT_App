@@ -80,9 +80,9 @@ const Noti = () => {
     setList(newList)
     setDay(new Date())
   }
-  useEffect(() => {}, [day])
+  useEffect(() => { }, [day])
   return (
-    <View className='flex-1'>
+    <View className='flex-1 mt-2'>
       <View className='mx-1 mb-3 flex flex-row items-center justify-between '>
         <Text className='px-2 text-[17px] font-bold'>Mới</Text>
         <TouchableOpacity onPress={() => setRead()}>

@@ -17,38 +17,15 @@ import Logo from "../../assets/images/Logo.png"
 import Carousel from "../components/Carousel"
 import EventItem from "../components/EventItem"
 
+const showToastWithGravity = (msg) => {
+  ToastAndroid.showWithGravity(msg, ToastAndroid.SHORT, ToastAndroid.CENTER)
+}
+
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false)
-
   const [data, setData] = useState([])
   const [refreshing, setRefreshing] = useState(false)
-
-  const onRefresh = useCallback(() => {
-    setRefreshing(true)
-    setTimeout(() => {
-      setData([
-        ...data,
-        { key: (data.length + 1).toString(), text: `Item ${data.length + 1}` },
-      ])
-      setRefreshing(false)
-    }, 1500)
-  }, [data])
-
-  // TAB
-  const [tab, setTab] = useState(1)
-
-  const showToastWithGravity = (msg) => {
-    ToastAndroid.showWithGravity(
-      msg || "hello",
-      ToastAndroid.SHORT,
-      ToastAndroid.CENTER
-    )
-  }
-
-  const handleChangeTab = (tab) => {
-    setTab(tab)
-    showToastWithGravity("oke")
-  }
+  const [pageNumber, setPageNumber] = useState(1)
 
   const [scrollY, setScrollY] = useState(new Animated.Value(0))
 
@@ -58,17 +35,68 @@ const Home = () => {
     extrapolate: "clamp",
   })
 
-  const getEvents = async () => {
-    const responseEvent = await eventServices.getEvents().catch((error) => {
-      if (error.response) {
-        console.log(error)
-      }
-      showToastWithGravity("Có lỗi xảy ra")
-    })
+  const onRefresh = useCallback(() => {
+    setRefreshing(true)
+    getEvents()
+  }, [data])
+
+  // TAB
+  const [tab, setTab] = useState(0)
+
+  const handleChangeTab = async (tab) => {
+    setTab(tab)
+    setRefreshing(true)
+
+    const responseEvent = await eventServices
+      .getEvents(pageNumber, tab === 0)
+      .catch((error) => {
+        if (error.response) {
+          console.log(error)
+        }
+        showToastWithGravity("Có lỗi xảy ra")
+        setRefreshing(false)
+      })
 
     if (responseEvent) {
+      // console.log(responseEvent.events.items[0])
+      setRefreshing(false)
       setData(responseEvent.events.items)
     }
+  }
+
+  const getEvents = async () => {
+    const responseEvent = await eventServices
+      .getEvents(pageNumber, tab === 0)
+      .catch((error) => {
+        if (error.response) {
+          console.log(error)
+        }
+        showToastWithGravity("Có lỗi xảy ra")
+        setRefreshing(false)
+      })
+
+    if (responseEvent) {
+      // console.log(responseEvent.events.items[0])
+      setRefreshing(false)
+      setData(responseEvent.events.items)
+    }
+  }
+
+  const handleLoadMore = async () => {
+    // setPageNumber((prev) => prev + 1)
+    // const responseEvent = await eventServices
+    //   .getEvents(pageNumber + 1, tab === 0)
+    //   .catch((error) => {
+    //     if (error.response) {
+    //       console.log(error)
+    //     }
+    //     showToastWithGravity("Có lỗi xảy ra")
+    //     setRefreshing(false)
+    //   })
+    // if (responseEvent) {
+    //   setRefreshing(false)
+    //   setData((prev) => [...prev, ...responseEvent.events.items])
+    // }
   }
 
   useEffect(() => {
@@ -141,8 +169,10 @@ const Home = () => {
               <FlatList
                 className='rounded-t-2xl bg-white px-3 py-2 pt-3 shadow shadow-black'
                 data={data}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => <EventItem item={item} />}
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={({ item }) => {
+                  return <EventItem item={item} />
+                }}
                 onScroll={Animated.event(
                   [{ nativeEvent: { contentOffset: { y: scrollY } } }],
                   {
@@ -160,6 +190,8 @@ const Home = () => {
                     progressViewOffset={20}
                   />
                 }
+                onEndReached={handleLoadMore}
+                onEndReachedThreshold={0.5}
                 ListFooterComponent={<View className='mb-52'></View>}
               />
             )}

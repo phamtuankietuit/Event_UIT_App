@@ -142,6 +142,7 @@ export default function Profile() {
         if (response) {
           // Xử lý nếu response trả về
           setObj(response)
+          console.log(response)
         }
       }
     }
@@ -199,7 +200,7 @@ export default function Profile() {
         <View className='w-[80%] flex-row items-center'>
           <View className='ml-7 flex items-end'>
             <Image
-              source={obj.avatarUrl ? { uri: obj?.avatarUrl } : logo}
+              source={{ uri: obj.avatarUrl }}
               className='h-[60px] w-[60px] rounded-full bg-white '
             />
             <TouchableOpacity

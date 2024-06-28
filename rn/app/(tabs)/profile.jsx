@@ -7,6 +7,8 @@ import {
   Text,
   TouchableOpacity,
   View,
+  ToastAndroid,
+  ActivityIndicator,
 } from "react-native"
 import logo from "../../assets/images/Logo.png"
 import bg from "../../assets/images/profile.jpg"
@@ -19,18 +21,22 @@ import {
   faKey,
   faClipboard,
   faBars,
-  faChartLine
+  faChartLine,
 } from "@fortawesome/free-solid-svg-icons"
 import * as ImagePicker from "expo-image-picker"
 import { useRouter } from "expo-router"
 import Input from "../components/Input"
 import * as asyncStorage from "../store/asyncStorage"
 import * as AuthServices from "../apiServices/authServices"
+import * as ProfileService from "../apiServices/profileServices"
 
 export default function Profile() {
   const router = useRouter()
-  const [role, setRole] = useState('')
-  const [obj, setObj] = useState('')
+
+  const [changePassLoading, setChangePassLoading] = useState(false)
+
+  const [role, setRole] = useState("")
+  const [obj, setObj] = useState("")
   const [openPass, setOpenPass] = useState(false)
   const setClosePass = () => {
     setOpenPass(false)
@@ -48,6 +54,9 @@ export default function Profile() {
   const onChangePass = (value) => {
     setPass(value)
     setErrorPass("")
+  }
+  const showToastWithGravity = (msg) => {
+    ToastAndroid.showWithGravity(msg, ToastAndroid.SHORT, ToastAndroid.CENTER)
   }
 
   //NewPass
@@ -77,13 +86,13 @@ export default function Profile() {
       quality: 1,
     })
 
-    if (!result.cancelled) {
+    if (!result.canceled) {
       console.log(result)
     }
   }
 
   useEffect(() => {
-    ; (async () => {
+    ;(async () => {
       if (Platform.OS !== "web") {
         const { status } =
           await ImagePicker.requestMediaLibraryPermissionsAsync()
@@ -98,44 +107,37 @@ export default function Profile() {
     const fetchApi = async () => {
       const getRole = await asyncStorage.getRole()
       setRole(getRole)
-      if (getRole === 'Student') {
-        const response = await AuthServices
-          .getStudent()
-          .catch((error) => {
-            // xử lý lỗi
-            if (error.response) {
-              if (error.response.status === 401) {
-                showToastWithGravity("Vui lòng kiểm tra lại email hoặc mật khẩu")
-              } else if (error.response.status === 403) {
-                showToastWithGravity("Tài khoản đã bị vô hiệu hóa")
-              }
-            } else {
-              showToastWithGravity("Có lỗi xảy ra")
-
+      if (getRole === "Student") {
+        const response = await AuthServices.getStudent().catch((error) => {
+          // xử lý lỗi
+          if (error.response) {
+            if (error.response.status === 401) {
+              showToastWithGravity("Vui lòng kiểm tra lại email hoặc mật khẩu")
+            } else if (error.response.status === 403) {
+              showToastWithGravity("Tài khoản đã bị vô hiệu hóa")
             }
-          })
+          } else {
+            showToastWithGravity("Có lỗi xảy ra")
+          }
+        })
 
         if (response) {
           // Xử lý nếu response trả về
           setObj(response)
-
         }
-      }
-      else {
-        const response = await AuthServices
-          .getAdmin()
-          .catch((error) => {
-            // xử lý lỗi
-            if (error.response) {
-              if (error.response.status === 401) {
-                showToastWithGravity("Vui lòng kiểm tra lại email hoặc mật khẩu")
-              } else if (error.response.status === 403) {
-                showToastWithGravity("Tài khoản đã bị vô hiệu hóa")
-              }
-            } else {
-              showToastWithGravity("Có lỗi xảy ra")
+      } else {
+        const response = await AuthServices.getAdmin().catch((error) => {
+          // xử lý lỗi
+          if (error.response) {
+            if (error.response.status === 401) {
+              showToastWithGravity("Vui lòng kiểm tra lại email hoặc mật khẩu")
+            } else if (error.response.status === 403) {
+              showToastWithGravity("Tài khoản đã bị vô hiệu hóa")
             }
-          })
+          } else {
+            showToastWithGravity("Có lỗi xảy ra")
+          }
+        })
 
         if (response) {
           // Xử lý nếu response trả về
@@ -147,39 +149,83 @@ export default function Profile() {
     fetchApi()
   }, [])
 
+  //đổi mật khẩu
+  const handleChangePassword = async () => {
+    if (
+      pass == "" ||
+      pass == undefined ||
+      newPass == "" ||
+      newPass == undefined ||
+      preNewPass == "" ||
+      preNewPass == undefined
+    ) {
+      showToastWithGravity("Vui lòng nhập đủ thông tin")
+    } else {
+      setChangePassLoading(true)
+      if (newPass == preNewPass) {
+        const renewpass = await ProfileService.renewPassword({
+          email: obj.email,
+          oldPassword: pass,
+          newPassword: newPass,
+        }).catch((error) => {
+          if (error.response.status == 401) {
+            showToastWithGravity("Mật khẩu hiện tại không đúng")
+          } else if (error.response.status == 400) {
+            showToastWithGravity(
+              "Mật khẩu chứa ít nhất 1 kí tự in hoa và kí tự đặc biệt"
+            )
+          }
+          setChangePassLoading(false)
+        })
+        if (renewpass) {
+          showToastWithGravity("Thay đổi mật khẩu thành công!")
+          setChangePassLoading(false)
+        }
+      } else {
+        showToastWithGravity("Mật khẩu mới không trùng khớp")
+        setChangePassLoading(false)
+      }
+    }
+  }
 
   return (
     <View className='flex-1'>
-      <View className='text-wrap flex flex-row items-center h-[20%]' >
+      <View className='text-wrap flex h-[20%] flex-row items-center'>
+        <Image
+          className='absolute h-full w-full rounded-bl-[50px] rounded-br-[50px] opacity-50'
+          source={bg}
+        ></Image>
 
-        <Image className='absolute h-full w-full rounded-br-[50px] rounded-bl-[50px] opacity-50' source={bg}></Image>
-
-        <View className='flex-row w-[80%] items-center'>
-          <View className='flex flex-row items-end ml-7'>
+        <View className='w-[80%] flex-row items-center'>
+          <View className='ml-7 flex items-end'>
             <Image
               source={obj.avatarUrl ? { uri: obj?.avatarUrl } : logo}
               className='h-[60px] w-[60px] rounded-full bg-white '
             />
-            <TouchableOpacity onPress={() => imagePicker()}>
-              <FontAwesomeIcon icon={faCamera} />
+            <TouchableOpacity
+              className='absolute bottom-0 h-[23] w-[23] items-center justify-center rounded-full bg-slate-500'
+              onPress={() => imagePicker()}
+            >
+              <FontAwesomeIcon icon={faCamera} size={13} color='#fff' />
             </TouchableOpacity>
           </View>
 
           <View className='mx-3'>
-            <Text className='mb-2 text-xl font-bold uppercase'>{obj?.lastName ? obj?.lastName + ' ' + obj?.firstName : obj?.name}</Text>
-            {
-              role === 'Student' ? <Text className='text-base font-normal'>Sinh viên</Text> :
-                <Text className='text-base font-normal'>Admin tổ chức</Text>
-            }
-
+            <Text className='mb-2 text-xl font-bold uppercase'>
+              {obj?.lastName ? obj?.lastName + " " + obj?.firstName : obj?.name}
+            </Text>
+            {role === "Student" ? (
+              <Text className='text-base font-normal'>Sinh viên</Text>
+            ) : (
+              <Text className='text-base font-normal'>Admin tổ chức</Text>
+            )}
           </View>
         </View>
-
       </View>
 
-      <View className='mx-auto my-10 w-[85%] p-3 rounded-lg bg-white shadow-2xl shadow-black'>
+      <View className='mx-auto my-10 w-[85%] rounded-lg bg-white p-3 shadow-2xl shadow-black'>
         <TouchableOpacity
-          className=' flex w-[100%] flex-row items-center justify-between rounded-xl py-3 px-2'
+          className=' flex w-[100%] flex-row items-center justify-between rounded-xl px-2 py-3'
           onPress={() => setOpenPass(true)}
         >
           <View className='flex-row items-center gap-4'>
@@ -188,78 +234,78 @@ export default function Profile() {
           </View>
 
           <FontAwesomeIcon color='gray' icon={faAngleRight} />
-
         </TouchableOpacity>
-        {
-          role === 'Student' ?
-            (<View>
-              <TouchableOpacity
-                className=' flex w-[100%] flex-row items-center justify-between rounded-xl py-3 px-2'
-                onPress={() =>
-                  router.navigate("/(page)/Participation_Event/participation_event")
-                }
-              >
-                <View className='flex-row items-center gap-4'>
-                  <FontAwesomeIcon color='gray' icon={faBars} />
-                  <Text className='text-sm'>Quản lý sự kiện tham gia</Text>
-                </View>
+        {role === "Student" ? (
+          <View>
+            <TouchableOpacity
+              className=' flex w-[100%] flex-row items-center justify-between rounded-xl px-2 py-3'
+              onPress={() =>
+                router.navigate(
+                  "/(page)/Participation_Event/participation_event"
+                )
+              }
+            >
+              <View className='flex-row items-center gap-4'>
+                <FontAwesomeIcon color='gray' icon={faBars} />
+                <Text className='text-sm'>Quản lý sự kiện tham gia</Text>
+              </View>
 
-                <FontAwesomeIcon color='gray' icon={faAngleRight} />
-              </TouchableOpacity>
-              <TouchableOpacity
-                className=' flex w-[100%] flex-row items-center justify-between rounded-xl py-3 px-2'
-                onPress={() =>
-                  router.navigate("/(page)/Student_History/student_history")
-                }
-              >
-                <View className='flex-row items-center gap-4'>
-                  <FontAwesomeIcon color='gray' icon={faClipboard} />
-                  <Text className='text-sm'>Điểm rèn luyện</Text>
-                </View>
+              <FontAwesomeIcon color='gray' icon={faAngleRight} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              className=' flex w-[100%] flex-row items-center justify-between rounded-xl px-2 py-3'
+              onPress={() =>
+                router.navigate("/(page)/Student_History/student_history")
+              }
+            >
+              <View className='flex-row items-center gap-4'>
+                <FontAwesomeIcon color='gray' icon={faClipboard} />
+                <Text className='text-sm'>Điểm rèn luyện</Text>
+              </View>
 
-                <FontAwesomeIcon color='gray' icon={faAngleRight} />
-              </TouchableOpacity>
-            </View>)
-            :
-            (<View>
-              <TouchableOpacity
-                className=' flex w-[100%] flex-row items-center justify-between rounded-xl py-3 px-2'
-                onPress={() =>
-                  router.navigate({ pathname: "/(page)/Management_Event/management_event", params: { id: obj.id } })
-                }
-              >
-                <View className='flex-row items-center gap-4'>
-                  <FontAwesomeIcon color='gray' icon={faBars} />
-                  <Text className='text-sm'>Quản lý sự kiện</Text>
-                </View>
+              <FontAwesomeIcon color='gray' icon={faAngleRight} />
+            </TouchableOpacity>
+          </View>
+        ) : (
+          <View>
+            <TouchableOpacity
+              className=' flex w-[100%] flex-row items-center justify-between rounded-xl px-2 py-3'
+              onPress={() =>
+                router.navigate({
+                  pathname: "/(page)/Management_Event/management_event",
+                  params: { id: obj.id },
+                })
+              }
+            >
+              <View className='flex-row items-center gap-4'>
+                <FontAwesomeIcon color='gray' icon={faBars} />
+                <Text className='text-sm'>Quản lý sự kiện</Text>
+              </View>
 
-                <FontAwesomeIcon color='gray' icon={faAngleRight} />
-              </TouchableOpacity>
-              <TouchableOpacity
-                className=' flex w-[100%] flex-row items-center justify-between rounded-xl py-3 px-2'
-                onPress={() =>
-                  router.navigate("/(page)/Report_Page/report_page")
-                }
-              >
-                <View className='flex-row items-center gap-4'>
-                  <FontAwesomeIcon color='gray' icon={faChartLine} />
-                  <Text className='text-sm'>Báo cáo thống kê</Text>
-                </View>
+              <FontAwesomeIcon color='gray' icon={faAngleRight} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              className=' flex w-[100%] flex-row items-center justify-between rounded-xl px-2 py-3'
+              onPress={() => router.navigate("/(page)/Report_Page/report_page")}
+            >
+              <View className='flex-row items-center gap-4'>
+                <FontAwesomeIcon color='gray' icon={faChartLine} />
+                <Text className='text-sm'>Báo cáo thống kê</Text>
+              </View>
 
-                <FontAwesomeIcon color='gray' icon={faAngleRight} />
-              </TouchableOpacity>
-
-            </View>)
-        }
+              <FontAwesomeIcon color='gray' icon={faAngleRight} />
+            </TouchableOpacity>
+          </View>
+        )}
 
         <TouchableOpacity
-          className=' flex w-[100%] flex-row items-center justify-between rounded-xl py-3 px-2'
+          className=' flex w-[100%] flex-row items-center justify-between rounded-xl px-2 py-3'
           onPress={() => {
             asyncStorage.setIsLogin(`false`)
             asyncStorage.setAccessToken(null)
             asyncStorage.setRole(null)
 
-            router.replace('(auth)/sign-in')
+            router.replace("(auth)/sign-in")
           }}
         >
           <View className='flex-row items-center gap-4'>
@@ -281,9 +327,9 @@ export default function Profile() {
         <SafeAreaView>
           <View className='h-full bg-white p-3'>
             <View className='flex h-[5%] flex-row justify-between'>
-              <Text>Đổi mật khẩu</Text>
+              <Text className='text-lg font-semibold'>Đổi mật khẩu</Text>
               <TouchableOpacity onPress={() => setClosePass()}>
-                <FontAwesomeIcon icon={faXmark} className='w-[20%]' />
+                <FontAwesomeIcon icon={faXmark} size={25} />
               </TouchableOpacity>
             </View>
 
@@ -315,9 +361,21 @@ export default function Profile() {
               password={true}
             />
 
-            <View className='my-2 flex items-center justify-center'>
-              <TouchableOpacity className='my-3 flex w-[60%] items-center justify-center rounded-2xl bg-[#3A57E8] px-3 py-3'>
-                <Text className='text-sm'>Đổi mật khẩu</Text>
+            <View className='my-2 items-center justify-center'>
+              <TouchableOpacity
+                onPress={handleChangePassword}
+                className='my-3 w-[60%] flex-row items-center justify-center rounded-2xl bg-blue-600 px-3 py-3'
+              >
+                {changePassLoading && (
+                  <ActivityIndicator
+                    size={"small"}
+                    color={"#fff"}
+                    className='mr-1'
+                  ></ActivityIndicator>
+                )}
+                <Text className='text-base font-semibold text-white'>
+                  Đổi mật khẩu
+                </Text>
               </TouchableOpacity>
             </View>
           </View>

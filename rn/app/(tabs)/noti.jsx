@@ -88,7 +88,7 @@ const Noti = () => {
         <TouchableOpacity onPress={() => setRead()}>
           <View className='flex flex-row items-center justify-between '>
             <FontAwesomeIcon icon={faListCheck} />
-            <Text className='mx-2'>Đánh giấu đã đọc</Text>
+            <Text className='mx-2'>Đánh dấu đã đọc</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -96,7 +96,9 @@ const Noti = () => {
         data={list}
         showsVerticalScrollIndicator={false}
         className='mx-2 bg-transparent'
-        renderItem={({ item }) => <Notifi_Item item={item} />}
+        renderItem={({ item }) => <Notifi_Item item={item}
+        />}
+        ListFooterComponent={<View className='mb-20'></View>}
       />
     </View>
   )

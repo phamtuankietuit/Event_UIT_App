@@ -12,15 +12,45 @@ import MyHeader from "../../components/MyHeader"
 import EventItem from "../../components/Event_Item"
 import { useLocalSearchParams } from "expo-router"
 import * as PageServices from "../../apiServices/pageServices"
+import * as asyncStorage from "../../store/asyncStorage"
 
 const PageDetail = () => {
   const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const params = useLocalSearchParams()
   const [obj, setObj] = useState("")
+  const [day, setDay] = useState(new Date())
+
+  const setFollow = async () => {
+    const id = await asyncStorage.getIdAsync()
+    const response = await PageServices.setFollow(params.id, {
+      StudentId: id,
+      UnitId: obj.id
+    }).catch((error) => {
+      // xử lý lỗi
+      if (error.response) {
+        console.log(error.response);
+        if (error.response.status === 401) {
+          showToastWithGravity("Vui lòng kiểm tra lại email hoặc mật khẩu")
+        } else if (error.response.status === 403) {
+          showToastWithGravity("Tài khoản đã bị vô hiệu hóa")
+        }
+      } else {
+        showToastWithGravity("Có lỗi xảy ra")
+      }
+    })
+
+    if (response) {
+      // Xử lý nếu response trả về
+      setDay(new Date())
+    }
+  }
   useEffect(() => {
     const fetchApi = async () => {
-      const response = await PageServices.getPage(params.id).catch((error) => {
+      const id = await asyncStorage.getIdAsync()
+      const response = await PageServices.getPage(params.id, {
+        StudentId: id
+      }).catch((error) => {
         // xử lý lỗi
         if (error.response) {
           if (error.response.status === 401) {
@@ -35,12 +65,13 @@ const PageDetail = () => {
 
       if (response) {
         // Xử lý nếu response trả về
+        console.log(response.isThisStudentFollowed);
         setObj(response)
         setData(response?.hostedEvent)
       }
     }
     fetchApi()
-  }, [])
+  }, [day])
   return (
     <View className='relative flex-1'>
       <View className='absolute left-0 top-0 -z-10 h-[230px] w-full rounded-b-3xl bg-blue-500'></View>
@@ -52,13 +83,21 @@ const PageDetail = () => {
             uri: obj?.avatarUrl,
           }}
         ></Image>
-        <View className='ml-3'>
-          <Text className='text-xl font-medium'>{obj?.name}</Text>
+        <View className='ml flex-1'>
+          <Text className='text-xl font-medium' numberOfLines={2}>{obj?.name}</Text>
           <Text className=''>{obj?.totalFollowers} người theo dõi</Text>
-          <TouchableOpacity className='mt-3 flex-row items-center justify-center rounded bg-blue-500 px-3 py-2'>
-            <Text className='font-medium text-white'>Theo dõi</Text>
-            {/* <ActivityIndicator size='small' color='#ffffff' /> */}
-          </TouchableOpacity>
+          {
+            obj?.isThisStudentFollowed === true ? <TouchableOpacity className='mt-3 flex-row items-center justify-center rounded bg-stone-500 px-3 py-2' onPress={() => setFollow()}>
+              <Text className='font-medium text-white'>Đã theo dõi</Text>
+              {/* <ActivityIndicator size='small' color='#ffffff' /> */}
+            </TouchableOpacity>
+              :
+              <TouchableOpacity className='mt-3 flex-row items-center justify-center rounded bg-blue-500 px-3 py-2' onPress={() => setFollow()}>
+                <Text className='font-medium text-white'>Theo dõi</Text>
+                {/* <ActivityIndicator size='small' color='#ffffff' /> */}
+              </TouchableOpacity>
+          }
+
         </View>
       </View>
 

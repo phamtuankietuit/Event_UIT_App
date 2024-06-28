@@ -44,6 +44,23 @@ export const setIsLogin = async (isLogin) => {
   }
 }
 
+export const getIdAsync = async () => {
+  try {
+    const isLogin = await AsyncStorage.getItem("id")
+    return isLogin
+  } catch (error) {
+    showToastWithGravity("Error getIsLogin: " + error.message)
+  }
+}
+
+export const setIdAsync = async (id) => {
+  try {
+    await AsyncStorage.setItem("id", id)
+  } catch (error) {
+    showToastWithGravity("Error setIsLogin: " + error.message)
+  }
+}
+
 export const getAccessToken = async () => {
   try {
     const accessToken = await AsyncStorage.getItem("accessToken")

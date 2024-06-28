@@ -19,6 +19,7 @@ export default function App() {
     }
   }
 
+
   useEffect(() => {
     setTimeout(() => {
       checkAuth()

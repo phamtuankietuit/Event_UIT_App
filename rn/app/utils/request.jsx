@@ -33,8 +33,11 @@ export const postMethod = async (path, hasAuth = false, options = {}) => {
     headers = {
       Authorization: "Bearer " + await asyncStorage.getAccessToken(),
     }
+
+    // console.log(headers)
   }
-  console.log(path, options)
+
+  // console.log(path, options)
 
   const response = await request.post(path, options, {
     headers: headers,
@@ -44,7 +47,7 @@ export const postMethod = async (path, hasAuth = false, options = {}) => {
 
 export const putMethod = async (path, options = {}) => {
   const headers = {
-    accessToken: await asyncStorage.getAccessToken(),
+    Authorization: "Bearer " + (await asyncStorage.getAccessToken()),
   }
 
   const response = await request.put(path, options, {

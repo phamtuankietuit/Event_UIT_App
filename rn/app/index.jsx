@@ -9,22 +9,27 @@ export default function App() {
   const router = useRouter()
 
   const checkAuth = async () => {
-    const token = await asyncStorage.getIsLogin()
-    if (token) {
-      // router.replace("home")
-      router.replace("(page)/add-post")
+    const result = await asyncStorage.getIsLogin()
+
+    if (result && result === "true") {
+      router.replace("home")
+      // router.replace("(page)/camera")
     } else {
       router.replace("(auth)/sign-in")
     }
   }
 
+
   useEffect(() => {
-    checkAuth()
+    setTimeout(() => {
+      checkAuth()
+    }, 3000)
   }, [])
 
   // useEffect(() => {
   //   setTimeout(() => {
   //     //router.replace("(page)/add-post")
+  //     router.replace("(page)/add-post")
   //     // router.replace("home")
   //     // router.replace("(page)/page-detail")
   //     // router.replace("(page)/camera")

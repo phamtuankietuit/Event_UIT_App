@@ -9,19 +9,28 @@ import {
   View,
 } from "react-native"
 import logo from "../../assets/images/Logo.png"
+import bg from "../../assets/images/profile.jpg"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
 import {
   faAngleRight,
   faArrowRightFromBracket,
   faCamera,
   faXmark,
+  faKey,
+  faClipboard,
+  faBars,
+  faChartLine
 } from "@fortawesome/free-solid-svg-icons"
 import * as ImagePicker from "expo-image-picker"
 import { useRouter } from "expo-router"
 import Input from "../components/Input"
+import * as asyncStorage from "../store/asyncStorage"
+import * as AuthServices from "../apiServices/authServices"
+
 export default function Profile() {
   const router = useRouter()
-
+  const [role, setRole] = useState('')
+  const [obj, setObj] = useState('')
   const [openPass, setOpenPass] = useState(false)
   const setClosePass = () => {
     setOpenPass(false)
@@ -84,140 +93,181 @@ export default function Profile() {
       }
     })()
   }, [])
+
+  useEffect(() => {
+    const fetchApi = async () => {
+      const getRole = await asyncStorage.getRole()
+      setRole(getRole)
+      if (getRole === 'Student') {
+        const response = await AuthServices
+          .getStudent()
+          .catch((error) => {
+            // xử lý lỗi
+            if (error.response) {
+              if (error.response.status === 401) {
+                showToastWithGravity("Vui lòng kiểm tra lại email hoặc mật khẩu")
+              } else if (error.response.status === 403) {
+                showToastWithGravity("Tài khoản đã bị vô hiệu hóa")
+              }
+            } else {
+              showToastWithGravity("Có lỗi xảy ra")
+
+            }
+          })
+
+        if (response) {
+          // Xử lý nếu response trả về
+          setObj(response)
+
+        }
+      }
+      else {
+        const response = await AuthServices
+          .getAdmin()
+          .catch((error) => {
+            // xử lý lỗi
+            if (error.response) {
+              if (error.response.status === 401) {
+                showToastWithGravity("Vui lòng kiểm tra lại email hoặc mật khẩu")
+              } else if (error.response.status === 403) {
+                showToastWithGravity("Tài khoản đã bị vô hiệu hóa")
+              }
+            } else {
+              showToastWithGravity("Có lỗi xảy ra")
+            }
+          })
+
+        if (response) {
+          // Xử lý nếu response trả về
+          setObj(response)
+        }
+      }
+    }
+
+    fetchApi()
+  }, [])
+
+
   return (
-    <View className='flex-1 mt-3'>
-      <View className='text-wrap flex flex-row items-center gap-5 px-10'>
-        <View className='flex flex-row items-end'>
-          <Image
-            source={logo}
-            className='me-4 h-[100px] w-[100px] rounded-full bg-white '
-          />
-          <TouchableOpacity onPress={() => imagePicker()}>
-            <FontAwesomeIcon icon={faCamera} />
-          </TouchableOpacity>
+    <View className='flex-1'>
+      <View className='text-wrap flex flex-row items-center h-[20%]' >
+
+        <Image className='absolute h-full w-full rounded-br-[50px] rounded-bl-[50px] opacity-50' source={bg}></Image>
+
+        <View className='flex-row w-[80%] items-center'>
+          <View className='flex flex-row items-end ml-7'>
+            <Image
+              source={obj.avatarUrl ? { uri: obj?.avatarUrl } : logo}
+              className='h-[60px] w-[60px] rounded-full bg-white '
+            />
+            <TouchableOpacity onPress={() => imagePicker()}>
+              <FontAwesomeIcon icon={faCamera} />
+            </TouchableOpacity>
+          </View>
+
+          <View className='mx-3'>
+            <Text className='mb-2 text-xl font-bold uppercase'>{obj?.lastName ? obj?.lastName + ' ' + obj?.firstName : obj?.name}</Text>
+            {
+              role === 'Student' ? <Text className='text-base font-normal'>Sinh viên</Text> :
+                <Text className='text-base font-normal'>Admin tổ chức</Text>
+            }
+
+          </View>
         </View>
 
-        <View className='me-3'>
-          <Text className='mb-2 font-semibold'>Ngô Trung Quân</Text>
-          <Text>sinh viên</Text>
-        </View>
       </View>
 
-      <View className='my-10 px-10'>
+      <View className='mx-auto my-10 w-[85%] p-3 rounded-lg bg-white shadow-2xl shadow-black'>
         <TouchableOpacity
-          className='mb-3 flex w-[100%] flex-row items-center justify-between rounded-xl bg-blue-500 p-3'
+          className=' flex w-[100%] flex-row items-center justify-between rounded-xl py-3 px-2'
           onPress={() => setOpenPass(true)}
-          style={{
-            shadowColor: "#000",
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.23,
-            shadowRadius: 2.62,
-
-            elevation: 4,
-          }}
         >
-          <Text className='text-white'>Đổi mật khẩu</Text>
-          <FontAwesomeIcon icon={faAngleRight} color='white' />
+          <View className='flex-row items-center gap-4'>
+            <FontAwesomeIcon color='gray' icon={faKey} />
+            <Text className='text-sm'>Đổi mật khẩu</Text>
+          </View>
+
+          <FontAwesomeIcon color='gray' icon={faAngleRight} />
+
         </TouchableOpacity>
-        <TouchableOpacity
-          className='mb-3 flex w-[100%] flex-row items-center justify-between rounded-xl bg-blue-500 p-3'
-          onPress={() =>
-            router.navigate("/(page)/Participation_Event/participation_event")
-          }
-          style={{
-            shadowColor: "#000",
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.23,
-            shadowRadius: 2.62,
+        {
+          role === 'Student' ?
+            (<View>
+              <TouchableOpacity
+                className=' flex w-[100%] flex-row items-center justify-between rounded-xl py-3 px-2'
+                onPress={() =>
+                  router.navigate("/(page)/Participation_Event/participation_event")
+                }
+              >
+                <View className='flex-row items-center gap-4'>
+                  <FontAwesomeIcon color='gray' icon={faBars} />
+                  <Text className='text-sm'>Quản lý sự kiện tham gia</Text>
+                </View>
 
-            elevation: 4,
+                <FontAwesomeIcon color='gray' icon={faAngleRight} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                className=' flex w-[100%] flex-row items-center justify-between rounded-xl py-3 px-2'
+                onPress={() =>
+                  router.navigate("/(page)/Student_History/student_history")
+                }
+              >
+                <View className='flex-row items-center gap-4'>
+                  <FontAwesomeIcon color='gray' icon={faClipboard} />
+                  <Text className='text-sm'>Điểm rèn luyện</Text>
+                </View>
+
+                <FontAwesomeIcon color='gray' icon={faAngleRight} />
+              </TouchableOpacity>
+            </View>)
+            :
+            (<View>
+              <TouchableOpacity
+                className=' flex w-[100%] flex-row items-center justify-between rounded-xl py-3 px-2'
+                onPress={() =>
+                  router.navigate({ pathname: "/(page)/Management_Event/management_event", params: { id: obj.id } })
+                }
+              >
+                <View className='flex-row items-center gap-4'>
+                  <FontAwesomeIcon color='gray' icon={faBars} />
+                  <Text className='text-sm'>Quản lý sự kiện</Text>
+                </View>
+
+                <FontAwesomeIcon color='gray' icon={faAngleRight} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                className=' flex w-[100%] flex-row items-center justify-between rounded-xl py-3 px-2'
+                onPress={() =>
+                  router.navigate("/(page)/Report_Page/report_page")
+                }
+              >
+                <View className='flex-row items-center gap-4'>
+                  <FontAwesomeIcon color='gray' icon={faChartLine} />
+                  <Text className='text-sm'>Báo cáo thống kê</Text>
+                </View>
+
+                <FontAwesomeIcon color='gray' icon={faAngleRight} />
+              </TouchableOpacity>
+
+            </View>)
+        }
+
+        <TouchableOpacity
+          className=' flex w-[100%] flex-row items-center justify-between rounded-xl py-3 px-2'
+          onPress={() => {
+            asyncStorage.setIsLogin(`false`)
+            asyncStorage.setAccessToken(null)
+            asyncStorage.setRole(null)
+
+            router.replace('(auth)/sign-in')
           }}
         >
-          <Text className='text-white'>Quản lý sự kiện tham gia</Text>
-          <FontAwesomeIcon icon={faAngleRight} color='white' />
-        </TouchableOpacity>
-        <TouchableOpacity
-          className='mb-3 flex w-[100%] flex-row items-center justify-between rounded-xl bg-blue-500 p-3'
-          onPress={() =>
-            router.navigate("/(page)/Student_History/student_history")
-          }
-          style={{
-            shadowColor: "#000",
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.23,
-            shadowRadius: 2.62,
+          <View className='flex-row items-center gap-4'>
+            <FontAwesomeIcon color='gray' icon={faArrowRightFromBracket} />
+            <Text className='text-sm'>Đăng xuất</Text>
+          </View>
 
-            elevation: 4,
-          }}
-        >
-          <Text className='text-white'>Điểm rèn luyện</Text>
-          <FontAwesomeIcon icon={faAngleRight} color='white' />
-        </TouchableOpacity>
-        <TouchableOpacity
-          className='mb-3 flex w-[100%] flex-row items-center justify-between rounded-xl bg-blue-500 p-3'
-          onPress={() =>
-            router.navigate("/(page)/Management_Event/management_event")
-          }
-          style={{
-            shadowColor: "#000",
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.23,
-            shadowRadius: 2.62,
-
-            elevation: 4,
-          }}
-        >
-          <Text className='text-white'>Quản lý sự kiện</Text>
-          <FontAwesomeIcon icon={faAngleRight} color='white' />
-        </TouchableOpacity>
-        <TouchableOpacity
-          className='mb-3 flex w-[100%] flex-row items-center justify-between rounded-xl bg-blue-500 p-3'
-          style={{
-            shadowColor: "#000",
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.23,
-            shadowRadius: 2.62,
-
-            elevation: 4,
-          }}
-          onPress={() =>
-            router.navigate("/(page)/Report_Page/report_page")
-          }
-        >
-          <Text className='text-white'>Báo cáo thống kê</Text>
-          <FontAwesomeIcon icon={faAngleRight} color='white' />
-        </TouchableOpacity>
-        <TouchableOpacity
-          className='mb-3 flex w-[100%] flex-row items-center justify-between rounded-xl bg-blue-500 p-3'
-          style={{
-            shadowColor: "#000",
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.23,
-            shadowRadius: 2.62,
-
-            elevation: 4,
-          }}
-        >
-          <Text className='text-white'>Đăng xuất</Text>
-          <FontAwesomeIcon icon={faArrowRightFromBracket} color='white' />
+          <FontAwesomeIcon color='gray' icon={faAngleRight} />
         </TouchableOpacity>
       </View>
       <Modal
@@ -267,7 +317,7 @@ export default function Profile() {
 
             <View className='my-2 flex items-center justify-center'>
               <TouchableOpacity className='my-3 flex w-[60%] items-center justify-center rounded-2xl bg-[#3A57E8] px-3 py-3'>
-                <Text className='text-white'>Đổi mật khẩu</Text>
+                <Text className='text-sm'>Đổi mật khẩu</Text>
               </TouchableOpacity>
             </View>
           </View>

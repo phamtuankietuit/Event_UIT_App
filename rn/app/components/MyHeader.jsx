@@ -14,7 +14,7 @@ const MyHeader = ({ title }) => {
         <Ionicons name='arrow-back' size={24} color='black' />
       </TouchableOpacity>
       <View className='flex-1 items-center justify-center'>
-        <Text className='mr-6 text-lg font-medium'>{title}</Text>
+        <Text className='mr-6 text-center text-lg font-medium'>{title}</Text>
       </View>
     </View>
   )

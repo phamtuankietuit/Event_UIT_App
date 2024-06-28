@@ -38,3 +38,21 @@ export const resetPass = async (obj) => {
     return Promise.reject(error)
   }
 }
+
+export const getStudent = async () => {
+  try {
+    const res = await request.getMethod("users/students/me", true)
+    return res
+  } catch (error) {
+    return Promise.reject(error)
+  }
+}
+
+export const getAdmin = async () => {
+  try {
+    const res = await request.getMethod("users/unit-admin/me", true)
+    return res
+  } catch (error) {
+    return Promise.reject(error)
+  }
+}

@@ -5,65 +5,93 @@ import {
   Image,
   ActivityIndicator,
   Pressable,
+  Alert,
 } from "react-native"
-import React, { memo } from "react"
+import React, { memo, useEffect, useState } from "react"
 import { SliderBox } from "react-native-image-slider-box"
 import { Entypo } from "@expo/vector-icons"
-import { Link, useRouter } from "expo-router"
+import { Link } from "expo-router"
+import dayjs from "dayjs"
 
-const EventItem = memo(() => {
-  const router = useRouter()
+const EventItem = memo(({ item }) => {
+  const [slides, setSlides] = useState([])
+  const [status, setStatus] = useState(null)
+  const [buttonLoading, setButtonLoading] = useState(false)
 
-  const slides = [
-    "https://thanhnien.mediacdn.vn/thumb_w/750/325084952045817856/2023/3/20/base64-16792880739381319994436.jpeg",
-    "https://tuyensinh.uit.edu.vn/sites/default/files/uploads/images/202310/2b7173db-6933-4f88-b227-ebf0e042c41e.png",
-    "https://www.uit.edu.vn/sites/vi/files/image_from_word/hoc_bong_khoa_khoa_hoc_may_tinh_7.jpg",
-    "https://www.uit.edu.vn/sites/vi/files/image_from_word/u.jpg",
-  ]
+  const confirmRegister = () =>
+    Alert.alert("Xác nhận đăng ký", "Bạn có chắc chắn đăng ký sự kiện này?", [
+      {
+        text: "Hủy",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel",
+      },
+      { text: "OK", onPress: () => console.log("OK Pressed") },
+    ])
+
+  useEffect(() => {
+    setSlides(item.images.map((image) => image.imageUrl))
+
+    if (dayjs() >= dayjs(item.startDate) && dayjs() <= dayjs(item.endDate)) {
+      setStatus(1)
+    } else if (dayjs() < dayjs(item.startDate)) {
+      setStatus(0)
+    } else {
+      setStatus(2)
+    }
+  }, [])
 
   return (
     <View
-      className='m-2 max-h-fit rounded border-[1px] border-gray-100 
-        bg-white p-3 shadow-sm shadow-gray-600'
+      className='mb-2 max-h-fit w-full rounded border-[1px] 
+        border-gray-100 bg-white p-3 shadow-sm shadow-gray-600'
     >
-      <TouchableOpacity
-        className='flex-row items-center'
-        onPress={() => {
-          router.push("(page)/page-detail")
-        }}
-      >
-        <View className='h-10 w-10 rounded-full border-[1px] border-gray-400'>
-          <Image
-            className='h-full w-full rounded-full'
-            source={{
-              uri: "https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-1/305532054_516142960436144_1879050775822715016_n.png?stp=dst-png_p200x200&_nc_cat=100&ccb=1-7&_nc_sid=f4b9fd&_nc_eui2=AeEtgxD_Bswpplegl9oYgrNXCjcq6jLgDwAKNyrqMuAPAA8VBEbD5DmuSeAffO0Bth9bL7Ql3VcN1c7nMxzUZaFh&_nc_ohc=ZipIcHJDvIwQ7kNvgH6gMdM&_nc_ht=scontent.fsgn19-1.fna&oh=00_AYB3HC2i_baSELXRppIi7T0-6DnEf_5FUbW5e2h4cy50iA&oe=66822370",
-            }}
-          ></Image>
-        </View>
+      <Link href={{ pathname: "(page)/page-detail/[id]", params: { id: 1 } }}>
+        <View className='flex-row items-center justify-between'>
+          <View className='flex-row items-center justify-center'>
+            <View className='h-10 w-10 rounded-full border-[1px] border-gray-400'>
+              <Image
+                className='h-full w-full rounded-full'
+                source={{
+                  uri: item.universityUnit.avatarUrl,
+                }}
+              ></Image>
+            </View>
 
-        <View className='ml-2 max-w-[180px] justify-center'>
-          <Text
-            numberOfLines={1}
-            ellipsizeMode='tail'
-            lineBreakMode='tail'
-            className='text-base font-semibold'
-          >
-            Ban học tập khoa Kỹ Thuật Phần Mềm
-          </Text>
-          <Text className='text-xs'>12:20 - 25/05/2024</Text>
-        </View>
+            <View className='ml-2 w-[180px]'>
+              <Text
+                numberOfLines={1}
+                ellipsizeMode='tail'
+                lineBreakMode='tail'
+                className='text-base font-semibold'
+              >
+                {item.universityUnit.name}
+              </Text>
+              <Text className='text-xs'>
+                {dayjs(item.publishedDate).format("HH:mm - DD/MM/YYYY")}
+              </Text>
+            </View>
+          </View>
 
-        <View className='flex-1 items-end'>
-          {/* <Text className='text-sm font-medium text-red-500'>Kết thúc</Text> */}
-          <Text className='text-sm font-medium text-green-500'>
-            Đang diễn ra
-          </Text>
-          {/* <Text className='text-sm font-medium text-orange-500'>
-            Chưa bắt đầu
-          </Text> */}
-          <Text className='text-xs'>50/120</Text>
+          {status !== null && (
+            <View className=''>
+              <Text
+                className={`
+              ${status === 0 && "text-orange-500"}
+              ${status === 1 && "text-green-500"}
+              ${status === 2 && "text-red-500"} 
+              text-sm font-medium `}
+              >
+                {status === 0 && "Chưa bắt đầu"}
+                {status === 1 && "Đang diễn ra"}
+                {status === 2 && "Kết thúc"}
+              </Text>
+              <Text className='text-xs'>
+                {item.totalRegistration}/{item.maxAttendees}
+              </Text>
+            </View>
+          )}
         </View>
-      </TouchableOpacity>
+      </Link>
 
       <View className='mt-2'>
         <Text
@@ -71,16 +99,17 @@ const EventItem = memo(() => {
           numberOfLines={2}
           ellipsizeMode='tail'
         >
-          ☀️ [TỔNG KẾT TRAINING CUỐI KÌ II 2023-2024] ☀️
+          {item.title}
         </Text>
         <Text numberOfLines={5} ellipsizeMode='tail'>
-          🤗 Vậy là những buổi training cuối cùng của năm học này đã kết thúc.
-          Hy vọng rằng nó đã đem lại hành trang bổ ích cho các bạn sinh viên
-          trong kì thi cuối kì sắp tới này. ❤️ Chân thành cảm ơn các bạn sinh
-          viên đã đến tham gia các buổi training của Ban học tập. Chúc các bạn
-          sẽ có kì thi thật suông sẻ và đạt được thành tích mình mong muốn.
+          {item.description}
         </Text>
-        <Link href={"detail/EventDetail"}>
+        <Link
+          href={{
+            pathname: "/(page)/post-detail/[id]",
+            params: { id: item.id },
+          }}
+        >
           <Text className='text-blue-500'>Xem thêm</Text>
         </Link>
       </View>
@@ -103,13 +132,24 @@ const EventItem = memo(() => {
         </TouchableOpacity>
 
         {/* bg-slate-400 */}
-        {
-          <TouchableOpacity className='rounded bg-blue-500 px-5 py-2'>
-            <Text className='font-medium text-white'>Đăng ký</Text>
-            {/* <Text className='font-medium text-white'>Đã đăng ký</Text> */}
-            {/* <ActivityIndicator size='small' color='#ffffff' /> */}
+
+        {item.isThisStudentRegistered ? (
+          <View className='rounded bg-slate-500 px-5 py-2'>
+            <Text className='font-medium text-white'>Đã đăng ký</Text>
+          </View>
+        ) : (
+          <TouchableOpacity
+            className='rounded bg-blue-500 px-5 py-2'
+            onPress={confirmRegister}
+            disabled={buttonLoading}
+          >
+            {buttonLoading ? (
+              <ActivityIndicator size='small' color='#ffffff' />
+            ) : (
+              <Text className='font-medium text-white'>Đăng ký</Text>
+            )}
           </TouchableOpacity>
-        }
+        )}
       </View>
     </View>
   )

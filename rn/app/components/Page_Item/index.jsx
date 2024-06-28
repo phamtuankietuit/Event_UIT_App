@@ -1,12 +1,14 @@
 import React from "react"
 import { Image, Text, TouchableOpacity, View } from "react-native"
-import logo from "../../../assets/images/Logo.png"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons"
-const Page_Item = ({ item, setLike }) => {
+import { useRouter } from "expo-router"
+import PageDetail from "../../(page)/page-detail/[id]"
+const Page_Item = ({ item, setLike, role }) => {
+  const router = useRouter()
   return (
     <TouchableOpacity
-      className='m-2 flex h-[100px] w-[98%] flex-row items-center rounded-lg bg-white px-2 py-1'
+      className=' m-2 flex h-[120px] flex-row items-center rounded-lg bg-white px-1 py-3 pb-2'
       style={{
         shadowColor: "#000",
         shadowOffset: {
@@ -18,42 +20,51 @@ const Page_Item = ({ item, setLike }) => {
 
         elevation: 4,
       }}
+      onPress={() => {
+        router.push({ pathname: "(page)/page-detail/[id]", params: { id: item.id } })
+      }}
     >
       <View className='text-wrap flex h-[100%] w-[25%] items-center justify-center'>
         <Image
-          source={logo}
-          className='mr-4 h-[90%] w-[75%] rounded-full bg-white '
+          source={{ uri: item.avatarUrl ? item.avatarUrl : '' }}
+          className='h-[80%] w-[80%] rounded-full bg-white '
         />
       </View>
 
-      <View className='flex h-[100%] w-[55%] justify-between pt-2'>
-        <View className='relative mb-4 mt-2'>
-          <Text className='text-[16px] font-semibold'>{item.namePage}</Text>
+      <View className='flex h-[100%] w-[50%] justify-between'>
+        <View>
+          <Text className='text-[15px] font-semibold' numberOfLines={2}>{item.name}</Text>
+          <Text className='text-[13px]'>
+            {item.totalFollowers}
+            <Text> Lượt followers</Text>
+          </Text>
         </View>
-        <Text className='mb-7 text-[13px]'>
-          {item.star}
-          <Text> Lượt thích</Text>
+        <Text className='text-xs' numberOfLines={2}>
+          {item.description}
         </Text>
+
+
       </View>
-      <View className='mr-2 flex h-[100%] w-[20%] items-center justify-center'>
-        {item.like === true ? (
-          <TouchableOpacity
-            className='flex flex-row rounded-lg bg-slate-200 p-2'
-            onPress={() => setLike(item.id, false)}
-          >
-            <FontAwesomeIcon icon={faThumbsUp} color='#64748b' />
-            <Text className=' text-slate-500'> Đã thích</Text>
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity
-            className='flex flex-row rounded-lg bg-cyan-200 p-2 '
-            onPress={() => setLike(item.id, true)}
-          >
-            <FontAwesomeIcon icon={faThumbsUp} color='#06b6d4' />
-            <Text className=' text-cyan-500'> Thích</Text>
-          </TouchableOpacity>
-        )}
-      </View>
+      {
+        role === 'Student' ? <View className='flex h-[100%] w-[25%] items-center justify-center'>
+          {item.isThisStudentFollowed === true ? (
+            <TouchableOpacity
+              className='flex flex-row rounded-lg bg-slate-200 p-2'
+              onPress={() => setLike(item.id, false)}
+            >
+              <Text className='text-slate-500'>Đã follow</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              className='flex flex-row rounded-lg bg-cyan-200 p-2 '
+              onPress={() => setLike(item.id, true)}
+            >
+              <Text className='text-cyan-500'>Follow</Text>
+            </TouchableOpacity>
+          )}
+        </View> : ''
+      }
+
     </TouchableOpacity>
   )
 }

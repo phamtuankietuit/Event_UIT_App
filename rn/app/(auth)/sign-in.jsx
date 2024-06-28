@@ -18,6 +18,7 @@ const logo = require("../../assets/images/Logo.png")
 
 import * as authServices from "../apiServices/authServices"
 import * as asyncStorage from "../store/asyncStorage"
+import * as AuthServices from "../apiServices/authServices"
 
 const showToastWithGravity = (msg) => {
   ToastAndroid.showWithGravity(msg, ToastAndroid.SHORT, ToastAndroid.CENTER)
@@ -64,15 +65,36 @@ const SignIn = () => {
         })
       if (response) {
         // Xử lý nếu response trả về
-        console.log(response)
+        // console.log(response)
         showToastWithGravity("Đăng nhập thành công")
         // thực hiện lưu trạng thái đăng nhập
         setLoading(false)
-        asyncStorage.setIsLogin("true")
-        asyncStorage.setRole(response.role)
-        asyncStorage.setAccessToken(response.accessToken)
+        await asyncStorage.setIsLogin("true")
+        await asyncStorage.setRole(response.role)
+        await asyncStorage.setAccessToken(response.accessToken)
+        const responseStu = await AuthServices
+          .getStudent()
+          .catch((error) => {
+            // xử lý lỗi
+            if (error.response) {
+              console.log(error.response);
+              if (error.response.status === 401) {
+                showToastWithGravity("Vui lòng kiểm tra lại email hoặc mật khẩu")
+              } else if (error.response.status === 403) {
+                showToastWithGravity("Tài khoản đã bị vô hiệu hóa")
+              }
+            } else {
+              showToastWithGravity("Có lỗi xảy ra")
 
-        router.replace("(page)/add-post")
+            }
+          })
+
+        if (responseStu) {
+          // Xử lý nếu response trả về
+          console.log(responseStu);
+          await asyncStorage.setIdAsync(((responseStu.id)).toString())
+        }
+        router.replace("home")
       }
     }
   }

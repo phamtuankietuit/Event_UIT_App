@@ -12,43 +12,15 @@ import {
   TouchableOpacity,
 } from "react-native"
 import { useState, useCallback, useEffect } from "react"
-
+import * as eventServices from "../apiServices/eventServices"
 import Logo from "../../assets/images/Logo.png"
 import Carousel from "../components/Carousel"
 import EventItem from "../components/EventItem"
 
-const slides = [
-  "https://thanhnien.mediacdn.vn/thumb_w/750/325084952045817856/2023/3/20/base64-16792880739381319994436.jpeg",
-  "https://tuyensinh.uit.edu.vn/sites/default/files/uploads/images/202310/2b7173db-6933-4f88-b227-ebf0e042c41e.png",
-  "https://www.uit.edu.vn/sites/vi/files/image_from_word/hoc_bong_khoa_khoa_hoc_may_tinh_7.jpg",
-  "https://www.uit.edu.vn/sites/vi/files/image_from_word/u.jpg",
-]
-
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false)
 
-  const [data, setData] = useState([
-    { key: "1", text: "Item 1" },
-    { key: "2", text: "Item 2" },
-    { key: "3", text: "Item 3" },
-    { key: "4", text: "Item 4" },
-    { key: "5", text: "Item 5" },
-    { key: "6", text: "Item 6" },
-    { key: "7", text: "Item 7" },
-    { key: "8", text: "Item 8" },
-    { key: "9", text: "Item 9" },
-    { key: "10", text: "Item 10" },
-    { key: "11", text: "Item 11" },
-    { key: "12", text: "Item 12" },
-    { key: "13", text: "Item 13" },
-    { key: "14", text: "Item 14" },
-    { key: "15", text: "Item 15" },
-    { key: "16", text: "Item 16" },
-    { key: "17", text: "Item 17" },
-    { key: "18", text: "Item 18" },
-    { key: "19", text: "Item 19" },
-    { key: "20", text: "Item 20" },
-  ])
+  const [data, setData] = useState([])
   const [refreshing, setRefreshing] = useState(false)
 
   const onRefresh = useCallback(() => {
@@ -85,6 +57,23 @@ const Home = () => {
     outputRange: [210, 0],
     extrapolate: "clamp",
   })
+
+  const getEvents = async () => {
+    const responseEvent = await eventServices.getEvents().catch((error) => {
+      if (error.response) {
+        console.log(error)
+      }
+      showToastWithGravity("Có lỗi xảy ra")
+    })
+
+    if (responseEvent) {
+      setData(responseEvent.events.items)
+    }
+  }
+
+  useEffect(() => {
+    getEvents()
+  }, [])
 
   return (
     <View className='relative flex h-full flex-1 flex-col bg-slate-200'>
@@ -152,7 +141,7 @@ const Home = () => {
               <FlatList
                 className='rounded-t-2xl bg-white px-3 py-2 pt-3 shadow shadow-black'
                 data={data}
-                keyExtractor={(item) => item.key}
+                keyExtractor={(item) => item.id}
                 renderItem={({ item }) => <EventItem item={item} />}
                 onScroll={Animated.event(
                   [{ nativeEvent: { contentOffset: { y: scrollY } } }],

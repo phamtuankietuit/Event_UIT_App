@@ -30,10 +30,8 @@ export const postMethod = async (path, hasAuth = false, options = {}) => {
   let headers = {}
 
   if (hasAuth) {
-    const accessToken = await asyncStorage.getAccessToken()
-
     headers = {
-      Authorization: "Bearer " + accessToken,
+      Authorization: "Bearer " + await asyncStorage.getAccessToken(),
     }
 
     // console.log(headers)
@@ -60,7 +58,7 @@ export const putMethod = async (path, options = {}) => {
 
 export const deleteMethod = async (path) => {
   const headers = {
-    accessToken: asyncStorage.getAccessToken(),
+    accessToken: await asyncStorage.getAccessToken(),
   }
 
   const response = await request.delete(path, {

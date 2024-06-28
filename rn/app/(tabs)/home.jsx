@@ -12,17 +12,10 @@ import {
   TouchableOpacity,
 } from "react-native"
 import { useState, useCallback, useEffect } from "react"
-import * as EventServices from "../apiServices/eventServices"
+import * as eventServices from "../apiServices/eventServices"
 import Logo from "../../assets/images/Logo.png"
 import Carousel from "../components/Carousel"
 import EventItem from "../components/EventItem"
-
-const slides = [
-  "https://thanhnien.mediacdn.vn/thumb_w/750/325084952045817856/2023/3/20/base64-16792880739381319994436.jpeg",
-  "https://tuyensinh.uit.edu.vn/sites/default/files/uploads/images/202310/2b7173db-6933-4f88-b227-ebf0e042c41e.png",
-  "https://www.uit.edu.vn/sites/vi/files/image_from_word/hoc_bong_khoa_khoa_hoc_may_tinh_7.jpg",
-  "https://www.uit.edu.vn/sites/vi/files/image_from_word/u.jpg",
-]
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -64,33 +57,24 @@ const Home = () => {
     outputRange: [210, 0],
     extrapolate: "clamp",
   })
-  useEffect(() => {
-    const fetchApi = async () => {
-      const responseEvent = await EventServices
-        .getEvents({
-          isPublished: true
-        })
-        .catch((error) => {
-          // xử lý lỗi
-          if (error.response) {
-            if (error.response.status === 401) {
-              showToastWithGravity("Vui lòng kiểm tra lại email hoặc mật khẩu")
-            } else if (error.response.status === 403) {
-              showToastWithGravity("Tài khoản đã bị vô hiệu hóa")
-            }
-          } else {
-            showToastWithGravity("Có lỗi xảy ra")
-          }
-        })
 
-      if (responseEvent) {
-        // Xử lý nếu response trả về
-        // console.log(responseEvent.events.items)
-        setData(responseEvent.events.items)
+  const getEvents = async () => {
+    const responseEvent = await eventServices.getEvents().catch((error) => {
+      if (error.response) {
+        console.log(error)
       }
+      showToastWithGravity("Có lỗi xảy ra")
+    })
+
+    if (responseEvent) {
+      setData(responseEvent.events.items)
     }
-    fetchApi()
+  }
+
+  useEffect(() => {
+    getEvents()
   }, [])
+
   return (
     <View className='relative flex h-full flex-1 flex-col bg-slate-200'>
       <View

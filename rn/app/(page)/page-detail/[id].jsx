@@ -8,10 +8,10 @@ import {
 } from "react-native"
 
 import React, { memo, useEffect, useState } from "react"
-import MyHeader from "../components/MyHeader"
-import EventItem from "../components/Event_Item"
+import MyHeader from "../../components/MyHeader"
+import EventItem from "../../components/Event_Item"
 import { useLocalSearchParams } from "expo-router"
-import * as PageServices from "../apiServices/pageServices"
+import * as PageServices from "../../apiServices/pageServices"
 
 const PageDetail = () => {
   const [data, setData] = useState([])

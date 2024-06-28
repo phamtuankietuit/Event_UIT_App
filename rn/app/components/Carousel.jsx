@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { View, ToastAndroid, ActivityIndicator } from "react-native"
 import { SliderBox } from "react-native-image-slider-box"
+import { useRouter } from "expo-router"
 
 import * as eventServices from "../apiServices/eventServices"
 
@@ -9,22 +10,26 @@ const showToastWithGravity = (msg) => {
 }
 
 const Carousel = () => {
+  const router = useRouter()
   const [events, setEvents] = useState(null)
   const [loading, setLoading] = useState(false)
   const [slides, setSlides] = useState(null)
 
   const handleOnPress = (index) => {
     console.log(events[index].id)
+    router.push({
+      pathname: "(page)/post-detail/[id]",
+      params: { id: events[index].id },
+    })
   }
 
   const getHotEvents = async () => {
-    console.log("run")
     const response = await eventServices.getHotEvents().catch((error) => {
       showToastWithGravity("Có lỗi xảy ra")
     })
 
     if (response) {
-      console.log(response)
+      // console.log(response)
       setEvents(response.events.items)
       setSlides(response.events.items.map((item) => item.images[0].imageUrl))
     }

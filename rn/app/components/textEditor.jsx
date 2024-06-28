@@ -1,14 +1,14 @@
 // Import các thư viện cần thiết
 import React, { useRef } from "react"
-import { StyleSheet, View, Button } from "react-native"
+import { StyleSheet, View } from "react-native"
 import { RichEditor, RichToolbar, actions } from "react-native-pell-rich-editor"
 
-const TextEditor = () => {
+const TextEditor = ({ onChange }) => {
   const richText = useRef(null)
 
   return (
     <View
-      className=' rounded-[5px] bg-white'
+      className='rounded-[5px] bg-white'
       style={{
         shadowColor: "#000000",
         shadowOffset: {
@@ -30,13 +30,13 @@ const TextEditor = () => {
         <RichEditor
           ref={richText}
           placeholder='Nhập mô tả...'
-          // Không thêm tùy chọn thêm ảnh
+          onChange={onChange} // Gọi hàm onChange khi nội dung thay đổi
           editorInitializedCallback={() => {
             richText.current.registerToolbar((items) => {
               console.log("Toolbar items:", items)
             })
           }}
-          editorStyle={styles.editorStyle} // Thêm styles cho nội dung của RichEditor
+          editorStyle={styles.editorStyle}
         />
       </View>
       <RichToolbar
@@ -64,16 +64,16 @@ const styles = StyleSheet.create({
     flex: 1,
     borderTopWidth: 1,
     borderColor: "#ddd",
-    backgroundColor: "#fff", // Nền trắng cho toolbar
+    backgroundColor: "#fff",
     height: 40,
-    borderBottomLeftRadius: 5, // Thêm borderRadius cho toolbar
-    borderBottomRightRadius: 5, // Thêm borderRadius cho toolbar
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
   },
   editorStyle: {
-    backgroundColor: "transparent", // Nền trắng cho nội dung editor
-    color: "#000", // Màu chữ
-    placeholderColor: "#888", // Màu placeholder
-    contentCSSText: "font-size: 16px; padding: 10px;", // CSS cho nội dung
+    backgroundColor: "transparent",
+    color: "#000",
+    placeholderColor: "#888",
+    contentCSSText: "font-size: 16px; padding: 10px;",
   },
 })
 

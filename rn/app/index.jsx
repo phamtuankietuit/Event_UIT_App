@@ -29,7 +29,7 @@ export default function App() {
   useEffect(() => {
     setTimeout(() => {
       //router.replace("(page)/add-post")
-      router.replace("(page)/post-detail")
+      router.replace("(page)/add-post")
       // router.replace("home")
       // router.replace("(page)/page-detail")
       // router.replace("(page)/camera")

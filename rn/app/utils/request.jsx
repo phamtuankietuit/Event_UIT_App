@@ -12,7 +12,7 @@ export const getMethod = async (
   options = {}
 ) => {
   const headers = {
-    Authorization: "Bearer " + JSON.stringify(asyncStorage.getAccessToken()),
+    Authorization: "Bearer " + await asyncStorage.getAccessToken(),
   }
 
   if (hasAuth) {
@@ -31,7 +31,7 @@ export const postMethod = async (path, hasAuth = false, options = {}) => {
 
   if (hasAuth) {
     headers = {
-      Authorization: "Bearer " + JSON.stringify(asyncStorage.getAccessToken()),
+      Authorization: "Bearer " + await asyncStorage.getAccessToken(),
     }
   }
   console.log(path, options)
@@ -44,7 +44,7 @@ export const postMethod = async (path, hasAuth = false, options = {}) => {
 
 export const putMethod = async (path, options = {}) => {
   const headers = {
-    accessToken: asyncStorage.getAccessToken(),
+    accessToken: await asyncStorage.getAccessToken(),
   }
 
   const response = await request.put(path, options, {
@@ -55,7 +55,7 @@ export const putMethod = async (path, options = {}) => {
 
 export const deleteMethod = async (path) => {
   const headers = {
-    accessToken: asyncStorage.getAccessToken(),
+    accessToken: await asyncStorage.getAccessToken(),
   }
 
   const response = await request.delete(path, {

@@ -3,7 +3,7 @@ import { Text, TouchableOpacity, View, Image } from "react-native"
 import { format } from "date-fns"
 import logo from "../../../assets/images/anhtruong.jpg"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
-import { faTrash } from "@fortawesome/free-solid-svg-icons"
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
 function Event_Item({ item, deleteItem, deleteButton }) {
   return (
     <TouchableOpacity
@@ -22,7 +22,7 @@ function Event_Item({ item, deleteItem, deleteButton }) {
     >
       <View className='text-wrap flex h-[100%] w-[25%] items-center justify-center'>
         <Image
-          source={item?.images ? { uri: item?.images[0] } : logo}
+          source={item?.images ? { uri: item?.images[0].imageUrl } : logo}
           className='me-4 h-[85%] w-[85%] rounded-[3px] bg-white'
         />
       </View>
@@ -30,14 +30,19 @@ function Event_Item({ item, deleteItem, deleteButton }) {
         <Text numberOfLines={2} className='mb-3 font-semibold'>
           {item.title}
         </Text>
-        <Text className='text-xs'>
-          Thời gian {format(item?.publishedDate, "HH:mm - dd/MM/yyyy")}
-        </Text>
+        {
+          item.isPublished === true ? <Text className='text-xs'>
+            Ngày công bố : {format(item?.publishedDate, "HH:mm - dd/MM/yyyy")}
+          </Text> : (<Text className='text-xs'>
+            Thời gian bắt đầu : {format(item?.startDate, "HH:mm - dd/MM/yyyy")}
+          </Text>)
+        }
+
       </View>
       {
         deleteButton && (<TouchableOpacity className='mr-2 flex items-center justify-center'>
-          <View className='rounded-full bg-red-400 p-3'>
-            <FontAwesomeIcon icon={faTrash} color='white' />
+          <View className='rounded-full bg-orange-400 p-3'>
+            <FontAwesomeIcon icon={item.isPublished === true ? faEye : faEyeSlash} color='white' />
           </View>
         </TouchableOpacity>)
       }

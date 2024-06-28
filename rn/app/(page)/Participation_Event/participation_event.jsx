@@ -9,7 +9,7 @@ import {
   View,
 } from "react-native"
 import Parti_Event_Item from "../../components/Participation_Event_Item"
-
+import * as StudentServices from "../../apiServices/studentServices"
 const data = [
   {
     id: "1",
@@ -69,6 +69,33 @@ const data = [
   },
 ]
 function participation_event() {
+  const [list, setList] = useState([])
+  useEffect(() => {
+    console.log('đã vào');
+    const fetchApi = async () => {
+      const response = await StudentServices.getRegisteredEvents().catch((error) => {
+        // xử lý lỗi
+        if (error.response) {
+          console.log(error.response);
+          if (error.response.status === 401) {
+            showToastWithGravity("Vui lòng kiểm tra lại email hoặc mật khẩu")
+          } else if (error.response.status === 403) {
+            showToastWithGravity("Tài khoản đã bị vô hiệu hóa")
+          }
+        } else {
+          console.log(error);
+          showToastWithGravity("Có lỗi xảy ra")
+        }
+      })
+
+      if (response) {
+        // Xử lý nếu response trả về
+        console.log(response);
+        setList(response.events.items)
+      }
+    }
+    fetchApi()
+  }, [])
   return (
     <View className='mt-1 flex-1'>
       <View className='mt-3 flex flex-col items-center justify-center'>
@@ -77,7 +104,7 @@ function participation_event() {
         </Text>
       </View>
       <FlatList
-        data={data}
+        data={list}
         showsVerticalScrollIndicator={false}
         className='mx-2 bg-transparent'
         renderItem={({ item }) => <Parti_Event_Item item={item} />}

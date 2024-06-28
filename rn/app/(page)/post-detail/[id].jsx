@@ -13,17 +13,17 @@ import { useSelector, useDispatch } from "react-redux"
 import {
   setFullScreenImage,
   clearFullScreenImage,
-} from "../redux/imageSlice"
+} from "../../redux/imageSlice"
 import { Ionicons } from "@expo/vector-icons"
 import { useNavigation } from "@react-navigation/native"
 
-const avt = require("../../assets/images/Logo.png")
+const avt = require("../../../assets/images/Logo.png")
 const images = [
-  require("../../assets/images/img1.jpg"),
-  require("../../assets/images/img2.jpg"),
-  require("../../assets/images/img3.jpg"),
-  require("../../assets/images/img4.jpg"),
-  require("../../assets/images/img5.jpg"),
+  require("../../../assets/images/img1.jpg"),
+  require("../../../assets/images/img2.jpg"),
+  require("../../../assets/images/img3.jpg"),
+  require("../../../assets/images/img4.jpg"),
+  require("../../../assets/images/img5.jpg"),
 ]
 
 const PostDetail = () => {

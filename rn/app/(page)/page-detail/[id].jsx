@@ -8,8 +8,8 @@ import {
 } from "react-native"
 import { useState } from "react"
 
-import MyHeader from "../components/MyHeader"
-import EventItem from "../components/EventItem"
+import MyHeader from "../../components/MyHeader"
+import EventItem from "../../components/EventItem"
 
 const PageDetail = () => {
   const [data, setData] = useState([

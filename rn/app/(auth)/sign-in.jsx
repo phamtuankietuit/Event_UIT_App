@@ -8,7 +8,7 @@ import {
   ToastAndroid,
   ActivityIndicator,
 } from "react-native"
-import { Link } from "expo-router"
+import { Link, useRouter } from "expo-router"
 import { useEffect, useState } from "react"
 import { StatusBar } from "expo-status-bar"
 
@@ -24,6 +24,7 @@ const showToastWithGravity = (msg) => {
 }
 
 const SignIn = () => {
+  const router = useRouter()
   const [loading, setLoading] = useState(false)
 
   const [email, setEmail] = useState("")
@@ -64,12 +65,13 @@ const SignIn = () => {
       if (response) {
         // Xử lý nếu response trả về
         console.log(response)
-        // showToastWithGravity("Đăng nhập thành công")
+        showToastWithGravity("Đăng nhập thành công")
         // thực hiện lưu trạng thái đăng nhập
-        // setLoading(false)
-        // asyncStorage.setIsLogin("true")
-        // asyncStorage.setRole("student")
-        // asyncStorage.setAccessToken(response.accessToken)
+        setLoading(false)
+        asyncStorage.setIsLogin("true")
+        asyncStorage.setRole(response.role)
+        asyncStorage.setAccessToken(response.accessToken)
+        router.replace("home")
       }
     }
   }

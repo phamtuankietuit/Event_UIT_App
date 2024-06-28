@@ -26,44 +26,41 @@ const EventItem = memo(() => {
       className='m-2 max-h-fit rounded border-[1px] border-gray-100 
         bg-white p-3 shadow-sm shadow-gray-600'
     >
-      <TouchableOpacity
-        className='flex-row items-center'
-        onPress={() => {
-          router.push("(page)/page-detail")
-        }}
-      >
-        <View className='h-10 w-10 rounded-full border-[1px] border-gray-400'>
-          <Image
-            className='h-full w-full rounded-full'
-            source={{
-              uri: "https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-1/305532054_516142960436144_1879050775822715016_n.png?stp=dst-png_p200x200&_nc_cat=100&ccb=1-7&_nc_sid=f4b9fd&_nc_eui2=AeEtgxD_Bswpplegl9oYgrNXCjcq6jLgDwAKNyrqMuAPAA8VBEbD5DmuSeAffO0Bth9bL7Ql3VcN1c7nMxzUZaFh&_nc_ohc=ZipIcHJDvIwQ7kNvgH6gMdM&_nc_ht=scontent.fsgn19-1.fna&oh=00_AYB3HC2i_baSELXRppIi7T0-6DnEf_5FUbW5e2h4cy50iA&oe=66822370",
-            }}
-          ></Image>
-        </View>
+      <Link href={{ pathname: "(page)/page-detail/[id]", params: { id: 1 } }}>
+        <View className='flex-row items-center'>
+          <View className='h-10 w-10 rounded-full border-[1px] border-gray-400'>
+            <Image
+              className='h-full w-full rounded-full'
+              source={{
+                uri: "https://scontent.fsgn19-1.fna.fbcdn.net/v/t39.30808-1/305532054_516142960436144_1879050775822715016_n.png?stp=dst-png_p200x200&_nc_cat=100&ccb=1-7&_nc_sid=f4b9fd&_nc_eui2=AeEtgxD_Bswpplegl9oYgrNXCjcq6jLgDwAKNyrqMuAPAA8VBEbD5DmuSeAffO0Bth9bL7Ql3VcN1c7nMxzUZaFh&_nc_ohc=ZipIcHJDvIwQ7kNvgH6gMdM&_nc_ht=scontent.fsgn19-1.fna&oh=00_AYB3HC2i_baSELXRppIi7T0-6DnEf_5FUbW5e2h4cy50iA&oe=66822370",
+              }}
+            ></Image>
+          </View>
 
-        <View className='ml-2 max-w-[180px] justify-center'>
-          <Text
-            numberOfLines={1}
-            ellipsizeMode='tail'
-            lineBreakMode='tail'
-            className='text-base font-semibold'
-          >
-            Ban học tập khoa Kỹ Thuật Phần Mềm
-          </Text>
-          <Text className='text-xs'>12:20 - 25/05/2024</Text>
-        </View>
+          <View className='ml-2 max-w-[180px] justify-center'>
+            <Text
+              numberOfLines={1}
+              ellipsizeMode='tail'
+              lineBreakMode='tail'
+              className='text-base font-semibold'
+            >
+              Ban học tập khoa Kỹ Thuật Phần Mềm
+            </Text>
+            <Text className='text-xs'>12:20 - 25/05/2024</Text>
+          </View>
 
-        <View className='flex-1 items-end'>
-          {/* <Text className='text-sm font-medium text-red-500'>Kết thúc</Text> */}
-          <Text className='text-sm font-medium text-green-500'>
-            Đang diễn ra
-          </Text>
-          {/* <Text className='text-sm font-medium text-orange-500'>
-            Chưa bắt đầu
-          </Text> */}
-          <Text className='text-xs'>50/120</Text>
+          <View className='flex-1 items-end justify-center'>
+            {/* <Text className='text-sm font-medium text-red-500'>Kết thúc</Text> */}
+            <Text className='text-sm font-medium text-green-500'>
+              Đang diễn ra
+            </Text>
+            {/* <Text className='text-sm font-medium text-orange-500'>
+              Chưa bắt đầu
+            </Text> */}
+            <Text className='text-xs'>50/120</Text>
+          </View>
         </View>
-      </TouchableOpacity>
+      </Link>
 
       <View className='mt-2'>
         <Text

@@ -9,16 +9,19 @@ export default function App() {
   const router = useRouter()
 
   const checkAuth = async () => {
-    // const token = await asyncStorage.getIsStudentLogin()
-    // if (token) {
-    //   router.replace("home")
-    // } else {
-    //   router.replace("(auth)/sign-in")
-    // }
+    const result = await asyncStorage.getIsLogin()
+
+    if (result && result === "true") {
+      router.replace("home")
+    } else {
+      router.replace("(auth)/sign-in")
+    }
   }
 
   useEffect(() => {
-    checkAuth()
+    setTimeout(() => {
+      checkAuth()
+    }, 3000)
   }, [])
 
   // useEffect(() => {

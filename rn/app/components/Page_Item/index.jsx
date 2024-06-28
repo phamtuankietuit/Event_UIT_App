@@ -1,9 +1,10 @@
 import React from "react"
 import { Image, Text, TouchableOpacity, View } from "react-native"
-import logo from "../../../assets/images/Logo.png"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons"
+import { useRouter } from "expo-router"
 const Page_Item = ({ item, setLike }) => {
+  const router = useRouter()
   return (
     <TouchableOpacity
       className='m-2 flex h-[110px] w-[98%] flex-row items-center rounded-lg bg-white px-2 py-1 pb-2'
@@ -18,10 +19,13 @@ const Page_Item = ({ item, setLike }) => {
 
         elevation: 4,
       }}
+      onPress={() => {
+        router.push({ pathname: "(page)/page-detail", params: { id: item.id } })
+      }}
     >
       <View className='text-wrap flex h-[100%] w-[25%] items-center justify-center'>
         <Image
-          source={item.avatarUrl}
+          source={{ uri: item.avatarUrl ? item.avatarUrl : '' }}
           className='mr-4 h-[95%] w-[95%] rounded-full bg-white '
         />
       </View>

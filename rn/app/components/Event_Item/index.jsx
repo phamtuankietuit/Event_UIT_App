@@ -19,6 +19,9 @@ function Event_Item({ item, deleteItem, deleteButton }) {
 
         elevation: 4,
       }}
+      onPress={() => {
+
+      }}
     >
       <View className='text-wrap flex h-[100%] w-[25%] items-center justify-center'>
         <Image

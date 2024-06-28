@@ -6,6 +6,8 @@ import {
   Image,
   Modal,
   FlatList,
+  Alert,
+  ToastAndroid,
 } from "react-native"
 import { useSelector, useDispatch } from "react-redux"
 import {
@@ -20,6 +22,7 @@ import { useEffect, useState } from "react"
 import * as eventServices from "../../apiServices/eventServices"
 import * as asyncStorage from "../../store/asyncStorage"
 import dayjs from "dayjs"
+import { Link } from "expo-router"
 
 const avt = require("../../../assets/images/Logo.png")
 
@@ -43,6 +46,9 @@ const PostDetail = () => {
 
   const fullScreenImage = useSelector((state) => state.image.fullScreenImage)
 
+  const [buttonLoading, setButtonLoading] = useState(false)
+  const [isRegister, setIsRegister] = useState(false)
+
   const dispatch = useDispatch()
 
   const handleImagePress = (image) => {
@@ -62,21 +68,59 @@ const PostDetail = () => {
   const getDetailEvent = async () => {
     const response = await eventServices.getDetailEvent(id).catch((error) => {
       showToastWithGravity("Có lỗi xảy ra!")
+      console.log(error.response.data)
     })
 
     if (response) {
       console.log(response)
       setData(response)
       setImages(response.images.map((item) => item.imageUrl))
+      setIsRegister(response.isThisStudentRegistered)
+
+      console.log(response.isThisStudentRegistered)
     }
   }
 
   const checkUnit = async () => {
     const role = await asyncStorage.getRole()
-    if (role === "Unit") {
+    if (role === "UnitAdmin") {
       setIsUnit(true)
     }
   }
+
+  const handleRegister = async () => {
+    setButtonLoading(true)
+    const studentId = await asyncStorage.getIdAsync()
+
+    const response = await eventServices
+      .registerEvent(id, { EventId: id, StudentId: studentId })
+      .catch((error) => {
+        if (error.response.status === 409) {
+          showToastWithGravity("Sự kiện đã kết thúc")
+        }
+        console.log("registerEvent", error)
+        setButtonLoading(false)
+      })
+
+    if (response) {
+      console.log(response)
+      setButtonLoading(false)
+      setIsRegister(true)
+    }
+  }
+
+  const confirmRegister = () =>
+    Alert.alert(
+      "Xác nhận đăng ký",
+      "Bạn có chắc chắn đăng ký sự kiện này? Bạn sẽ không thể hủy đăng ký sau đó.",
+      [
+        {
+          text: "Hủy",
+          style: "cancel",
+        },
+        { text: "OK", onPress: () => handleRegister() },
+      ]
+    )
 
   useEffect(() => {
     getDetailEvent()
@@ -184,14 +228,30 @@ const PostDetail = () => {
 
               <View className='mx-2 mb-5 w-full flex-row'>
                 {isUnit ? (
-                  <TouchableOpacity className='rounded bg-blue-500 px-5 py-2'>
+                  <Link
+                    className='rounded bg-blue-500 px-5 py-2'
+                    href={{
+                      pathname: "(page)/update-post/[id]",
+                      params: {
+                        id: data.id,
+                      },
+                    }}
+                  >
                     <Text className='font-medium text-white'>Chỉnh sửa</Text>
-                  </TouchableOpacity>
+                  </Link>
                 ) : (
-                  <TouchableOpacity className='rounded bg-blue-500 px-5 py-2'>
-                    <Text className='font-medium text-white'>Đăng ký</Text>
-                    {/* <Text className='font-medium text-white'>Đã đăng ký</Text> */}
-                    {/* <ActivityIndicator size='small' color='#ffffff' /> */}
+                  <TouchableOpacity
+                    className={`${isRegister ? "bg-slate-500" : "bg-blue-500"} rounded px-5 py-2`}
+                    onPress={confirmRegister}
+                    disabled={isRegister}
+                  >
+                    {buttonLoading ? (
+                      <ActivityIndicator size='small' color='#ffffff' />
+                    ) : (
+                      <Text className='font-medium text-white'>
+                        {isRegister ? "Đã đăng ký" : "Đăng ký"}
+                      </Text>
+                    )}
                   </TouchableOpacity>
                 )}
               </View>

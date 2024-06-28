@@ -13,6 +13,7 @@ import { AntDesign } from "@expo/vector-icons"
 import { Ionicons } from "@expo/vector-icons"
 import { useState } from "react"
 import * as ImagePicker from "expo-image-picker"
+import { useLocalSearchParams } from "expo-router"
 
 const styles = StyleSheet.create({
   header: {
@@ -41,6 +42,7 @@ const styles = StyleSheet.create({
   },
 })
 const UpdatePost = () => {
+  const { id } = useLocalSearchParams()
   const [selectedImages, setSelectedImages] = useState([])
   const [postContent, setPostContent] = useState("")
 

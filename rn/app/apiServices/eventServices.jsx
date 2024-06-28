@@ -12,9 +12,21 @@ export const getHotEvents = async () => {
   }
 }
 
-export const getEvents = async () => {
+export const getEvents = async (pageNumber, isGetFollowing) => {
   try {
-    const res = await request.getMethod("events?IsPublished=true", true)
+    const res = await request.getMethod(
+      `events?IsPublished=true&SortBy=EndDate&SortAscending=false&pageSize=12&pageNumber=${pageNumber}&isGetFollowing=${isGetFollowing}`,
+      true
+    )
+    return res
+  } catch (error) {
+    return Promise.reject(error)
+  }
+}
+
+export const getEventsSearch = async (params) => {
+  try {
+    const res = await request.getMethod(`events?`, true, params)
     return res
   } catch (error) {
     return Promise.reject(error)

@@ -20,7 +20,6 @@ export const getMethod = async (
   }
 
   options.params = params || {}
-
   const response = await request.get(path, options)
 
   return response.data
@@ -31,7 +30,7 @@ export const postMethod = async (path, hasAuth = false, options = {}) => {
 
   if (hasAuth) {
     headers = {
-      Authorization: "Bearer " + await asyncStorage.getAccessToken(),
+      Authorization: "Bearer " + (await asyncStorage.getAccessToken()),
     }
   }
   console.log(path, options)

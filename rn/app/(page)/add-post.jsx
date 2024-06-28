@@ -10,6 +10,7 @@ import {
   TextInput,
   Switch,
   Modal,
+  TouchableWithoutFeedback,
 } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { AntDesign } from "@expo/vector-icons"
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
 const AddPost = () => {
   const dispatch = useDispatch()
 
-  const [selectedEventType, setSelectedEventType] = useState(null)
+  const [selectedEventType, setSelectedEventType] = useState("")
 
   const handleEventTypeSelection = (type) => {
     setSelectedEventType(type)
@@ -65,13 +66,37 @@ const AddPost = () => {
   const selectedImages = useSelector((state) => state.post.selectedImages)
   const postContent = useSelector((state) => state.post.postContent)
 
-  const [number, setNumber] = useState(0)
+  const [postDescription, setPostDescription] = useState("")
+  const [location, setLocation] = useState("")
+  const [formURL, setFormURL] = useState("")
 
+  const handleEditorChange = (content) => {
+    console.log(postDescription)
+  }
+
+  //xử lý số lượng
+  const [number, setNumber] = useState("")
+  const handleChangeText = (text) => {
+    // Loại bỏ các ký tự không phải là số
+    let filteredText = text.replace(/[^0-9]/g, "")
+
+    // Loại bỏ số 0 ở đầu nếu có
+    if (filteredText.length > 0 && filteredText[0] === "0") {
+      filteredText = filteredText.substring(1)
+    }
+
+    // Giới hạn số ký tự tối đa là 3
+    if (filteredText.length > 3) {
+      filteredText = filteredText.slice(0, 3)
+    }
+
+    setNumber(filteredText)
+  }
   const [startDate, setStartDate] = useState(dayjs())
   const [endDate, setEndDate] = useState(dayjs())
 
-  const [startDateText, setStartDateText] = useState("Chọn ngày bắt đầu")
-  const [endDateText, setEndDateText] = useState("Chọn ngày kết thúc")
+  const [startDateText, setStartDateText] = useState("")
+  const [endDateText, setEndDateText] = useState("")
 
   const [showStartDatePicker, setShowStartDatePicker] = useState(false)
   const [showEndDatePicker, setShowEndDatePicker] = useState(false)
@@ -118,15 +143,23 @@ const AddPost = () => {
   }
 
   const isCreateButtonEnabled =
-    selectedImages.length > 0 && postContent.length > 0
+    selectedImages.length > 0 &&
+    postContent.length > 0 &&
+    location.length > 0 &&
+    postDescription.length > 0 &&
+    startDateText.length > 0 &&
+    endDateText.length > 0 &&
+    selectedEventType.length > 0 &&
+    number.length > 0 &&
+    formURL.length > 0
 
   const deleteImage = (uri) => {
     dispatch(removeImage(uri))
   }
 
   return (
-    <SafeAreaView className='flex-1 bg-slate-100'>
-      <StatusBar></StatusBar>
+    <View className='flex-1 bg-slate-50'>
+      <StatusBar className='bg-slate-50'></StatusBar>
       <View className='flex-1'>
         <View
           className='h-[46] w-full flex-row items-center justify-between px-2'
@@ -178,7 +211,23 @@ const AddPost = () => {
               onChangeText={(text) => dispatch(setPostContent(text))}
             ></TextInput>
             {/* mô tả */}
-            <TextEditor></TextEditor>
+            <TextInput
+              placeholder='Nhập mô tả sự kiện...'
+              placeholderTextColor={"#888"}
+              className=' rounded bg-white py-3 pl-[9] text-base'
+              style={{
+                shadowColor: "#000000",
+                shadowOffset: {
+                  width: 0,
+                  height: 3,
+                },
+                shadowOpacity: 0.17,
+                shadowRadius: 3.05,
+                elevation: 4,
+              }}
+              multiline
+              onChangeText={(text) => setPostDescription(text)}
+            ></TextInput>
             {/* địa điểm */}
             <TextInput
               placeholder='Nhập địa điểm tổ chức...'
@@ -195,7 +244,7 @@ const AddPost = () => {
                 elevation: 4,
               }}
               multiline
-              onChangeText={(text) => dispatch(setPostContent(text))}
+              onChangeText={(text) => setLocation(text)}
             ></TextInput>
             {/* daypicker */}
             <View
@@ -212,9 +261,17 @@ const AddPost = () => {
               }}
             >
               <View className='flex-row items-center justify-between'>
-                <Text className='text-base text-sky-600'>{startDateText}</Text>
-                <TouchableOpacity onPress={toggleStartDatePicker}>
-                  <FontAwesome name='calendar-o' size={24} color='#0284C7' />
+                <Text className='text-base text-[#888]'>Ngày bắt đầu</Text>
+                <TouchableOpacity
+                  onPress={toggleStartDatePicker}
+                  className='flex-row items-center'
+                >
+                  <Text className='mr-2 text-base text-[#888]'>
+                    {startDateText == "" || startDateText == undefined
+                      ? ""
+                      : dayjs(startDateText).format("DD/MM/YYYY hh:mm")}
+                  </Text>
+                  <AntDesign name='calendar' size={24} color='#888' />
                 </TouchableOpacity>
               </View>
             </View>
@@ -233,35 +290,21 @@ const AddPost = () => {
               }}
             >
               <View className='flex-row items-center justify-between'>
-                <Text className='text-base text-sky-600'>{endDateText}</Text>
-                <TouchableOpacity onPress={toggleEndDatePicker}>
-                  <FontAwesome name='calendar-o' size={24} color='#0284C7' />
+                <Text className='text-base text-[#888]'>Ngày kết thúc</Text>
+                <TouchableOpacity
+                  onPress={toggleEndDatePicker}
+                  className='flex-row items-center'
+                >
+                  <Text className='mr-2 text-base text-[#888]'>
+                    {endDateText == "" || endDateText == undefined
+                      ? ""
+                      : dayjs(endDateText).format("DD/MM/YYYY hh:mm")}
+                  </Text>
+                  <AntDesign name='calendar' size={24} color='#888' />
                 </TouchableOpacity>
               </View>
             </View>
-            {/* is published */}
-            <View
-              className='mt-2 flex-row items-center justify-between rounded bg-white pl-[9]'
-              style={{
-                shadowColor: "#000000",
-                shadowOffset: {
-                  width: 0,
-                  height: 3,
-                },
-                shadowOpacity: 0.17,
-                shadowRadius: 3.05,
-                elevation: 4,
-              }}
-            >
-              <Text className='text-base text-sky-600'>Công bố sự kiện</Text>
-              <Switch
-                trackColor={{ false: "#767577", true: "#81b0ff" }}
-                thumbColor={isEnabled ? "#0284C7" : "#f4f3f4"}
-                ios_backgroundColor='#3e3e3e'
-                onValueChange={toggleSwitch}
-                value={isEnabled}
-              />
-            </View>
+
             {/* loại sự kiện */}
             <TouchableOpacity
               className='mt-2 flex-row items-center justify-between rounded bg-white px-[9] py-3'
@@ -278,14 +321,16 @@ const AddPost = () => {
               onPress={() => setVisibleTypeModa(true)}
             >
               <View className='flex-row '>
-                <Text className='text-base text-sky-600'>Loại sự kiện:</Text>
-                <Text className='text-base text-slate-600'>
+                <Text className='text-base text-[#888]'>
+                  Chọn loại sự kiện:
+                </Text>
+                <Text className='text-base text-[#888]'>
                   {" "}
                   {selectedEventType}
                 </Text>
               </View>
 
-              <AntDesign name='arrowright' size={24} color='#0284C7' />
+              <AntDesign name='right' size={22} color='#888' />
             </TouchableOpacity>
             {/* số lượng tham gia */}
             <View
@@ -301,19 +346,21 @@ const AddPost = () => {
                 elevation: 4,
               }}
             >
-              <Text className='text-base text-sky-600'>
-                Số lượng tham gia tối đa:
+              <Text className='text-base text-[#888]'>
+                Giới hạn người tham gia:
               </Text>
               <TextInput
-                className=' w-[60] rounded-sm border border-sky-600 pr-[5] text-right text-base text-sky-600'
+                className=' w-[60] rounded-sm border border-[#888] pr-[5] text-right text-base text-[#888]'
                 keyboardType='nummeric'
-              >
-                {number}
-              </TextInput>
+                placeholder='0'
+                value={number}
+                onChangeText={handleChangeText}
+                placeholderTextColor={"#888"}
+              ></TextInput>
             </View>
             {/* link */}
             <TextInput
-              placeholder='Nhập link form tham gia...'
+              placeholder='Nhập link đăng ký tham gia...'
               placeholderTextColor={"#888"}
               className='mt-2 rounded bg-white py-3 pl-[9] text-base'
               style={{
@@ -327,8 +374,31 @@ const AddPost = () => {
                 elevation: 4,
               }}
               multiline
-              onChangeText={(text) => dispatch(setPostContent(text))}
+              onChangeText={(text) => setFormURL(text)}
             ></TextInput>
+            {/* is published */}
+            <View
+              className='mt-2 flex-row items-center justify-between rounded bg-white pl-[9]'
+              style={{
+                shadowColor: "#000000",
+                shadowOffset: {
+                  width: 0,
+                  height: 3,
+                },
+                shadowOpacity: 0.17,
+                shadowRadius: 3.05,
+                elevation: 4,
+              }}
+            >
+              <Text className='text-base text-[#888]'>Công bố sự kiện</Text>
+              <Switch
+                trackColor={{ false: "#767577", true: "#81b0ff" }}
+                thumbColor={isEnabled ? "#0284C7" : "#f4f3f4"}
+                ios_backgroundColor='#3e3e3e'
+                onValueChange={toggleSwitch}
+                value={isEnabled}
+              />
+            </View>
           </View>
         </ScrollView>
         <View className='absolute bottom-0'>
@@ -354,7 +424,7 @@ const AddPost = () => {
           />
         </View>
         {showStartDatePicker && (
-          <View className='bg-white pb-8'>
+          <View className='absolute bottom-0 z-10 w-full bg-white pb-10'>
             <DateTimePicker
               date={startDate}
               mode='single'
@@ -373,10 +443,17 @@ const AddPost = () => {
               }}
               headerTextStyle={{ color: "#0284C7" }}
             />
+            <TouchableOpacity
+              onPress={toggleStartDatePicker}
+              className='absolute bottom-2 right-3 h-[50] w-[50] items-center justify-center rounded-full bg-sky-600'
+            >
+              <AntDesign name='check' size={24} color='white' />
+            </TouchableOpacity>
           </View>
         )}
+
         {showEndDatePicker && (
-          <View className='bg-white pb-8'>
+          <View className='absolute bottom-0 z-10 w-full bg-white pb-10'>
             <DateTimePicker
               date={endDate}
               mode='single'
@@ -395,9 +472,15 @@ const AddPost = () => {
               }}
               headerTextStyle={{ color: "#0284C7" }}
             />
+            <TouchableOpacity
+              onPress={toggleEndDatePicker}
+              className='absolute bottom-2 right-3 h-[50] w-[50] items-center justify-center rounded-full bg-sky-600'
+            >
+              <AntDesign name='check' size={24} color='white' />
+            </TouchableOpacity>
           </View>
         )}
-        <View className='absolute bottom-3 right-2'>
+        <View className='absolute bottom-3 right-2 z-0'>
           <TouchableOpacity
             onPress={pickImage}
             className='h-[55] w-[55] items-center justify-center rounded-full bg-blue-600'
@@ -565,7 +648,7 @@ const AddPost = () => {
           </View>
         </View>
       </Modal>
-    </SafeAreaView>
+    </View>
   )
 }
 

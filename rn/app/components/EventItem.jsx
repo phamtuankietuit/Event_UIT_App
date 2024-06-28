@@ -6,21 +6,27 @@ import {
   ActivityIndicator,
   Pressable,
 } from "react-native"
-import React, { memo } from "react"
+import React, { memo, useEffect, useState } from "react"
 import { SliderBox } from "react-native-image-slider-box"
 import { Entypo } from "@expo/vector-icons"
-import { Link, useRouter } from "expo-router"
+import { Link } from "expo-router"
+import { format } from "date-fns"
+const EventItem = memo(({ item }) => {
+  // const slides = [
+  //   "https://thanhnien.mediacdn.vn/thumb_w/750/325084952045817856/2023/3/20/base64-16792880739381319994436.jpeg",
+  //   "https://tuyensinh.uit.edu.vn/sites/default/files/uploads/images/202310/2b7173db-6933-4f88-b227-ebf0e042c41e.png",
+  //   "https://www.uit.edu.vn/sites/vi/files/image_from_word/hoc_bong_khoa_khoa_hoc_may_tinh_7.jpg",
+  //   "https://www.uit.edu.vn/sites/vi/files/image_from_word/u.jpg",
+  // ]
 
-const EventItem = memo(() => {
-  const router = useRouter()
+  const [slides, setSlides] = useState([])
+  useEffect(() => {
+    let array = []
 
-  const slides = [
-    "https://thanhnien.mediacdn.vn/thumb_w/750/325084952045817856/2023/3/20/base64-16792880739381319994436.jpeg",
-    "https://tuyensinh.uit.edu.vn/sites/default/files/uploads/images/202310/2b7173db-6933-4f88-b227-ebf0e042c41e.png",
-    "https://www.uit.edu.vn/sites/vi/files/image_from_word/hoc_bong_khoa_khoa_hoc_may_tinh_7.jpg",
-    "https://www.uit.edu.vn/sites/vi/files/image_from_word/u.jpg",
-  ]
+    for (let image of item.images) array.push(image.imageUrl)
 
+    setSlides(array)
+  }, [])
   return (
     <View
       className='m-2 max-h-fit rounded border-[1px] border-gray-100 
@@ -68,14 +74,10 @@ const EventItem = memo(() => {
           numberOfLines={2}
           ellipsizeMode='tail'
         >
-          ☀️ [TỔNG KẾT TRAINING CUỐI KÌ II 2023-2024] ☀️
+          ☀️ [{item.title}] ☀️
         </Text>
         <Text numberOfLines={5} ellipsizeMode='tail'>
-          🤗 Vậy là những buổi training cuối cùng của năm học này đã kết thúc.
-          Hy vọng rằng nó đã đem lại hành trang bổ ích cho các bạn sinh viên
-          trong kì thi cuối kì sắp tới này. ❤️ Chân thành cảm ơn các bạn sinh
-          viên đã đến tham gia các buổi training của Ban học tập. Chúc các bạn
-          sẽ có kì thi thật suông sẻ và đạt được thành tích mình mong muốn.
+          🤗 {item.description}
         </Text>
         <Link href={"detail/EventDetail"}>
           <Text className='text-blue-500'>Xem thêm</Text>

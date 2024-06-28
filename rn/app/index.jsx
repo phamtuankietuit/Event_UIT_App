@@ -24,15 +24,15 @@ export default function App() {
     }, 3000)
   }, [])
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     //router.replace("(page)/add-post")
-  //     // router.replace("(auth)/sign-in")
-  //     // router.replace("home")
-  //     // router.replace("(page)/page-detail")
-  //     // router.replace("(page)/camera")
-  //   }, 3000)
-  // })
+  useEffect(() => {
+    setTimeout(() => {
+      //router.replace("(page)/add-post")
+      router.replace("(page)/add-post")
+      // router.replace("home")
+      // router.replace("(page)/page-detail")
+      // router.replace("(page)/camera")
+    }, 3000)
+  })
 
   return (
     <ScrollView contentContainerStyle={{ height: "100%" }}>

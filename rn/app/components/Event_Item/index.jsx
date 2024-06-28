@@ -4,7 +4,7 @@ import { format } from "date-fns"
 import logo from "../../../assets/images/anhtruong.jpg"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
 import { faTrash } from "@fortawesome/free-solid-svg-icons"
-function Event_Item({ item, deleteItem }) {
+function Event_Item({ item, deleteItem, deleteButton }) {
   return (
     <TouchableOpacity
       className='mx-2 my-[5px] h-[90px] flex-row  items-center rounded-lg bg-white p-1'
@@ -22,24 +22,26 @@ function Event_Item({ item, deleteItem }) {
     >
       <View className='text-wrap flex h-[100%] w-[25%] items-center justify-center'>
         <Image
-          source={logo}
+          source={item?.images ? { uri: item?.images[0] } : logo}
           className='me-4 h-[85%] w-[85%] rounded-[3px] bg-white'
         />
       </View>
-      <View className='mr-3 flex-1'>
+      <View className='mx-3 flex-1'>
         <Text numberOfLines={2} className='mb-3 font-semibold'>
-          Seminar nghiên cứu khoa học về AI cùng UIT, hãy tham gia để có các
-          phần quà thú vị
+          {item.title}
         </Text>
         <Text className='text-xs'>
-          Thời gian {format(new Date(), "dd/MM/yyyy - HH:mm")}
+          Thời gian {format(item?.publishedDate, "HH:mm - dd/MM/yyyy")}
         </Text>
       </View>
-      <TouchableOpacity className='mr-2 flex items-center justify-center'>
-        <View className='rounded-full bg-red-400 p-3'>
-          <FontAwesomeIcon icon={faTrash} color='white' />
-        </View>
-      </TouchableOpacity>
+      {
+        deleteButton && (<TouchableOpacity className='mr-2 flex items-center justify-center'>
+          <View className='rounded-full bg-red-400 p-3'>
+            <FontAwesomeIcon icon={faTrash} color='white' />
+          </View>
+        </TouchableOpacity>)
+      }
+
     </TouchableOpacity>
   )
 }

@@ -14,8 +14,7 @@ export const loginStudent = async (obj) => {
 
 export const verifyEmail = async (obj) => {
   try {
-    console.log(obj)
-    const res = await request.postMethod("auth/send-otp", false, false, obj)
+    const res = await request.postMethod("auth/send-otp", false, obj)
     return res
   } catch (error) {
     return Promise.reject(error)
@@ -24,7 +23,7 @@ export const verifyEmail = async (obj) => {
 
 export const verifyOTP = async (obj) => {
   try {
-    const res = await request.postMethod("auth/verify-otp", false, false, obj)
+    const res = await request.postMethod("auth/verify-otp", false, obj)
     return res
   } catch (error) {
     return Promise.reject(error)
@@ -33,10 +32,9 @@ export const verifyOTP = async (obj) => {
 
 export const resetPass = async (obj) => {
   try {
-    const res = await request.postMethod("auth/reset-password", false, false, obj)
+    const res = await request.postMethod("auth/reset-password", false, obj)
     return res
   } catch (error) {
     return Promise.reject(error)
   }
 }
-

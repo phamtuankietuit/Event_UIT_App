@@ -22,7 +22,7 @@ const Search = () => {
       setRefreshing(true)
       const responseEvent = await EventServices
         .getEvents({
-          isPublished: true,
+          IsPublished: true,
           SearchTerm: value
         })
         .catch((error) => {

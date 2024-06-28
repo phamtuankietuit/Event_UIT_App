@@ -23,7 +23,6 @@ export default function App() {
       router.replace("home")
       // router.replace("home")
     }, 3000)
-  })
     checkAuth()
   }, [])
 

@@ -75,7 +75,7 @@ function management_event() {
         data={data}
         className='mx-2 bg-transparent'
         showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => <Event_Item item={item} />}
+        renderItem={({ item }) => <Event_Item item={item} deleteButton />}
       />
       <View className='absolute bottom-3 right-3 my-2 items-center justify-center'>
         <TouchableOpacity

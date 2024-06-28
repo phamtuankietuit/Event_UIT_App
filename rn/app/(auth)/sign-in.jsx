@@ -8,7 +8,7 @@ import {
   ToastAndroid,
   ActivityIndicator,
 } from "react-native"
-import { Link } from "expo-router"
+import { Link, useRouter } from "expo-router"
 import { useEffect, useState } from "react"
 import { StatusBar } from "expo-status-bar"
 
@@ -24,6 +24,7 @@ const showToastWithGravity = (msg) => {
 }
 
 const SignIn = () => {
+  const router = useRouter()
   const [loading, setLoading] = useState(false)
 
   const [email, setEmail] = useState("")
@@ -67,9 +68,11 @@ const SignIn = () => {
         showToastWithGravity("Đăng nhập thành công")
         // thực hiện lưu trạng thái đăng nhập
         setLoading(false)
-        // asyncStorage.setIsLogin("true")
-        // asyncStorage.setRole("student")
-        // asyncStorage.setAccessToken(response.accessToken)
+        asyncStorage.setIsLogin("true")
+        asyncStorage.setRole(response.role)
+        asyncStorage.setAccessToken(response.accessToken)
+
+        router.replace("(page)/add-post")
       }
     }
   }

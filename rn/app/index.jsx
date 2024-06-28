@@ -9,27 +9,27 @@ export default function App() {
   const router = useRouter()
 
   const checkAuth = async () => {
-    // const token = await asyncStorage.getIsStudentLogin()
-    // if (token) {
-    //   router.replace("home")
-    // } else {
-    //   router.replace("(auth)/sign-in")
-    // }
+    const token = await asyncStorage.getIsLogin()
+    if (token) {
+      // router.replace("home")
+      router.replace("(page)/add-post")
+    } else {
+      router.replace("(auth)/sign-in")
+    }
   }
 
   useEffect(() => {
     checkAuth()
   }, [])
 
-  useEffect(() => {
-    setTimeout(() => {
-      //router.replace("(page)/add-post")
-      router.replace("(page)/add-post")
-      // router.replace("home")
-      // router.replace("(page)/page-detail")
-      // router.replace("(page)/camera")
-    }, 3000)
-  })
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     //router.replace("(page)/add-post")
+  //     // router.replace("home")
+  //     // router.replace("(page)/page-detail")
+  //     // router.replace("(page)/camera")
+  //   }, 3000)
+  // })
 
   return (
     <ScrollView contentContainerStyle={{ height: "100%" }}>

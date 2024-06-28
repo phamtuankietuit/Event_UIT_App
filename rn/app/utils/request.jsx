@@ -12,7 +12,7 @@ export const getMethod = async (
   options = {}
 ) => {
   const headers = {
-    Authorization: "Bearer " + JSON.stringify(asyncStorage.getAccessToken()),
+    Authorization: "Bearer " + (await asyncStorage.getAccessToken()),
   }
 
   if (hasAuth) {
@@ -30,11 +30,16 @@ export const postMethod = async (path, hasAuth = false, options = {}) => {
   let headers = {}
 
   if (hasAuth) {
+    const accessToken = await asyncStorage.getAccessToken()
+
     headers = {
-      Authorization: "Bearer " + JSON.stringify(asyncStorage.getAccessToken()),
+      Authorization: "Bearer " + accessToken,
     }
+
+    // console.log(headers)
   }
-  console.log(path, options)
+
+  // console.log(path, options)
 
   const response = await request.post(path, options, {
     headers: headers,
@@ -44,7 +49,7 @@ export const postMethod = async (path, hasAuth = false, options = {}) => {
 
 export const putMethod = async (path, options = {}) => {
   const headers = {
-    accessToken: asyncStorage.getAccessToken(),
+    Authorization: "Bearer " + (await asyncStorage.getAccessToken()),
   }
 
   const response = await request.put(path, options, {

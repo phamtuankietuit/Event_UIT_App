@@ -13,6 +13,7 @@ import EventItem from "../../components/Event_Item"
 import { useLocalSearchParams } from "expo-router"
 import * as PageServices from "../../apiServices/pageServices"
 import * as asyncStorage from "../../store/asyncStorage"
+
 const PageDetail = () => {
   const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState(false)

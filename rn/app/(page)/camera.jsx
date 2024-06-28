@@ -10,7 +10,7 @@ import {
 } from "react-native"
 import { useRouter } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
-import Logo from "../../assets/images/Logo.png"
+import Logo from "../../assets/images/Logo-with-name.png"
 
 const Camera = () => {
   const router = useRouter()
@@ -55,10 +55,13 @@ const Camera = () => {
       </View>
 
       <View
-        style={{ transform: [{ translateX: -40 }] }}
-        className='absolute left-1/2 top-[100px] z-20'
+        style={{ transform: [{ translateX: -45 }] }}
+        className='absolute left-1/2 top-[90px] z-20'
       >
-        <Image className='h-20 w-20 rounded-full' source={Logo}></Image>
+        <Image
+          className='h-24 w-24 rounded-3xl object-cover'
+          source={Logo}
+        ></Image>
       </View>
 
       <TouchableOpacity

@@ -12,7 +12,7 @@ export const getMethod = async (
   options = {}
 ) => {
   const headers = {
-    Authorization: "Bearer " + await asyncStorage.getAccessToken(),
+    Authorization: "Bearer " + (await asyncStorage.getAccessToken()),
   }
 
   if (hasAuth) {

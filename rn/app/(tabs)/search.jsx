@@ -26,8 +26,8 @@ const Search = () => {
   }, [])
   const search = () => {
     const fetchApi = async () => {
-      setRefreshing(true)
       setListEvent([])
+      setRefreshing(true)
       const responseEvent = await EventServices.getEventsSearch({
         IsPublished: true,
         SearchTerm: value,
@@ -46,7 +46,7 @@ const Search = () => {
 
       if (responseEvent) {
         // Xử lý nếu response trả về
-        console.log(responseEvent.events.items)
+        // console.log(responseEvent.events.items)
         setListEvent(responseEvent.events.items)
       }
     }

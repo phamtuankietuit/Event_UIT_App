@@ -50,3 +50,12 @@ export const registerEvent = async (id, obj) => {
     return Promise.reject(error)
   }
 }
+
+export const getCheckinFile = async (obj) => {
+  try {
+    const res = await request.postMethod("events/generate-checkin-file", true, obj)
+    return res
+  } catch (error) {
+    return Promise.reject(error)
+  }
+}

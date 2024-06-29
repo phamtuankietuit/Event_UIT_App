@@ -3,11 +3,11 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
 using UITEventAPI.Application.Common;
 using UITEventAPI.Application.Common.Models;
 using UITEventAPI.Application.Domain.Students;
 using UITEventAPI.Application.Domain.Users;
+using UITEventAPI.Application.Extensions;
 using UITEventAPI.Application.Infrastructure.Data;
 
 namespace UITEventAPI.Application.Features.Users;
@@ -18,7 +18,7 @@ public class GetMeStudentController : ApiControllerBase
     [HttpGet("users/students/me")]
     public async Task<IActionResult> GetMe()
     {
-        var userIdValue = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var userIdValue = User.GetUserId();
         if (userIdValue is null)
         {
             return Unauthorized();
@@ -36,6 +36,7 @@ public record GetMeStudentResponse(
     string LastName,
     string Email,
     string PhoneNumber,
+    int StudentCode,
     DateTimeOffset DateOfBirth,
     string AvatarUrl,
     string Role

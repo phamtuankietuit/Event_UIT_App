@@ -10,8 +10,8 @@ internal class EventRegistrationConfiguration : IEntityTypeConfiguration<EventRe
     {
         builder.ToTable($"{nameof(EventRegistration)}s");
 
-        builder.HasKey(er => er.Id)
-            .HasName($"{nameof(EventRegistration)}Id");
+        builder.Property(er => er.Id)
+            .HasColumnName($"{nameof(EventRegistration)}Id");
 
         var AttendedDateName = nameof(EventRegistration.AttendedDate);
         var RegisterDateName = nameof(EventRegistration.RegisterDate);

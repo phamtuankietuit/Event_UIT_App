@@ -10,8 +10,8 @@ internal class StudentConfiguration : IEntityTypeConfiguration<Student>
     {
         builder.ToTable($"{nameof(Student)}s");
 
-        builder.HasKey(s => s.Id)
-            .HasName($"{nameof(Student)}Id");
+        builder.Property(s => s.Id)
+            .HasColumnName($"{nameof(Student)}Id");
 
         builder.Property(s => s.StudentCode)
             .IsRequired();

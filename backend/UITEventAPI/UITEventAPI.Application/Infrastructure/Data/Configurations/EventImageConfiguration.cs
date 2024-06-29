@@ -10,8 +10,8 @@ internal class EventImageConfiguration : IEntityTypeConfiguration<EventImage>
     {
         builder.ToTable($"{nameof(EventImage)}s");
 
-        builder.HasKey(ei => ei.Id)
-            .HasName($"{nameof(EventImage)}Id");
+        builder.Property(ei => ei.Id)
+            .HasColumnName($"{nameof(EventImage)}Id");
 
         builder.Property(ei => ei.ImageUrl)
             .HasColumnType("varchar(max)")

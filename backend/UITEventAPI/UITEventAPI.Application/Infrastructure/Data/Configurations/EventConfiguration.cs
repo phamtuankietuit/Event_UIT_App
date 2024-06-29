@@ -10,8 +10,8 @@ internal class EventConfiguration : IEntityTypeConfiguration<Event>
     {
         builder.ToTable($"{nameof(Event)}s");
 
-        builder.HasKey(e => e.Id)
-            .HasName($"{nameof(Event)}Id");
+        builder.Property(e => e.Id)
+            .HasColumnName($"{nameof(Event)}Id");
 
         builder.Property(e => e.Title)
             .HasColumnType("nvarchar(400)");
@@ -23,6 +23,12 @@ internal class EventConfiguration : IEntityTypeConfiguration<Event>
             .HasColumnType("nvarchar(max)");
         
         builder.Property(e => e.FormUrl)
+            .HasColumnType("varchar(max)");
+
+        builder.Property(e => e.QRImageUrl)
+            .HasColumnType("varchar(max)");
+
+        builder.Property(e => e.CheckinFileUrl)
             .HasColumnType("varchar(max)");
 
         builder.Property(e => e.Type)

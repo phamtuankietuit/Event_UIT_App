@@ -1,13 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Query;
 using System.Diagnostics;
 using System.Linq.Expressions;
+using System.Reflection.Emit;
 using UITEventAPI.Application.Common.Interfaces;
 using UITEventAPI.Application.Domain.Events;
 using UITEventAPI.Application.Domain.Students;
-using UITEventAPI.Application.Domain.UniversityUnit;
+using UITEventAPI.Application.Domain.UniversityUnits;
 using UITEventAPI.Application.Domain.Users;
 using UITEventAPI.Application.Infrastructure.Data.Seeder;
 using UITEventAPI.Application.Infrastructure.Identity;
@@ -24,7 +26,7 @@ public class ApplicationDbContext(
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
-        
+
         builder.ApplyConfigurationsFromAssembly(typeof(RefreshToken).Assembly);
 
         // Restrict deletion cascade
@@ -53,6 +55,7 @@ public class ApplicationDbContext(
         builder.Entity<IdentityUserRole<int>>().HasData(dataSeeder.IdentityUserRoles);
         builder.Entity<Student>().HasData(dataSeeder.Students);
         builder.Entity<UniversityUnit>().HasData(dataSeeder.UniversityUnits);
+        builder.Entity<UnitFollow>().HasData(dataSeeder.UnitFollows);
         builder.Entity<Event>().HasData(dataSeeder.Events);
         builder.Entity<EventRegistration>().HasData(dataSeeder.EventRegistrations);
         builder.Entity<EventImage>().HasData(dataSeeder.EventImages);
@@ -74,4 +77,5 @@ public class ApplicationDbContext(
     public DbSet<RefreshToken> RefreshTokens { get; set; }
     public DbSet<Student> Students { get; set; }
     public DbSet<UniversityUnit> UniversityUnits { get; set; }
+    public DbSet<UnitFollow> UnitFollows { get; set; }
 }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using UITEventAPI.Application.Common;
 using UITEventAPI.Application.Common.Models;
-using UITEventAPI.Application.Domain.UniversityUnit;
+using UITEventAPI.Application.Domain.UniversityUnits;
 using UITEventAPI.Application.Domain.Users;
 using UITEventAPI.Application.Infrastructure.Data;
 

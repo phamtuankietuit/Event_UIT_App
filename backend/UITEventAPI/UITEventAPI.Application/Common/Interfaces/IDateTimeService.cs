@@ -3,4 +3,5 @@
 public interface IDateTimeService
 {
     DateTime Now { get; }
+    string NowInFileName { get; }
 }

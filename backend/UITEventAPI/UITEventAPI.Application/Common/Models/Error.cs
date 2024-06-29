@@ -1,4 +1,6 @@
-﻿namespace UITEventAPI.Application.Common.Models;
+﻿using UITEventAPI.Application.Common.Constants;
+
+namespace UITEventAPI.Application.Common.Models;
 
 public record Error
 {
@@ -30,7 +32,6 @@ public record Error
     public static Error Forbidden(string code, string description) => new(code, description, ErrorType.Forbidden);
     public static Error BusinessRuleViolation(string code, string description) => new(code, description, ErrorType.BusinessRuleViolation);
     public static Error ServiceUnavaiable(string code, string description) => new(code, description, ErrorType.ServiceUnavailable);
-    public static Error InvalidSortProperty(string sortProperty, string validProperties) => Validation("Application.InvalidSortProperty", $"Invalid sort property: {sortProperty}. Valid properties are: {validProperties}");
 }
 
 public enum ErrorType

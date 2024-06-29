@@ -1,4 +1,5 @@
 using Microsoft.OpenApi.Models;
+using UITEventAPI.API.Middleware;
 using UITEventAPI.Application;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -69,6 +70,8 @@ else
 {
     app.UseExceptionHandler("/error");
 }
+
+//app.UseMiddleware<TokenInspectionMiddleware>();
 
 app.UseHttpsRedirection();
 

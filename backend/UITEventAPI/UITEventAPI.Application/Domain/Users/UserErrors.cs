@@ -5,6 +5,7 @@ namespace UITEventAPI.Application.Domain.Users;
 public static class UserErrors
 {
     public static readonly Error NotFound = Error.NotFound("User.NotFound", "User was not found.");
+    public static readonly Error OtpNotVerified = Error.Unauthorized("User.OtpNotVerified", "OTP was not verified.");
     public static readonly Error CreateFailed = Error.Failure("User.CreateFailed", "User creation failed.");
     public static readonly Error AssignRoleFailed = Error.Failure("User.AssignRoleFailed", "Assigning role to user failed.");
     public static readonly Error AlreadyExists = Error.Conflict("User.AlreadyExists", "User already exists.");

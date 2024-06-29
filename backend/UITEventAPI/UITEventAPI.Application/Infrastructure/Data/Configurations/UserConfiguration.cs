@@ -8,8 +8,8 @@ internal class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
-        builder.HasKey(u => u.Id)
-            .HasName($"{nameof(User)}Id");
+        builder.Property(u => u.Id)
+            .HasColumnName($"{nameof(User)}Id");
 
         builder.Property(u => u.AvatarUrl)
             .HasColumnType("varchar(max)");

@@ -1,6 +1,7 @@
-﻿using UITEventAPI.Application.Domain.Users;
+﻿using UITEventAPI.Application.Domain.Students;
+using UITEventAPI.Application.Domain.Users;
 
-namespace UITEventAPI.Application.Domain.UniversityUnit;
+namespace UITEventAPI.Application.Domain.UniversityUnits;
 
 public class UnitFollow
 {
@@ -8,9 +9,9 @@ public class UnitFollow
     public int UniversityUnitId { get; set; }
     public UniversityUnit UniversityUnit { get; set; } = null!;
 
-    public int UserId { get; set; }
-    public User User { get; set; } = null!;
+    public int StudentId { get; set; }
+    public Student Student { get; set; } = null!;
 
     public bool IsFollowed { get; set; }
-    public DateTime FollowedDate { get; set; }
+    public DateTime? FollowedDate { get; set; }
 }

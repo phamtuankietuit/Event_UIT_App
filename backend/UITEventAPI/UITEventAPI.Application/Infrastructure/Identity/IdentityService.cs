@@ -1,4 +1,5 @@
 ﻿using KKBookstore.Application.Common.Models;
+using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -11,7 +12,7 @@ using UITEventAPI.Application.Common.Interfaces;
 using UITEventAPI.Application.Common.Models;
 using UITEventAPI.Application.Domain.Users;
 using UITEventAPI.Application.Extensions;
-using UITEventAPI.Application.Features.Users;
+using UITEventAPI.Application.Features.Authentication;
 using UITEventAPI.Application.Infrastructure.Data;
 
 namespace UITEventAPI.Application.Infrastructure.Identity;
@@ -30,119 +31,85 @@ public class IdentityService(
     private readonly IOptions<JwtSettings> _jwtSettings = jwtSettings;
     private readonly ApplicationDbContext _dbContext = dbContext;
 
-    //public async Task<Result<TokenResponse>> CreateUserAsync(RegisterCommand request, CancellationToken cancellationToken)
-    //{
-    //    using var transaction = await _dbContext.Database.BeginTransactionAsync(cancellationToken);
-
-    //    var searchResult = await FindUserByEmailAsync(request.Email);
-    //    if (searchResult.IsSuccess)
-    //    {
-    //        return Result.Failure<TokenResponse>(UserErrors.AlreadyExists);
-    //    }
-
-    //    var role = await _roleManager.FindByNameAsync(request.Role);
-    //    if (role == null)
-    //    {
-    //        return Result.Failure<TokenResponse>(UserErrors.InvalidRole);
-    //    }
-
-    //    var user = new User()
-    //    {
-    //        Email = request.Email,
-    //        UserName = request.Email,
-    //        PhoneNumber = request.PhoneNumber,
-    //        IsActive = true,
-    //    };
-
-    //    user.PasswordHash = _passwordHasher.HashPassword(user, request.Password);
-
-    //    var result = await _userManager.CreateAsync(user, request.Password);
-    //    if (!result.Succeeded)
-    //    {
-    //        var errors = result.ToErrors();
-    //        await transaction.RollbackAsync();
-    //        return Result.Failure<TokenResponse>(errors.FirstOrDefault() ?? UserErrors.CreateFailed);
-    //    }
-
-    //    var assignRoleResult = await _userManager.AddToRoleAsync(user, role.Name!);
-    //    if (!assignRoleResult.Succeeded)
-    //    {
-    //        var errors = result.ToErrors();
-    //        await transaction.RollbackAsync();
-    //        return Result.Failure<TokenResponse>(errors.FirstOrDefault() ?? UserErrors.AssignRoleFailed);
-    //    }
-
-    //    await transaction.CommitAsync();
-
-    //    // create a token response
-    //    var responseResult = await GenerateTokenResponse(user);
-
-
-    //    return responseResult;
-    //}
-
-    public async Task<Result<TokenResponse>> SignInAsync(SignInQuery request, CancellationToken cancellationToken)
+    public async Task<Result<TokenResponseWithRole>> SignInAsync(string email, string password, CancellationToken cancellationToken)
     {
-        var result = await FindUserByEmailAsync(request.Email);
+        var result = await FindUserByEmailAsync(email);
         if (result.IsFailure)
         {
-            return Result.Failure<TokenResponse>(UserErrors.InvalidCredentials);
+            return Result.Failure<TokenResponseWithRole>(UserErrors.InvalidCredentials);
         }
 
         var user = result.Value;
-        var passwordValid = await _userManager.CheckPasswordAsync(user, request.Password);
+        var passwordValid = await _userManager.CheckPasswordAsync(user, password);
         if (!passwordValid)
         {
-            return Result.Failure<TokenResponse>(UserErrors.InvalidCredentials);
+            return Result.Failure<TokenResponseWithRole>(UserErrors.InvalidCredentials);
         }
 
-        var responseResult = await GenerateTokenResponse(user);
+        var role = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
 
-        return responseResult;
+        if (role == null) {
+            return Result.Failure<TokenResponseWithRole>(UserErrors.InvalidRole);
+        }
+
+        var genTokenResult = await GenerateTokenResponse(user);
+        
+        if (genTokenResult.IsFailure)
+        {
+            return Result.Failure<TokenResponseWithRole>(genTokenResult.Error);
+        }
+
+        var response = genTokenResult.Value.Adapt<TokenResponseWithRole>() with
+        {
+            Role = role
+        };
+
+        return response;
     }
 
-    //public async Task<Result> UpdateUserAsync(UpdateUserCommand command)
-    //{
-    //    var user = await _userManager.FindByIdAsync(command.Id.ToString());
-    //    if (user == null)
-    //    {
-    //        return Result.Failure(UserErrors.NotFound);
-    //    }
+    public async Task<Result> UpdatePasswordAsync(string email, string newPassword, CancellationToken cancellationToken)
+    {
+        var userResult = await FindUserByEmailAsync(email);
 
-    //    // Update the user's properties
-    //    mapper.Map(command, user);
+        if (userResult.IsFailure)
+        {
+            return Result.Failure(userResult.Error);
+        }
 
-    //    var result = await _userManager.UpdateAsync(user);
-    //    if (!result.Succeeded)
-    //    {
-    //        return Result.Failure(result.ToErrors().FirstOrDefault() ?? UserErrors.UpdateFailed);
-    //    }
+        string resetToken = await _userManager.GeneratePasswordResetTokenAsync(userResult.Value);
+        var result = await _userManager.ResetPasswordAsync(userResult.Value, resetToken, newPassword);
+        if (!result.Succeeded)
+        {
+            return Result.Failure(result.ToErrors().FirstOrDefault() ?? UserErrors.UpdateFailed);
+        }
 
-    //    return Result.Success();
-    //}
+        return Result.Success();
+    }
 
-    //public async Task<Result> ReplaceUserAsync(ReplaceUserCommand request)
-    //{
-    //    var user = await _userManager.FindByIdAsync(request.Id.ToString());
-    //    if (user == null)
-    //    {
-    //        return Result.Failure(UserErrors.NotFound);
-    //    }
+    public async Task<Result> ChangePasswordAsync(string email, string oldPassword, string newPassword, CancellationToken cancellationToken)
+    {
+        var userResult = await FindUserByEmailAsync(email);
+        if (userResult.IsFailure)
+        {
+            return Result.Failure(userResult.Error);
+        }
 
-    //    // Update the user's properties
-    //    mapper.Map(request, user);
+        var passwordValid = await _userManager.CheckPasswordAsync(userResult.Value, oldPassword);
 
+        if (!passwordValid)
+        {
+            return Result.Failure(UserErrors.InvalidCredentials);
+        }
 
-    //    var result = await _userManager.UpdateAsync(user);
-    //    if (!result.Succeeded)
-    //    {
-    //        return Result.Failure(result.ToErrors().FirstOrDefault() ?? UserErrors.UpdateFailed);
-    //    }
+        var result = await _userManager.ChangePasswordAsync(userResult.Value, oldPassword, newPassword);
 
-    //    return Result.Success();
-    //}
+        if (!result.Succeeded)
+        {
+            return Result.Failure(result.ToErrors().FirstOrDefault() ?? UserErrors.UpdateFailed);
+        }
 
-
+        return Result.Success();
+    }
     //public async Task<Result<TokenResponse>> RefreshAccessToken(RefreshAccessToken request)
     //{
     //    // get the user send this
@@ -165,49 +132,9 @@ public class IdentityService(
     //    return responseResult;
     //}
 
-    //public async Task<Result> UpdatePasswordAsync(UpdatePasswordCommand request)
-    //{
-    //    var userResult = await FindUserAsync(new(request.Email));
 
-    //    if (userResult.IsFailure)
-    //    {
-    //        return Result.Failure(userResult.Error);
-    //    }
 
-    //    string resetToken = await _userManager.GeneratePasswordResetTokenAsync(userResult.Value);
-    //    var result = await _userManager.ResetPasswordAsync(userResult.Value, resetToken, request.NewPassword);
-    //    if (!result.Succeeded)
-    //    {
-    //        return Result.Failure(result.ToErrors().FirstOrDefault() ?? UserErrors.UpdateFailed);
-    //    }
 
-    //    return Result.Success();
-    //}
-
-    //public async Task<Result> ChangePasswordAsync(ChangePasswordCommand request)
-    //{
-    //    var userResult = await FindUserAsync(new(request.Email));
-    //    if (userResult.IsFailure)
-    //    {
-    //        return Result.Failure(userResult.Error);
-    //    }
-
-    //    var passwordValid = await _userManager.CheckPasswordAsync(userResult.Value, request.CurrentPassword);
-
-    //    if (!passwordValid)
-    //    {
-    //        return Result.Failure(UserErrors.InvalidCredentials);
-    //    }
-
-    //    var result = await _userManager.ChangePasswordAsync(userResult.Value, request.CurrentPassword, request.NewPassword);
-
-    //    if (!result.Succeeded)
-    //    {
-    //        return Result.Failure(result.ToErrors().FirstOrDefault() ?? UserErrors.UpdateFailed);
-    //    }
-
-    //    return Result.Success();
-    //}
 
     //public async Task<bool> IsValidRefreshToken(int userId, string refreshToken)
     //{

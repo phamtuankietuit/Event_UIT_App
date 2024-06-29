@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using UITEventAPI.Application.Common.Constants;
-using UITEventAPI.Application.Domain.Students;
-using UITEventAPI.Application.Domain.UniversityUnit;
 
 namespace UITEventAPI.Application.Domain.Users;
 

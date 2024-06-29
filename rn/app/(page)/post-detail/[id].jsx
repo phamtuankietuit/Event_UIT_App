@@ -228,17 +228,31 @@ const PostDetail = () => {
 
               <View className='mx-2 mb-5 w-full flex-row'>
                 {isUnit ? (
-                  <Link
-                    className='rounded bg-blue-500 px-5 py-2'
-                    href={{
-                      pathname: "(page)/update-post/[id]",
-                      params: {
-                        id: data.id,
-                      },
-                    }}
-                  >
-                    <Text className='font-medium text-white'>Chỉnh sửa</Text>
-                  </Link>
+                  <View className='flex-row'>
+                    <Link
+                      className='rounded bg-blue-500 px-5 py-2'
+                      href={{
+                        pathname: "(page)/update-post/[id]",
+                        params: {
+                          id: data.id,
+                        },
+                      }}
+                    >
+                      <Text className='font-medium text-white'>Chỉnh sửa</Text>
+                    </Link>
+                    <Link
+                      className='ml-2 rounded bg-blue-500 px-5 py-2'
+                      href={{
+                        pathname: "(page)/qr-code/[id]",
+                        params: {
+                          qrImageUrl: data.qrImageUrl,
+                          eventId: data.id,
+                        },
+                      }}
+                    >
+                      <Text className='font-medium text-white'>Xuất mã QR</Text>
+                    </Link>
+                  </View>
                 ) : (
                   <TouchableOpacity
                     className={`${isRegister ? "bg-slate-500" : "bg-blue-500"} rounded px-5 py-2`}

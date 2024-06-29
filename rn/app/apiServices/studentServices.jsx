@@ -22,3 +22,12 @@ export const getTrainingPointHistory = async () => {
         return Promise.reject(error)
     }
 }
+
+export const getMe = async () => {
+  try {
+    const res = await request.getMethod("users/students/me", true)
+    return res
+  } catch (error) {
+    return Promise.reject(error)
+  }
+}

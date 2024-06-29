@@ -5,8 +5,10 @@ import logo from "../../../assets/images/anhtruong.jpg"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
 import { faEye, faEyeSlash, faFileExport } from "@fortawesome/free-solid-svg-icons"
 import { useRouter, Link } from "expo-router"
+
 import * as EventServices from '../../apiServices/eventServices'
 import dayjs from "dayjs"
+
 function Event_Item({ item, deleteItem, deleteButton }) {
   const router = useRouter()
 
@@ -44,6 +46,8 @@ function Event_Item({ item, deleteItem, deleteButton }) {
 
         elevation: 4,
       }}
+
+      onPress={() => {}}
     >
       <View className='h-[90px] w-[100%] flex-row items-center'>
         <Image

@@ -61,6 +61,23 @@ export const setIdAsync = async (id) => {
   }
 }
 
+export const getCodeAsync = async () => {
+  try {
+    const code = await AsyncStorage.getItem("code")
+    return code
+  } catch (error) {
+    showToastWithGravity("Error getCodeAsync: " + error.message)
+  }
+}
+
+export const setCodeAsync = async (code) => {
+  try {
+    await AsyncStorage.setItem("code", code)
+  } catch (error) {
+    showToastWithGravity("Error setCodeAsync: " + error.message)
+  }
+}
+
 export const getAccessToken = async () => {
   try {
     const accessToken = await AsyncStorage.getItem("accessToken")

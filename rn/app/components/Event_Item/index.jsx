@@ -1,10 +1,10 @@
 import React from "react"
 import { Text, TouchableOpacity, View, Image } from "react-native"
-import { format } from "date-fns"
 import logo from "../../../assets/images/anhtruong.jpg"
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
 import { useRouter, Link } from "expo-router"
+import dayjs from "dayjs"
 
 function Event_Item({ item, deleteItem, deleteButton }) {
   const router = useRouter()
@@ -19,9 +19,7 @@ function Event_Item({ item, deleteItem, deleteButton }) {
           id: item.id,
         },
       }}
-      onPress={() => {
-
-      }}
+      onPress={() => {}}
     >
       <View
         className='mx-2 my-[5px] h-[90px] flex-row  items-center rounded-lg bg-white p-1'
@@ -49,12 +47,13 @@ function Event_Item({ item, deleteItem, deleteButton }) {
           </Text>
           {item.isPublished === true ? (
             <Text className='text-xs'>
-              Ngày công bố : {format(item?.publishedDate, "HH:mm - dd/MM/yyyy")}
+              Ngày công bố :{" "}
+              {dayjs(item?.publishedDate).format("HH:mm - DD/MM/YYYY")}
             </Text>
           ) : (
             <Text className='text-xs'>
               Thời gian bắt đầu :{" "}
-              {format(item?.startDate, "HH:mm - dd/MM/yyyy")}
+              {dayjs(item?.startDate).format("HH:mm - DD/MM/YYYY")}
             </Text>
           )}
         </View>

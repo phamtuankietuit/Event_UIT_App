@@ -7,8 +7,6 @@ const PageLayout = () => {
     <Provider store={store}>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name='add-post' options={{ headerShown: false }} />
-        <Stack.Screen name='update-post' options={{ headerShown: false }} />
-        <Stack.Screen name='qr-code' options={{ headerShown: false }} />
       </Stack>
     </Provider>
   )

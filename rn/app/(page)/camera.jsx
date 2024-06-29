@@ -8,9 +8,17 @@ import {
   Image,
   ActivityIndicator,
 } from "react-native"
-import { useRouter } from "expo-router"
+import { useRouter, useLocalSearchParams } from "expo-router"
 import { Ionicons } from "@expo/vector-icons"
 import Logo from "../../assets/images/Logo-with-name.png"
+import * as checkServices from "../apiServices/checkServices"
+import * as asyncStorage from "../store/asyncStorage"
+import * as studentServices from "../apiServices/studentServices"
+import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry"
+
+const showToastWithGravity = (msg) => {
+  ToastAndroid.showWithGravity(msg, ToastAndroid.SHORT, ToastAndroid.CENTER)
+}
 
 const Camera = () => {
   const router = useRouter()
@@ -18,6 +26,8 @@ const Camera = () => {
   const [scanned, setScanned] = useState(false)
   const [permission, requestPermission] = useCameraPermissions()
   const [flash, setFlash] = useState(false)
+
+  const [studentCode, setStudentCode] = useState("")
 
   if (!permission) {
     return <View />
@@ -34,9 +44,47 @@ const Camera = () => {
     )
   }
 
-  const handleScanQR = (r) => {
+  const getCode = async () => {
+    const response = await studentServices.getMe().catch((error) => {
+      console.log(error.response.data)
+    })
+
+    if (response) {
+      return response.studentCode
+    }
+  }
+
+  const handleScanQR = async (r) => {
     setScanned(true)
     setLoading(!loading)
+
+    let obj = {}
+
+    await getCode().then((res) => {
+      obj = {
+        EventId: r.data,
+        StudentCode: parseInt(res),
+      }
+    })
+
+    console.log(obj)
+
+    const response = await checkServices
+      .loginStudent(r.data, obj)
+      .catch((error) => {
+        console.log(error.response.data)
+        showToastWithGravity("Checkin thành công")
+        router.back()
+      })
+
+    if (response) {
+      console.log(response)
+
+      showToastWithGravity("Checkin thành công")
+      router.back()
+      // setLoading(!loading)
+      // router.push("/checkin-success")
+    }
   }
 
   return (

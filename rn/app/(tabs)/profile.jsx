@@ -22,6 +22,7 @@ import {
   faClipboard,
   faBars,
   faChartLine,
+  faPerson,
 } from "@fortawesome/free-solid-svg-icons"
 import * as ImagePicker from "expo-image-picker"
 import { useRouter } from "expo-router"
@@ -255,6 +256,17 @@ export default function Profile() {
             </TouchableOpacity>
             <TouchableOpacity
               className=' flex w-[100%] flex-row items-center justify-between rounded-xl px-2 py-3'
+              onPress={() => router.navigate("/(page)/camera")}
+            >
+              <View className='flex-row items-center gap-4'>
+                <FontAwesomeIcon color='gray' icon={faPerson} />
+                <Text className='text-sm'>Điểm danh sự kiện</Text>
+              </View>
+
+              <FontAwesomeIcon color='gray' icon={faAngleRight} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              className=' flex w-[100%] flex-row items-center justify-between rounded-xl px-2 py-3'
               onPress={() =>
                 router.navigate("/(page)/Student_History/student_history")
               }
@@ -303,8 +315,8 @@ export default function Profile() {
           className=' flex w-[100%] flex-row items-center justify-between rounded-xl px-2 py-3'
           onPress={() => {
             asyncStorage.setIsLogin(`false`)
-            asyncStorage.setAccessToken(null)
-            asyncStorage.setRole(null)
+            asyncStorage.setAccessToken("")
+            asyncStorage.setRole("")
 
             router.replace("(auth)/sign-in")
           }}

@@ -18,18 +18,18 @@ import { Ionicons } from "@expo/vector-icons"
 import * as ImagePicker from "expo-image-picker"
 import * as FileSystem from "expo-file-system"
 import { useSelector, useDispatch } from "react-redux"
-import { removeImage, setPostContent } from "../redux/postSlice"
+import { removeImage, setPostContent } from "../../redux/postSlice"
 import { StatusBar } from "expo-status-bar"
 import DateTimePicker from "react-native-ui-datepicker"
 import dayjs from "dayjs"
-const training = require("../../assets/images/training.png")
-const workshop = require("../../assets/images/workshop.png")
-const seminar = require("../../assets/images/seminar.png")
-const webinar = require("../../assets/images/webinar.png")
-const conference = require("../../assets/images/conference.png")
-const other = require("../../assets/images/other.jpg")
+const training = require("../../../assets/images/training.png")
+const workshop = require("../../../assets/images/workshop.png")
+const seminar = require("../../../assets/images/seminar.png")
+const webinar = require("../../../assets/images/webinar.png")
+const conference = require("../../../assets/images/conference.png")
+const other = require("../../../assets/images/other.jpg")
 
-import * as EventService from "../apiServices/eventService"
+import * as EventService from "../../apiServices/eventService"
 import { useLocalSearchParams } from "expo-router"
 
 const styles = StyleSheet.create({

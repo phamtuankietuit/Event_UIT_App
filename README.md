@@ -19,7 +19,7 @@ Event UIT cung cấp các chức năng hữu ích cho việc tham gia các sự 
 * Tham gia sự kiện bằng mã QR
 * Quản lý thông tin cá nhân
 * Quản lý điểm rèn luyện
-* Nhận thông báo từ các sự kiện
+* Nhận thông báo từ các sự kiện  
 Bên cạnh đó, ứng dụng cũng cung cấp các chức năng quản lý cho Quản trị viên:
 * Thêm, sửa thông tin của sự kiện (bài đăng).
 * Tạo mã QR tham gia cho từng sự kiện.
